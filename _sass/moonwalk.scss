@@ -17,7 +17,7 @@ pre, code {
 
 h2, h3, h4, h5 { margin-top: 1.5em; }
 
-hr { margin: 0.5em 0; }
+hr { margin: 1em 0; }
 
 hr.page-break {
   text-align: center;
@@ -27,12 +27,12 @@ hr.page-break {
   &:after { content: attr(data-content) '-----' }
 }
 
-p { margin: 0.5em 0; }
+p { margin: 1em 0; }
 
 li { margin: 0.4em 0; }
 
 .w {
-  max-width: 720px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 4em 2em;
 }
