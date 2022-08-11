@@ -3,11 +3,7 @@ author: Dingyi Lai
 url: https://dingyi-lai.github.io/ # root address of the site
 description: > # description of the site (multiple lines allowed)
   The path to Dingyi's secret garden, with all magics that I collected within this toolshed.
-  - Algorithms case-by-case
-  - Reading field-by-field
-  - Language land-by-land
-  - Delicacy lunch-by-lunch
-  - Writing day-by-day
+
 permalink: /:slug
 
 favicon: "./logo.png" # relative path to site's favicon

@@ -1,1 +1,5 @@
-
+- Algorithms case-by-case
+- Reading field-by-field
+- Language land-by-land
+- Delicacy lunch-by-lunch
+- Writing day-by-day
