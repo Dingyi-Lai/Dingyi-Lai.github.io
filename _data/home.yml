@@ -40,8 +40,7 @@ project_entries:
     url: overview-post
     desc: Core idea of the conference paper "Approximation of SHAP Values for Randomized Tree Ensembles" published by Springer Nature Switzerland AG 2022
 
-  - title: Conditional Income Distribution Across Age and
-Race in the U.S. in 2016
+  - title: Conditional Income Distribution Across Age and Race in the U.S. in 2016
     url: overview-post
     desc: Term paper for Econometric Projects WiSe21/22 (HU Berlin)
 
