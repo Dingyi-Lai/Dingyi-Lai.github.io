@@ -54,14 +54,14 @@ old_project_entries:
     desc: The better people know you, the better they collaborate
 
 footer_entries:
-  - title: abhinav's homepage
-    url: https://www.abhinav.co
+  - title: Dingyi's homepage
+    url: https://dingyi-lai.github.io/
 
-  - title: twitter
-    url: https://twitter.com/abhinav
+  - title: LeetCode
+    url: https://leetcode.com/Dingyi_Lai/
 
   - title: github
-    url: https://github.com/abhinavs
+    url: https://github.com/Dingyi-Lai
 
   - title: feed
     url: feed.xml

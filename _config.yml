@@ -1,21 +1,26 @@
-title: Dingyi_toolshed
+title: Toolshed of Dingyi
 author: Dingyi Lai
 url: https://dingyi-lai.github.io/ # root address of the site
 description: > # description of the site (multiple lines allowed)
-  Moonwalk is a fast and elegant Jekyll theme with a clean dark mode. It comes with horizontal list (for navbar and footer), card list (for portfolio), and a generic vertical list. It is very easy to modify in case you want to build over it - please see _layouts/home.html to do that.
+  The path to Dingyi's secret garden, with all magics that I collected within this toolshed.
+  - Algorithms case-by-case
+  - Reading field-by-field
+  - Language land-by-land
+  - Delicacy lunch-by-lunch
+  - Writing day-by-day
 permalink: /:slug
 
 favicon: "./logo.png" # relative path to site's favicon
 
-twitter:
-    username: abhinav # update or delete this
+LeetCode:
+    username: Dingyi # update or delete this
     card: summary_large_image
 
 #theme: moonwalk # if you are using GitHub Pages, change it to remote_theme: abhinavs/moonwalk
 remote_theme: abhinavs/moonwalk
 
 theme_config:
-  appearance: "dark" # can be "light", "dark" or "auto"
+  appearance: "light" # can be "light", "dark" or "auto"
   appearance_toggle: true # if appearance can be switched by user
   back_home_text: "home.." # customize text for homepage link in post layout
   date_format: "%Y-%m-%d" # customize how date is formatted
