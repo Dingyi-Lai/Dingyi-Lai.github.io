@@ -6,52 +6,52 @@ navbar_entries:
     url: blog
 
   - title: website
-    url: https://www.abhinav.co
+    url: https://dingyi-lai.github.io/
 
 project_entries:
-  - title: Project 1
+  - title: How to predict risk in return by an online retailer?
     url: overview-post
-    desc: This is an example project, configured in _data/home.yml
-
-  - title: Project 2
+    desc: Assignment for Business Analytics and Data Science WiSe20/21 (HU Berlin)
+    highlight: BA LightGBM
+  - title: How to predict property prices for Airbnb listings in London?
     url: overview-post
-    desc: Projects are shown in card layout
-
-  - title: Project 3
+    desc: Assignment for Advanced Data Analytics for Management Support SoSe22 (HU Berlin)
+    highlight: BA NLP ImageProcessing
+  - title: How to optimize advertisement strategy via casual-neural-network-based uplift modeling?
     url: overview-post
-    desc: You can control visibility from _config.yml file
+    desc: Seminar report for Applied Predictive Analytics SoSe21 (HU Berlin)
 
-  - title: Project 4
+  - title: How to build a German-English translator based on PyTorch?
     url: overview-post
-    desc: This project uses highlight markup, configured in _data/home.yml
-    highlight: WIP
+    desc: Course project for Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
+    highlight: NLP
 
-  - title: Project 5
+  - title: How to build a grammar corrector based on PyTorch?
     url: overview-post
     desc: Moonwalk also has horizontal list (used in header and footer)
-    highlight: WIP
+    highlight: NLP
 
-  - title: Project 6
+  - title: CFC or SHAP Values? A empirical study for comparison
     url: overview-post
-    desc: It also has a scalable vertical list (in case you need it)
+    desc: Core idea of the conference paper "Approximation of SHAP Values for Randomized Tree Ensembles" published by Springer Nature Switzerland AG 2022
 
 old_project_entries:
-  - title: Soopr
-    url: https://www.soopr.co
-    desc: Delight your readers - add beautiful share and like buttons easily to your websites 
+  - title: Test1
+    url: overview-post
+    desc: Test
     highlight: NEW
 
-  - title: Cookie
-    url: https://github.com/abhinavs/cookie
-    desc: An open source landing website with supporting pages and integrated blog
+  - title: Test2
+    url: overview-post
+    desc: Test
 
-  - title: Moonwalk
-    url: https://github.com/abhinavs/moonwalk
-    desc: A fast and minimalist Jekyll blog theme with clean dark mode
+  - title: Test3
+    url: overview-post
+    desc: Test
 
-  - title: Humangous
-    url: https://www.humangous.co
-    desc: The better people know you, the better they collaborate
+  - title: Test4
+    url: overview-post
+    desc: Test
 
 footer_entries:
   - title: Dingyi's homepage
