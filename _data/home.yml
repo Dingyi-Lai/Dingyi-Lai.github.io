@@ -28,12 +28,22 @@ project_entries:
 
   - title: How to build a grammar corrector based on PyTorch?
     url: overview-post
-    desc: Moonwalk also has horizontal list (used in header and footer)
+    desc: Course project for Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
+    highlight: NLP
+  
+  - title: How to build a text generator based on PyTorch?
+    url: overview-post
+    desc: Course project for Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
     highlight: NLP
 
-  - title: CFC or SHAP Values? A empirical study for comparison
+  - title: CFC or SHAP Values? An empirical study for comparison
     url: overview-post
     desc: Core idea of the conference paper "Approximation of SHAP Values for Randomized Tree Ensembles" published by Springer Nature Switzerland AG 2022
+
+  - title: Conditional Income Distribution Across Age and
+Race in the U.S. in 2016
+    url: overview-post
+    desc: Term paper for Econometric Projects WiSe21/22 (HU Berlin)
 
 old_project_entries:
   - title: Test1
