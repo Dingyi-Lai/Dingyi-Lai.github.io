@@ -20,7 +20,7 @@ ul.horizontal-list {
   .card {
     padding: 1em;
     border: 1px var(--text) solid;
-    width: 15em;
+    width: 11em;
     height: auto;
     text-align: center;
     font-size: 1em;
@@ -44,7 +44,7 @@ ul.horizontal-list {
   }
   
   /* Responsive cards - one column layout on small screens */
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 600px) {
     ul.horizontal-list li.card {
       width: 100%;
       display: block;
