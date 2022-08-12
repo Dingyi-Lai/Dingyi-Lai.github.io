@@ -3,11 +3,7 @@ layout: post
 author: Dingyi Lai
 ---
 
-Lorem ipsum[^1] 
-
-Try something out
-
-# Business setting
+# Business Setting
 
 A substential part of products purchased online by customers are returned especially in the case of free return shipping. Given the fierce online competition among online retailers, it is important to predict the potential return behaviour so as to take an extra step, for instance, restrict payment options or display additional marketing communication.
 
@@ -15,29 +11,190 @@ When a customer is about to purchase an item, which is likely to be returned, th
 
 | Tables        | 	actual_Keep(0)  | actual_Return(1)  |
 | ------------- |:---------------------:| -------------:|
-| predicted_Keep(0)	 | $C(k,K) = 0$ | $C(k,R) = 0.5*5*(3+0.1*v)$ |
-| predicted_Return(1) | $C(r,K) = 0.5*v$  | $C(r,R) = 0$ |
+| predicted_Keep(0)	 | C(k,K) = 0 | C(k,R) = 0.5*5*(3+0.1*v) |
+| predicted_Return(1) | C(r,K) = 0.5*v  | C(r,R) = 0 |
 
 Note that in the dataset, **a returned item is denoted as the positive class, and v in the cost-matrix denotes the price of the returned item.**
 
 Therefore, besides to predict the return rate as accurately as possible, this model is built to minimize the expected costs, put differently, to maximize the revenue of the online retailer as well. 
 
-# Table of Content
+# Blueprint Design
+## Package Import and Helper Function
+### Define Parameters
+Try different combinations for best accuracy
+```Python
+# truncation
+truncate_item_price = True
+truncate_delivery_days = False
+truncate_age = False
+cut_age = True
 
-<h1>Table of Contents<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Pakte-importieren-und-Notebookeinstellungen" data-toc-modified-id="Pakte-importieren-und-Notebookeinstellungen-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Pakte importieren und Notebookeinstellungen</a></span><ul class="toc-item"><li><span><a href="#Define-parameters" data-toc-modified-id="Define-parameters-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Define parameters</a></span></li></ul></li><li><span><a href="#Define-Methods-for-preprocessing-data" data-toc-modified-id="Define-Methods-for-preprocessing-data-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Define Methods for preprocessing data</a></span></li><li><span><a href="#Load-data" data-toc-modified-id="Load-data-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Load data</a></span></li><li><span><a href="#EDA-and-Data-Preparation" data-toc-modified-id="EDA-and-Data-Preparation-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>EDA and Data Preparation</a></span><ul class="toc-item"><li><span><a href="#order_date" data-toc-modified-id="order_date-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>order_date</a></span></li><li><span><a href="#delivery_date" data-toc-modified-id="delivery_date-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>delivery_date</a></span><ul class="toc-item"><li><span><a href="#Add-delivery_date_missing" data-toc-modified-id="Add-delivery_date_missing-4.2.1"><span class="toc-item-num">4.2.1&nbsp;&nbsp;</span>Add delivery_date_missing</a></span></li><li><span><a href="#Add-delivery_days" data-toc-modified-id="Add-delivery_days-4.2.2"><span class="toc-item-num">4.2.2&nbsp;&nbsp;</span>Add delivery_days</a></span></li><li><span><a href="#Add-marker-for-delivery_date-=-1994" data-toc-modified-id="Add-marker-for-delivery_date-=-1994-4.2.3"><span class="toc-item-num">4.2.3&nbsp;&nbsp;</span>Add marker for delivery_date = 1994</a></span></li><li><span><a href="#Set-delivery-date-to-nan-if-=-1994" data-toc-modified-id="Set-delivery-date-to-nan-if-=-1994-4.2.4"><span class="toc-item-num">4.2.4&nbsp;&nbsp;</span>Set delivery date to nan if = 1994</a></span></li><li><span><a href="#Remove-delivery_days-outliers" data-toc-modified-id="Remove-delivery_days-outliers-4.2.5"><span class="toc-item-num">4.2.5&nbsp;&nbsp;</span>Remove delivery_days outliers</a></span></li></ul></li><li><span><a href="#item_size" data-toc-modified-id="item_size-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>item_size</a></span><ul class="toc-item"><li><span><a href="#Convert-item_size" data-toc-modified-id="Convert-item_size-4.3.1"><span class="toc-item-num">4.3.1&nbsp;&nbsp;</span>Convert item_size</a></span></li><li><span><a href="#Add-item_size_frequency" data-toc-modified-id="Add-item_size_frequency-4.3.2"><span class="toc-item-num">4.3.2&nbsp;&nbsp;</span>Add item_size_frequency</a></span></li></ul></li><li><span><a href="#item_color" data-toc-modified-id="item_color-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>item_color</a></span><ul class="toc-item"><li><span><a href="#Add-item_color_count" data-toc-modified-id="Add-item_color_count-4.4.1"><span class="toc-item-num">4.4.1&nbsp;&nbsp;</span>Add item_color_count</a></span></li><li><span><a href="#Add-item_color_frequency" data-toc-modified-id="Add-item_color_frequency-4.4.2"><span class="toc-item-num">4.4.2&nbsp;&nbsp;</span>Add item_color_frequency</a></span></li></ul></li><li><span><a href="#brand_id" data-toc-modified-id="brand_id-4.5"><span class="toc-item-num">4.5&nbsp;&nbsp;</span>brand_id</a></span><ul class="toc-item"><li><span><a href="#Add-brand_id_count" data-toc-modified-id="Add-brand_id_count-4.5.1"><span class="toc-item-num">4.5.1&nbsp;&nbsp;</span>Add brand_id_count</a></span></li><li><span><a href="#Add-brand_id_frequency" data-toc-modified-id="Add-brand_id_frequency-4.5.2"><span class="toc-item-num">4.5.2&nbsp;&nbsp;</span>Add brand_id_frequency</a></span></li></ul></li><li><span><a href="#item_id" data-toc-modified-id="item_id-4.6"><span class="toc-item-num">4.6&nbsp;&nbsp;</span>item_id</a></span><ul class="toc-item"><li><span><a href="#Add-item_id_count" data-toc-modified-id="Add-item_id_count-4.6.1"><span class="toc-item-num">4.6.1&nbsp;&nbsp;</span>Add item_id_count</a></span></li><li><span><a href="#Add-item_id_frequency" data-toc-modified-id="Add-item_id_frequency-4.6.2"><span class="toc-item-num">4.6.2&nbsp;&nbsp;</span>Add item_id_frequency</a></span></li></ul></li><li><span><a href="#user_id" data-toc-modified-id="user_id-4.7"><span class="toc-item-num">4.7&nbsp;&nbsp;</span>user_id</a></span><ul class="toc-item"><li><span><a href="#Add-user_order_count" data-toc-modified-id="Add-user_order_count-4.7.1"><span class="toc-item-num">4.7.1&nbsp;&nbsp;</span>Add user_order_count</a></span></li><li><span><a href="#Add-user_id_frequency" data-toc-modified-id="Add-user_id_frequency-4.7.2"><span class="toc-item-num">4.7.2&nbsp;&nbsp;</span>Add user_id_frequency</a></span></li></ul></li><li><span><a href="#item_price" data-toc-modified-id="item_price-4.8"><span class="toc-item-num">4.8&nbsp;&nbsp;</span>item_price</a></span><ul class="toc-item"><li><span><a href="#Truncate-item_price" data-toc-modified-id="Truncate-item_price-4.8.1"><span class="toc-item-num">4.8.1&nbsp;&nbsp;</span>Truncate item_price</a></span></li></ul></li><li><span><a href="#user_dob" data-toc-modified-id="user_dob-4.9"><span class="toc-item-num">4.9&nbsp;&nbsp;</span>user_dob</a></span><ul class="toc-item"><li><span><a href="#Calculate-age" data-toc-modified-id="Calculate-age-4.9.1"><span class="toc-item-num">4.9.1&nbsp;&nbsp;</span>Calculate age</a></span></li><li><span><a href="#Add-dob_missing" data-toc-modified-id="Add-dob_missing-4.9.2"><span class="toc-item-num">4.9.2&nbsp;&nbsp;</span>Add dob_missing</a></span></li><li><span><a href="#Cut-age" data-toc-modified-id="Cut-age-4.9.3"><span class="toc-item-num">4.9.3&nbsp;&nbsp;</span>Cut age</a></span></li><li><span><a href="#Truncate-age" data-toc-modified-id="Truncate-age-4.9.4"><span class="toc-item-num">4.9.4&nbsp;&nbsp;</span>Truncate age</a></span></li></ul></li><li><span><a href="#user_reg_date" data-toc-modified-id="user_reg_date-4.10"><span class="toc-item-num">4.10&nbsp;&nbsp;</span>user_reg_date</a></span><ul class="toc-item"><li><span><a href="#Add-been_member_for" data-toc-modified-id="Add-been_member_for-4.10.1"><span class="toc-item-num">4.10.1&nbsp;&nbsp;</span>Add been_member_for</a></span></li><li><span><a href="#Add-member" data-toc-modified-id="Add-member-4.10.2"><span class="toc-item-num">4.10.2&nbsp;&nbsp;</span>Add member</a></span></li></ul></li><li><span><a href="#WoE" data-toc-modified-id="WoE-4.11"><span class="toc-item-num">4.11&nbsp;&nbsp;</span>WoE</a></span><ul class="toc-item"><li><span><a href="#WoE-of-member" data-toc-modified-id="WoE-of-member-4.11.1"><span class="toc-item-num">4.11.1&nbsp;&nbsp;</span>WoE of member</a></span></li><li><span><a href="#WoE-of-brand_id" data-toc-modified-id="WoE-of-brand_id-4.11.2"><span class="toc-item-num">4.11.2&nbsp;&nbsp;</span>WoE of brand_id</a></span></li><li><span><a href="#WoE-of-item_id" data-toc-modified-id="WoE-of-item_id-4.11.3"><span class="toc-item-num">4.11.3&nbsp;&nbsp;</span>WoE of item_id</a></span></li><li><span><a href="#WoE-for-item_color" data-toc-modified-id="WoE-for-item_color-4.11.4"><span class="toc-item-num">4.11.4&nbsp;&nbsp;</span>WoE for item_color</a></span></li><li><span><a href="#WoE-for-user_state" data-toc-modified-id="WoE-for-user_state-4.11.5"><span class="toc-item-num">4.11.5&nbsp;&nbsp;</span>WoE for user_state</a></span></li></ul></li></ul></li><li><span><a href="#Information-Gain" data-toc-modified-id="Information-Gain-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Information Gain</a></span></li><li><span><a href="#Correlation-matrix" data-toc-modified-id="Correlation-matrix-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>Correlation matrix</a></span><ul class="toc-item"><li><span><a href="#Remove-correlating-features" data-toc-modified-id="Remove-correlating-features-6.1"><span class="toc-item-num">6.1&nbsp;&nbsp;</span>Remove correlating features</a></span></li></ul></li><li><span><a href="#Split-data" data-toc-modified-id="Split-data-7"><span class="toc-item-num">7&nbsp;&nbsp;</span>Split data</a></span><ul class="toc-item"><li><span><a href="#Delete-duplicates" data-toc-modified-id="Delete-duplicates-7.1"><span class="toc-item-num">7.1&nbsp;&nbsp;</span>Delete duplicates</a></span></li><li><span><a href="#Train-Test-Split" data-toc-modified-id="Train-Test-Split-7.2"><span class="toc-item-num">7.2&nbsp;&nbsp;</span>Train Test Split</a></span></li></ul></li><li><span><a href="#Pipeline-erstellen" data-toc-modified-id="Pipeline-erstellen-8"><span class="toc-item-num">8&nbsp;&nbsp;</span>Pipeline erstellen</a></span></li><li><span><a href="#Logistic-Regression" data-toc-modified-id="Logistic-Regression-9"><span class="toc-item-num">9&nbsp;&nbsp;</span>Logistic Regression</a></span><ul class="toc-item"><li><span><a href="#ROC-Curve" data-toc-modified-id="ROC-Curve-9.1"><span class="toc-item-num">9.1&nbsp;&nbsp;</span>ROC Curve</a></span><ul class="toc-item"><li><span><a href="#Training-data" data-toc-modified-id="Training-data-9.1.1"><span class="toc-item-num">9.1.1&nbsp;&nbsp;</span>Training data</a></span></li><li><span><a href="#Test-data" data-toc-modified-id="Test-data-9.1.2"><span class="toc-item-num">9.1.2&nbsp;&nbsp;</span>Test data</a></span></li></ul></li><li><span><a href="#Confusion-Matrix" data-toc-modified-id="Confusion-Matrix-9.2"><span class="toc-item-num">9.2&nbsp;&nbsp;</span>Confusion Matrix</a></span></li><li><span><a href="#Feature-coefficients" data-toc-modified-id="Feature-coefficients-9.3"><span class="toc-item-num">9.3&nbsp;&nbsp;</span>Feature coefficients</a></span></li><li><span><a href="#Gini-Coefficient" data-toc-modified-id="Gini-Coefficient-9.4"><span class="toc-item-num">9.4&nbsp;&nbsp;</span>Gini Coefficient</a></span></li><li><span><a href="#Stability" data-toc-modified-id="Stability-9.5"><span class="toc-item-num">9.5&nbsp;&nbsp;</span>Stability</a></span></li><li><span><a href="#F1-Score" data-toc-modified-id="F1-Score-9.6"><span class="toc-item-num">9.6&nbsp;&nbsp;</span>F1 Score</a></span></li><li><span><a href="#Brier-score" data-toc-modified-id="Brier-score-9.7"><span class="toc-item-num">9.7&nbsp;&nbsp;</span>Brier score</a></span></li></ul></li><li><span><a href="#XGB" data-toc-modified-id="XGB-10"><span class="toc-item-num">10&nbsp;&nbsp;</span>XGB</a></span><ul class="toc-item"><li><span><a href="#Hyperparamter-tuning" data-toc-modified-id="Hyperparamter-tuning-10.1"><span class="toc-item-num">10.1&nbsp;&nbsp;</span>Hyperparamter tuning</a></span></li><li><span><a href="#ROC-Curve" data-toc-modified-id="ROC-Curve-10.2"><span class="toc-item-num">10.2&nbsp;&nbsp;</span>ROC Curve</a></span><ul class="toc-item"><li><span><a href="#Training-data" data-toc-modified-id="Training-data-10.2.1"><span class="toc-item-num">10.2.1&nbsp;&nbsp;</span>Training data</a></span></li><li><span><a href="#Test-data" data-toc-modified-id="Test-data-10.2.2"><span class="toc-item-num">10.2.2&nbsp;&nbsp;</span>Test data</a></span></li></ul></li><li><span><a href="#Confusion-Matrix" data-toc-modified-id="Confusion-Matrix-10.3"><span class="toc-item-num">10.3&nbsp;&nbsp;</span>Confusion Matrix</a></span></li><li><span><a href="#Feature-Importance" data-toc-modified-id="Feature-Importance-10.4"><span class="toc-item-num">10.4&nbsp;&nbsp;</span>Feature Importance</a></span></li><li><span><a href="#Gini-coefficient" data-toc-modified-id="Gini-coefficient-10.5"><span class="toc-item-num">10.5&nbsp;&nbsp;</span>Gini coefficient</a></span></li><li><span><a href="#Stability" data-toc-modified-id="Stability-10.6"><span class="toc-item-num">10.6&nbsp;&nbsp;</span>Stability</a></span></li><li><span><a href="#F1-Score" data-toc-modified-id="F1-Score-10.7"><span class="toc-item-num">10.7&nbsp;&nbsp;</span>F1 Score</a></span></li><li><span><a href="#Brier-score" data-toc-modified-id="Brier-score-10.8"><span class="toc-item-num">10.8&nbsp;&nbsp;</span>Brier score</a></span></li><li><span><a href="#Model-explainability" data-toc-modified-id="Model-explainability-10.9"><span class="toc-item-num">10.9&nbsp;&nbsp;</span>Model explainability</a></span></li></ul></li><li><span><a href="#Random-Forest" data-toc-modified-id="Random-Forest-11"><span class="toc-item-num">11&nbsp;&nbsp;</span>Random Forest</a></span><ul class="toc-item"><li><span><a href="#Hyperparameter-tuning" data-toc-modified-id="Hyperparameter-tuning-11.1"><span class="toc-item-num">11.1&nbsp;&nbsp;</span>Hyperparameter tuning</a></span></li><li><span><a href="#ROC-Curve" data-toc-modified-id="ROC-Curve-11.2"><span class="toc-item-num">11.2&nbsp;&nbsp;</span>ROC Curve</a></span><ul class="toc-item"><li><span><a href="#Training-data" data-toc-modified-id="Training-data-11.2.1"><span class="toc-item-num">11.2.1&nbsp;&nbsp;</span>Training data</a></span></li><li><span><a href="#Test-data" data-toc-modified-id="Test-data-11.2.2"><span class="toc-item-num">11.2.2&nbsp;&nbsp;</span>Test data</a></span></li></ul></li><li><span><a href="#Confusion-Matrix" data-toc-modified-id="Confusion-Matrix-11.3"><span class="toc-item-num">11.3&nbsp;&nbsp;</span>Confusion Matrix</a></span></li><li><span><a href="#Feature-coefficients" data-toc-modified-id="Feature-coefficients-11.4"><span class="toc-item-num">11.4&nbsp;&nbsp;</span>Feature coefficients</a></span></li><li><span><a href="#Gini-Coefficient" data-toc-modified-id="Gini-Coefficient-11.5"><span class="toc-item-num">11.5&nbsp;&nbsp;</span>Gini Coefficient</a></span></li><li><span><a href="#Stability" data-toc-modified-id="Stability-11.6"><span class="toc-item-num">11.6&nbsp;&nbsp;</span>Stability</a></span></li><li><span><a href="#F1-Score" data-toc-modified-id="F1-Score-11.7"><span class="toc-item-num">11.7&nbsp;&nbsp;</span>F1 Score</a></span></li><li><span><a href="#Brier-score" data-toc-modified-id="Brier-score-11.8"><span class="toc-item-num">11.8&nbsp;&nbsp;</span>Brier score</a></span></li></ul></li><li><span><a href="#Light-gbm" data-toc-modified-id="Light-gbm-12"><span class="toc-item-num">12&nbsp;&nbsp;</span>Light gbm</a></span><ul class="toc-item"><li><span><a href="#Roc-Curve" data-toc-modified-id="Roc-Curve-12.1"><span class="toc-item-num">12.1&nbsp;&nbsp;</span>Roc Curve</a></span><ul class="toc-item"><li><span><a href="#Training-data" data-toc-modified-id="Training-data-12.1.1"><span class="toc-item-num">12.1.1&nbsp;&nbsp;</span>Training data</a></span></li><li><span><a href="#Test-data" data-toc-modified-id="Test-data-12.1.2"><span class="toc-item-num">12.1.2&nbsp;&nbsp;</span>Test data</a></span></li></ul></li><li><span><a href="#Confusion-Matrix" data-toc-modified-id="Confusion-Matrix-12.2"><span class="toc-item-num">12.2&nbsp;&nbsp;</span>Confusion Matrix</a></span></li><li><span><a href="#Feature-importance" data-toc-modified-id="Feature-importance-12.3"><span class="toc-item-num">12.3&nbsp;&nbsp;</span>Feature importance</a></span></li><li><span><a href="#Gini-coefficient" data-toc-modified-id="Gini-coefficient-12.4"><span class="toc-item-num">12.4&nbsp;&nbsp;</span>Gini coefficient</a></span></li><li><span><a href="#Stability" data-toc-modified-id="Stability-12.5"><span class="toc-item-num">12.5&nbsp;&nbsp;</span>Stability</a></span></li><li><span><a href="#F1-Score" data-toc-modified-id="F1-Score-12.6"><span class="toc-item-num">12.6&nbsp;&nbsp;</span>F1 Score</a></span></li><li><span><a href="#Brier-score" data-toc-modified-id="Brier-score-12.7"><span class="toc-item-num">12.7&nbsp;&nbsp;</span>Brier score</a></span></li></ul></li><li><span><a href="#Model-training-results-overview" data-toc-modified-id="Model-training-results-overview-13"><span class="toc-item-num">13&nbsp;&nbsp;</span>Model training results overview</a></span><ul class="toc-item"><li><span><a href="#Parameter-evaluation" data-toc-modified-id="Parameter-evaluation-13.1"><span class="toc-item-num">13.1&nbsp;&nbsp;</span>Parameter evaluation</a></span></li></ul></li><li><span><a href="#Cost-sensitivity" data-toc-modified-id="Cost-sensitivity-14"><span class="toc-item-num">14&nbsp;&nbsp;</span>Cost sensitivity</a></span><ul class="toc-item"><li><span><a href="#Get-probaility-predictions-for-each-model" data-toc-modified-id="Get-probaility-predictions-for-each-model-14.1"><span class="toc-item-num">14.1&nbsp;&nbsp;</span>Get probaility predictions for each model</a></span></li><li><span><a href="#Calculate-bayesian-threshold" data-toc-modified-id="Calculate-bayesian-threshold-14.2"><span class="toc-item-num">14.2&nbsp;&nbsp;</span>Calculate bayesian threshold</a></span></li><li><span><a href="#Calculate-error-cost-per-model-sum-with-threshold-=-0,5" data-toc-modified-id="Calculate-error-cost-per-model-sum-with-threshold-=-0,5-14.3"><span class="toc-item-num">14.3&nbsp;&nbsp;</span>Calculate error cost per model sum with threshold = 0,5</a></span></li><li><span><a href="#Calculate-error-cost-per-model-mean-with-threshold-=-0,5" data-toc-modified-id="Calculate-error-cost-per-model-mean-with-threshold-=-0,5-14.4"><span class="toc-item-num">14.4&nbsp;&nbsp;</span>Calculate error cost per model mean with threshold = 0,5</a></span></li><li><span><a href="#Calculate-bayesian-threshold-for-each-model" data-toc-modified-id="Calculate-bayesian-threshold-for-each-model-14.5"><span class="toc-item-num">14.5&nbsp;&nbsp;</span>Calculate bayesian threshold for each model</a></span></li><li><span><a href="#Calculate-error-cost-per-model-mean-with--bayesian-threshold" data-toc-modified-id="Calculate-error-cost-per-model-mean-with--bayesian-threshold-14.6"><span class="toc-item-num">14.6&nbsp;&nbsp;</span>Calculate error cost per model mean with  bayesian threshold</a></span></li></ul></li><li><span><a href="#Evaluating-cost-sensitive-classifiers" data-toc-modified-id="Evaluating-cost-sensitive-classifiers-15"><span class="toc-item-num">15&nbsp;&nbsp;</span>Evaluating cost-sensitive classifiers</a></span><ul class="toc-item"><li><span><a href="#Accuracy" data-toc-modified-id="Accuracy-15.1"><span class="toc-item-num">15.1&nbsp;&nbsp;</span>Accuracy</a></span></li><li><span><a href="#Error-cost" data-toc-modified-id="Error-cost-15.2"><span class="toc-item-num">15.2&nbsp;&nbsp;</span>Error cost</a></span></li></ul></li><li><span><a href="#Empirical-Thresholding" data-toc-modified-id="Empirical-Thresholding-16"><span class="toc-item-num">16&nbsp;&nbsp;</span>Empirical Thresholding</a></span><ul class="toc-item"><li><ul class="toc-item"><li><span><a href="#Calibration-curve" data-toc-modified-id="Calibration-curve-16.0.1"><span class="toc-item-num">16.0.1&nbsp;&nbsp;</span>Calibration curve</a></span></li></ul></li></ul></li><li><span><a href="#The-MetaCost-algorithm" data-toc-modified-id="The-MetaCost-algorithm-17"><span class="toc-item-num">17&nbsp;&nbsp;</span>The MetaCost algorithm</a></span></li><li><span><a href="#Error-Cost-Overview" data-toc-modified-id="Error-Cost-Overview-18"><span class="toc-item-num">18&nbsp;&nbsp;</span>Error-Cost Overview</a></span><ul class="toc-item"><li><span><a href="#Compare-confusion-matrices" data-toc-modified-id="Compare-confusion-matrices-18.1"><span class="toc-item-num">18.1&nbsp;&nbsp;</span>Compare confusion matrices</a></span></li></ul></li><li><span><a href="#Choose-best-model" data-toc-modified-id="Choose-best-model-19"><span class="toc-item-num">19&nbsp;&nbsp;</span>Choose best model</a></span><ul class="toc-item"><li><span><a href="#Calculate-cost-for-best-model-with-bayes-threshold" data-toc-modified-id="Calculate-cost-for-best-model-with-bayes-threshold-19.1"><span class="toc-item-num">19.1&nbsp;&nbsp;</span>Calculate cost for best model with bayes threshold</a></span></li></ul></li><li><span><a href="#Conclusion" data-toc-modified-id="Conclusion-20"><span class="toc-item-num">20&nbsp;&nbsp;</span>Conclusion</a></span></li></ul></div>
+# imputation
+numeric_imputer_strategy =  'median' # 'median', 'most_frequent', 'constant' 'mean'
+numeric_standard_scaler_mean = True
+```
 
-## Pakte importieren und Notebookeinstellungen
-### Define parameters
-## Define Methods for preprocessing data
-## Load data
-Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod.
+###  Define Methods and Wrap them
+```Python
+def preprocess_df(df, known_data:bool, truncate_delivery_days:bool, truncate_item_price:bool, truncate_age:bool, cut_age:bool):
+    # change object variables to datatype category
+    # change numeric variables from float64 to float32 (reduce memory consumption)
+    # change feature return to boolean (2 categories)
+    # change dates to the datetime datatype 'datetime64[ns]'
+    df = transform_columns(df, known_data)
+    
+    # via (df['delivery_date'] - df['order_date']).dt.days
+    df = add_delivery_days(df)
+
+    if truncate_delivery_days:
+        print('truncate_delivery_days')
+        # via outlier_truncation(df['delivery_days'])
+        # # Define upper/lower bound
+        # # upper = x.quantile(0.75) + factor*IQR
+        # # lower = x.quantile(0.25) - factor*IQR
+        df = remove_delivery_days_outliers(df)
+    
+    # via df['delivery_date'].apply(lambda x: False if pd.isnull(x) else True)
+    df = add_delivery_date_missing(df)
+
+    # year<2016 is all 1994, which is suspicious
+    # via df['delivery_date'].apply(lambda x: True if x.year < 2016 else False)
+    df = add_delivery_date_1994_marker(df)
+
+    # via df.loc[df['delivery_date'].dt.year < 2016,['delivery_days']] = np.nan
+    df = set_delivery_date_1994_to_nan(df)
+    
+    # via df['brand_id'].apply(lambda x: (df['brand_id'] == x).sum())
+    df = add_brand_id_count(df)
+
+    # via df['item_id'].apply(lambda x: (df['item_id'] == x).sum())
+    df = add_item_id_count(df)
+
+    # set it all to lowercase and correct some spelling error
+    # then via df['item_color'].apply(lambda x: (df['item_color'] == x).sum())
+    df = add_item_color_count(df)
+    
+    # a practical summary for retailing size:
+    # sizes_dict = {
+    #     '84': 'xxs', '104': 's', '110': 's', '116': 's', '122': 'm', '128': 'm',
+    #     '134': 'l', '140': 'l', '148': 'xl', '152': 'xl', '164': 'xxl', '170': 'xxl',
+    #     '176': 'xxxl', '18': 'xs', '19': 's', '20': 's', '21': 'm', '22': 'm', '23': 'l',
+    #     '24':  'xl', '25': 'xs', '26': 's', '27': 's', '28': 'm', '29': 'm',  '30': 'l',
+    #     '31': 'l', '32': 'xl', '33': 'xxl', '34': 'xxs', '35': 'xs', '36': 'xs', '36+': 's',
+    #     '37': 's', '37+': 's', '38': 's', '38+': 's', '39': 'm', '39+': 'm', '40': 'm',
+    #     '40+': 'm', '41': 'm', '41+' : 'm', '42': 'l', '42+': 'l', '43': 'l', '43+': 'l',
+    #     '44': 'l', '44+' : 'xl', '45' : 'xl', '45+': 'xl', '46': 'xl', '46+' : 'xl',
+    #     '47' : 'xl', '48': 'xl', '49': 'xl', '50': 'xxl', '52': 'xxl', '54': 'xxl',
+    #     '56': 'xxl', '58': 'xxl', 0: 'xxs', '1': 'xxs', '2': 'xxs', '2+': 'xxs', '3' : 'xxs',
+    #     '3+': 'xs', '4':  'xs', '4+': 'xs', '5': 'xs', '5+':'xs', '6':'s', '6+':'s',
+    #     '7':'s', '7+':'m', '8':'m', '8+':'m', '9': 'l', '9+': 'l', '10': 'l', '10+': 'xl',
+    #     '11': 'xl', '11+': 'xl', '12': 'xl', '12+': 'xxl', '13': 'xxl', '14': 'xxl',
+    #     36: 'xxs', 38: 'xs', 40: 's', 42: 'm', 44: 'l', 46: 'xl', 48: 'xxl',
+    #     '3132': 'xxs', '3332': 'xs', '3432': 'xs', '3632': 's', '3832': 'm', '3634': 'l',
+    #     '3834': 'xl', '4032': 'xl', '4034': 'xxl', '4232': 'xxxl', '80': 'xs', '85': 's',
+    #     '90': 'm', '95': 'l', '100': 'xl', '105': 'xxl'
+    # }
+    df = convert_item_sizes(df)
+
+    if truncate_item_price:
+        print('truncate_price_size')
+        # via outlier_truncation(df['item_price'])
+        df = truncate_item_price_outliers(df)
+
+    # via df['user_dob'].apply(calculate_age)
+    # today = date.today()
+    # return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+    df = add_age(df)
+
+    if truncate_age:
+        print('truncate_age')
+        # via outlier_truncation(df['age'])
+        df = truncate_age_outliers(df)
+    if cut_age:
+        print('cut_age')
+        # via df.loc[df['age'] > 95,'age'] = np.nan
+        df = cut_age_outliers(df)
+    
+    # via df['user_dob'].apply(lambda x: False if pd.isnull(x) else True)
+    df = add_dob_missing(df)
+
+    # via df['been_member_for'] = (df['order_date']-df['user_reg_date'] ).dt.days
+    df = add_been_member_for(df)
+
+    # labels = ['fresh_member', 'new_member', 'member', 'old_member']
+    # cut_bins = [-5, 150, 300, 450, 1000]
+    # via df['member'] = pd.cut(df['been_member_for'], bins=cut_bins, labels=labels)
+    df = add_member_category(df)
+
+    print(df.info())
+    return df   
+```
+
 ## EDA and Data Preparation
-### order_date
+### Load Data and Take a First Glance
+```Python
+%%time
+df_known = pd.read_csv('.../BADS_WS2021_known.csv', index_col='order_item_id') 
+df_known.head()
+# Query some properties of the data
+print('Dimensionality of the data is {}'.format(df_known.shape))  # .shape returns a tupel
+print('The data set has {} cases.'.format(df_known.shape[0]))     # we can also index the elements of that tupel
+print('The total number of elements is {}.'.format(df_known.size))
+df_known.info()
+```
 
+### Conversion After Comparison of Final Evaluation
+```Python
+def transform_columns(df_known, known_data:bool):
+    # change object variables to datatype category
+    df_known['item_size'] = df_known['item_size'].astype('category')
+    df_known['item_color'] = df_known['item_color'].astype('category')
+    df_known['user_title'] = df_known['user_title'].astype('category')
+    df_known['user_state'] = df_known['user_state'].astype('category')
+    # change all numeric variables from float64 to float32 to reduce memory consumption
+    df_known['item_price'] = df_known['item_price'].astype(np.float32)
+    df_known['item_price'] = df_known['item_price'].apply(lambda x:("%.2f" % round(x, 2)))
+    df_known['item_price'] = df_known['item_price'].astype(np.float32)
+    df_known['brand_id'] = df_known['brand_id'].astype(np.int32)
+    df_known['user_id'] = df_known['user_id'].astype(np.int32)
+    df_known['item_id'] = df_known['item_id'].astype(np.int32)
+    if known_data:
+        # since the feature return has only two values, we convert it to boolean
+        df_known['return'] = df_known['return'].astype('bool')
+    # transform all dates to the datetime datatype
+    df_known['order_date'] = df_known['order_date'].astype('datetime64[ns]')
+    df_known['delivery_date'] = df_known['delivery_date'].astype('datetime64[ns]')
+    df_known['user_dob'] = df_known['user_dob'].astype('datetime64[ns]')
+    df_known['user_reg_date'] = df_known['user_reg_date'].astype('datetime64[ns]')
+    return df_known
 
+df = transform_columns(df, known_data=True)
+df.info()
 
-## Lists
+# <class 'pandas.core.frame.DataFrame'>
+# Int64Index: 100000 entries, 1 to 100000
+# Data columns (total 13 columns):
+#  #   Column         Non-Null Count   Dtype         
+# ---  ------         --------------   -----         
+#  0   order_date     100000 non-null  datetime64[ns]
+#  1   delivery_date  90682 non-null   datetime64[ns]
+#  2   item_id        100000 non-null  int32         
+#  3   item_size      100000 non-null  category      
+#  4   item_color     100000 non-null  category      
+#  5   brand_id       100000 non-null  int32         
+#  6   item_price     100000 non-null  float32       
+#  7   user_id        100000 non-null  int32         
+#  8   user_title     100000 non-null  category      
+#  9   user_dob       91275 non-null   datetime64[ns]
+#  10  user_state     100000 non-null  category      
+#  11  user_reg_date  100000 non-null  datetime64[ns]
+#  12  return         100000 non-null  bool          
+# dtypes: bool(1), category(4), datetime64[ns](4), float32(1), int32(3)
+# memory usage: 5.8 MB
+```
+
+### Some Data Description During Exploration
+
 
 Unordered:
 
