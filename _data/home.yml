@@ -10,7 +10,7 @@ navbar_entries:
 
 project_entries:
   - title: How to predict risk in return by an online retailer?
-    url: overview-post
+    url: project1
     desc: Assignment for Business Analytics and Data Science WiSe20/21 (HU Berlin)
     highlight: BA LightGBM
   - title: How to predict property prices for Airbnb listings in London?
