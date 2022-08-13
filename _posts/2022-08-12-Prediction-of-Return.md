@@ -45,39 +45,17 @@ Note that for categorical features, there are mainly two convenient ways to rear
 - Categorical feature distribution and woebin_plot
 - Numericfal feature distribution, boxplot and histogram
 
-### Feature selection
+### Feature Selection
 High correlation is an indicator that using both of these features will most likely not be benefitial to the model, as the features carry the same information. Besides, a filter function based on information gain is applied. Compare IV and Fisher scores among all variables. 0.02 is commonly used as a threshold for IV.
 
-## Pipeline construction
-### Class definition
+## Pipeline Construction
+### Class Eefinition
 Define `ColumnSelector`, `DropColumns` and `WoETransformer` for preprocession.
-### Preprocessor combinition
+### Preprocessor Combinition
 Combine via `FeatureUnion`.
 
-### Final DataFrame (just an example) and train-test splitting
----
-{: data-content="hr with text"}
-<class 'pandas.core.frame.DataFrame'>
-Int64Index: 100000 entries, 1 to 100000
-Data columns (total 13 columns):
- #   Column         Non-Null Count   Dtype         
----  ------         --------------   -----         
- 0   order_date     100000 non-null  datetime64[ns]
- 1   delivery_date  90682 non-null   datetime64[ns]
- 2   item_id        100000 non-null  int32         
- 3   item_size      100000 non-null  category      
- 4   item_color     100000 non-null  category      
- 5   brand_id       100000 non-null  int32         
- 6   item_price     100000 non-null  float32       
- 7   user_id        100000 non-null  int32         
- 8   user_title     100000 non-null  category      
- 9   user_dob       91275 non-null   datetime64[ns]
- 10  user_state     100000 non-null  category      
- 11  user_reg_date  100000 non-null  datetime64[ns]
- 12  return         100000 non-null  bool          
-dtypes: bool(1), category(4), datetime64[ns](4), float32(1), int32(3)
-memory usage: 5.8 MB
----
+### Final DataFrame (just an example) and Train-Test Splitting
+Split data into training and testing dataset
 
 ## Model Construction
 I chose to test 4 different models: `Logistic Regression`, `XGBoost`, `Random Forest` and `Light GBM`.
@@ -96,9 +74,15 @@ For each one of them, I will perform the following tasks:
 10. Calculate Brier Score (The Brier Score is a strictly proper score function or strictly proper scoring rule that measures the accuracy of probabilistic predictions)
 11. Model explanation (only for chosen models)
 ### Logistic Regression
+Logistic regression estimates the probability of an event occurring, such as return or didn't return, based on a given dataset of independent variables. Since the outcome is a probability, the dependent variable is bounded between 0 and 1.
 
+Logistic Regression predicts the test data with accuracy of 69%. The accuracy is the same for the train and test data, which is an indicator, that the model performs well and does not overfit.
+
+If some features have high coefficients, then change their value
 ### Random Forest
-### 
+
+### XGBoost
+### Light GBM
 The following is a blockquote:
 
 > Suspendisse tempus dolor nec risus sodales posuere. Proin dui dui, mollis a consectetur molestie, lobortis vitae tellus.
