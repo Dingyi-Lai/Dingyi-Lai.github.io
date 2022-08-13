@@ -11,8 +11,8 @@ When a customer is about to purchase an item, which is likely to be returned, th
 
 | Tables        | 	Actual_Keep(0)  | Actual_Return(1)  |
 |-------------|:---------------------:| -------------:|
-| predicted_Keep(0)	 | C(k,K) = 0 | $C(k,R) = 0.5*5*(3+0.1*v)$ |
-| predicted_Return(1) | C(r,K) = 0.5*v  | C(r,R) = 0 |
+| predicted_Keep(0)	 | C(k,K) = 0 | C(k,R) = 0.5·5·(3+0.1·v) |
+| predicted_Return(1) | C(r,K) = 0.5·v  | C(r,R) = 0 |
 
 Note that in the dataset, **a returned item is denoted as the positive class, and v in the cost-matrix denotes the price of the returned item.**
 
@@ -23,31 +23,17 @@ It is unrealistic to form a pipeline for data processing once for all. A reasona
 
 ## Package Import and Helper Function
 ### Define Parameters
-Try different combinations for best accuracy
-
+Encounter noisy features, truncation and imputation are worth considering. Note that there are several options for imputation, such as 'median', 'most_frequent', 'constant' 'mean'...
 
 ###  Define Methods and Wrap them
-```Python
-
-```
+Scrutinize date features, when there is missing, mark them as a new category. Find out potential reason why there is outlier or mistake. Valuable information could hide inside. Otherwise, consider to remove outliers. As for categorical features, grouping and correcting potential misspelling is neccessary. Add counting result as frequency is another good move. Let's move to numerical feature. Truncate it or not, which could be indexed by our parameters above, deserve examination.
 
 ## EDA and Data Preparation
 ### Load Data and Take a First Glance
-```Python
-%%time
-df_known = pd.read_csv('.../BADS_WS2021_known.csv', index_col='order_item_id') 
-df_known.head()
-# Query some properties of the data
-print('Dimensionality of the data is {}'.format(df_known.shape))  # .shape returns a tupel
-print('The data set has {} cases.'.format(df_known.shape[0]))     # we can also index the elements of that tupel
-print('The total number of elements is {}.'.format(df_known.size))
-df_known.info()
-```
+Query some properties of the data such as dimensionality, number of cases and information regarding each feature.
 
 ### Conversion After Comparison of Final Evaluation
-```Python
-
-```
+Change data type to reduce memory consumption, which could speed up model building.
 
 ### Some Data Description During Exploration
 
