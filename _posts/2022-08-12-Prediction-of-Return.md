@@ -46,11 +46,14 @@ Note that for categorical features, there are mainly two convenient ways to rear
 - Numericfal feature distribution, boxplot and histogram
 
 ### Feature Selection
-High correlation is an indicator that using both of these features will most likely not be benefitial to the model, as the features carry the same information. Besides, a filter function based on information gain is applied. Compare IV and Fisher scores among all variables. 0.02 is commonly used as a threshold for IV.
+High correlation is an indicator that using both of these features will most likely not be benefitial to the model, as the features carry the same information. Besides, a filter function based on information value (IV:  This value will help us understand if the variable is useful in our prediction at all) is applied. Compare IV and Fisher scores among all variables. 0.02 is commonly used as a threshold for IV.
 
 ## Pipeline Construction
-### Class Eefinition
+### Class Definition
 Define `ColumnSelector`, `DropColumns` and `WoETransformer` for preprocession.
+
+Weight of evidence encoding or WoE can be used to check if a variable has predictive power and can replace categories with that predictive power. Note that the WoE transformtion could also applied to a continuous variable after binning that variable. The benefits of this include the ability to combine bins with similar WoE values and create more monotonic relationships which are easy to model. The drawbacks are possible loss of information and lack of ability to find correlation between variables. There is also an alternative way to calculate WoE and handle missing WoE.
+
 ### Preprocessor Combinition
 Combine via `FeatureUnion`.
 
@@ -64,32 +67,109 @@ For each one of them, I will perform the following tasks:
 
 1. Define parameter grid and pipeline
 2. Perform GridSearchCV to find the best parameters
+    - fine tune the parameters of model
 3. Fit data on the best performing model
 4. Plot ROC curve on both training and test data
+    - showing the performance of a classification model at all classification thresholds
 5. Plot confusion matrix
-6. Feature coefficients
+    - a table that is used to define the performance of a classification algorithm
+6. Feature coefficients 
+    - find out most predictable features
 7. Calculate gini
-8. Calculate stability of the model (perform GridSearchCv with different splits to ensure the performance of the model)
-9. Calculate F1 Score (In statistical analysis of binary classification, the F-score or F-measure is a measure of a test's accuracy)
-10. Calculate Brier Score (The Brier Score is a strictly proper score function or strictly proper scoring rule that measures the accuracy of probabilistic predictions)
-11. Model explanation (only for chosen models)
+    - calculates the amount of probability of a specific feature that is classified incorrectly when selected randomly. Usually, the higher the gini, the better
+8. Calculate stability of the model
+    - perform GridSearchCv with different splits to ensure the performance of the model
+9. Calculate F1 Score
+    - a measure of a test's accuracy
+10. Calculate Brier Score
+    - a strictly proper score function or strictly proper scoring rule that measures the accuracy of probabilistic predictions
+11. Model explanation
+    - only for chosen models
 ### Logistic Regression
 Logistic regression estimates the probability of an event occurring, such as return or didn't return, based on a given dataset of independent variables. Since the outcome is a probability, the dependent variable is bounded between 0 and 1.
 
 Logistic Regression predicts the test data with accuracy of 69%. The accuracy is the same for the train and test data, which is an indicator, that the model performs well and does not overfit.
 
-If some features have high coefficients, then change their value
 ### Random Forest
+The random forest (RF) algorithm is a powerful, robust, and easy to use algorithm for regression and classification. RF ground on two principles, random subspace and bagging. Multiple trees are grown from bootstrapped samples drawn from the training set with replacement. Many trees (i.e. a forest) are grown (sometimes their maximum depth is also specified) and all trees provide a prediction for cases of the test data. Each tree's vote generally has the same weight. Up until here, the algorithm is equivalent to bagging. It differs in the growing of individual tress. Specifically, when growing a tree, the next best split is not determined by searching a splitting criteria among all features. Only a subset of features is drawn at random (random subspace) and the best split is determined among this random subset.
+
+In this model, a change in the value of `item_size` could change the output of the model a lot! A change in `item_price` would also have an effect on the output as well as `user_id_frequency`. The rest of the models have low coefficient values.
 
 ### XGBoost
+Gradient boosting is one specific form of boosting (using residuals recursively to increase accuracy). This process begins with an initial simple prediction, which is often the mean of the target variable. Next, the algorithm iteratively goes through every feature and determines which feature will best reduce this error with a single split. This is essentially a single level tree, or stump. This stump is then chosen and added to the ensemble. Next, residuals are calculated once again and the process continues for as many iterations as deemed necessary.
+
+Extreme Gradient Boosting was explicitly designed for highly scalable gradient boosting. 
+
+Here we have a slightly higher accuracy score. Again we can say that there is no overfitting here, as the train and test AUC are very close. According to feature importance,  `delivery_date_1994`, `item_price` and `item_size` play a huge role for this model.
+
 ### Light GBM
-The following is a blockquote:
+In order to speed up the tuning process, I had to abandon my beloved XGBoost algorithm, and embrace LightGBM. It is precisely introduced in Wikipedia that "LightGBM, short for Light Gradient Boosting Machine, is a free and open source distributed gradient boosting framework for machine learning originally developed by Microsoft" (Cite from https://en.wikipedia.org/wiki/LightGBM). Compared to XGBoost that we have learned in class, LightGBM uses histogram based algorithm, i.e. it buckets continuous feature values into discrete bins, speeding up the training process, so that it has faster training speed and higher efficiency, lower memory usage; Also, it produces much more complex tress by following leaf wise split approach rather than a level-wise approach, which leads to better accuracy than any other boosting algorithm (Cite from https://www.analyticsvidhya.com/blog/2017/06/which-algorithm-takes-the-crown-light-gbm-vs-xgboost/). 
 
-> Suspendisse tempus dolor nec risus sodales posuere. Proin dui dui, mollis a consectetur molestie, lobortis vitae tellus.
+In a nutshell, LightGBM is fast and comparable to XGBoost.
 
+My sequence of tuning the model is :
 
+- using default parameters and set learning_rate = 0.1 ，num_iterations = 200 (relatively high)
 
+- Adjust `max_depth` and `num_leaves` to determine the size and complexity of the tree
 
+`parameters = {
+    'max_depth': [4,6,8],
+    'num_leaves': [20,30,40],
+}`
+
+- Adjust `min_data_in_leaf` and `min_sum_hessian_in_leaf` to prevent overfitting of the trees
+
+`parameters = {
+‘min_child_samples’: [18,19,20,21,22],
+‘min_child_weight’:[ [0.001,0.002]
+}`
+
+- Adjust `feature_fraction` to prevent overfitting
+
+`parameters = {
+    'feature_fraction': [0.6, 0.8, 1],
+}`
+
+- Adjust `bagging_fraction` and `bagging_freq` simultaneously.
+
+`bagging_fraction` is equivalent to subsample, which can make bagging run faster, and can also reduce overfitting. The default `bagging_freq` is 0, which means the frequency of bagging, 0 means no bagging is used, and k means bagging is performed once every k iterations.
+
+`parameters = {
+     'bagging_fraction': [0.8,0.9,1],
+     'bagging_freq': [0,1,2,3],
+}`
+
+- Adjust lambda_L1 (`reg_alpha`) and lambda_L2 (`reg_lambda`) to reduce overfitting
+
+`parameters = {
+     'reg_alpha': [0.003,0.005,0.007],
+     'reg_lambda': [4,5,6],
+}`
+
+- Adjust `cat_smooth` to reduce noise
+
+`parameters = {
+     'cat_smooth': [0,10,20],
+}`
+
+- Reduce `learning_rate` slightly and adjust `num_iterations`
+
+### Summary
+In this pretty table we can compare the scores of 5 different measurements on the models. 
+
+With the highest value in all measurements but the Brier score, where it has the lowest value, `Light GBM` is the 'winner'. This model gives the most accurate predictions for the test data. It is safe to say that all models perform relatively good.
+
+### Parameter evaluation
+Based in the results in the table above, the following parameters were chosen, as they resulted in the highest values.
+- truncate_item_price = True
+- truncate_delivery_days = False
+- truncate_age = False
+- cut_age = True
+- numeric_imputer_strategy =  'median' 
+- numeric_standard_scaler_mean = True
+
+## Cost Sensitivity
 
 ## Images
 
