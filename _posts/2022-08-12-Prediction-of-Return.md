@@ -35,37 +35,77 @@ Query some properties of the data such as dimensionality, number of cases and in
 ### Conversion After Comparison of Final Evaluation
 Change data type to reduce memory consumption, which could speed up model building.
 
+Note that for categorical features, there are mainly two convenient ways to rearrange them: dummy encoding, WoE (Weight-of-Evidence) transformation. **Always remember it is significant to keep test data and train data clearily separable**. Therefore the estimation of WoE score could not be accomplished in this part, since it requires the information of cases with the same category level after all conversions. Low-dimensionalities data is suitable converted by dummy encoding. Unlike WoE encoding, it does not need further constrained information but only the categorical features themselves.
+
 ### Some Data Description During Exploration
+- General information and slicing
+- Count, cross table
+- (Stack) Count plot, barplot and violin plot
+- Correlation and heatmap
+- Categorical feature distribution and woebin_plot
+- Numericfal feature distribution, boxplot and histogram
 
+### Feature selection
+High correlation is an indicator that using both of these features will most likely not be benefitial to the model, as the features carry the same information. Besides, a filter function based on information gain is applied. Compare IV and Fisher scores among all variables. 0.02 is commonly used as a threshold for IV.
 
+## Pipeline construction
+### Class definition
+Define `ColumnSelector`, `DropColumns` and `WoETransformer` for preprocession.
+### Preprocessor combinition
+Combine via `FeatureUnion`.
 
-## Blockquote
+### Final DataFrame (just an example) and train-test splitting
+---
+{: data-content="hr with text"}
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 100000 entries, 1 to 100000
+Data columns (total 13 columns):
+ #   Column         Non-Null Count   Dtype         
+---  ------         --------------   -----         
+ 0   order_date     100000 non-null  datetime64[ns]
+ 1   delivery_date  90682 non-null   datetime64[ns]
+ 2   item_id        100000 non-null  int32         
+ 3   item_size      100000 non-null  category      
+ 4   item_color     100000 non-null  category      
+ 5   brand_id       100000 non-null  int32         
+ 6   item_price     100000 non-null  float32       
+ 7   user_id        100000 non-null  int32         
+ 8   user_title     100000 non-null  category      
+ 9   user_dob       91275 non-null   datetime64[ns]
+ 10  user_state     100000 non-null  category      
+ 11  user_reg_date  100000 non-null  datetime64[ns]
+ 12  return         100000 non-null  bool          
+dtypes: bool(1), category(4), datetime64[ns](4), float32(1), int32(3)
+memory usage: 5.8 MB
+---
 
+## Model Construction
+I chose to test 4 different models: `Logistic Regression`, `XGBoost`, `Random Forest` and `Light GBM`.
+
+For each one of them, I will perform the following tasks:
+
+1. Define parameter grid and pipeline
+2. Perform GridSearchCV to find the best parameters
+3. Fit data on the best performing model
+4. Plot ROC curve on both training and test data
+5. Plot confusion matrix
+6. Feature coefficients
+7. Calculate gini
+8. Calculate stability of the model (perform GridSearchCv with different splits to ensure the performance of the model)
+9. Calculate F1 Score (In statistical analysis of binary classification, the F-score or F-measure is a measure of a test's accuracy)
+10. Calculate Brier Score (The Brier Score is a strictly proper score function or strictly proper scoring rule that measures the accuracy of probabilistic predictions)
+11. Model explanation (only for chosen models)
+### Logistic Regression
+
+### Random Forest
+### 
 The following is a blockquote:
 
 > Suspendisse tempus dolor nec risus sodales posuere. Proin dui dui, mollis a consectetur molestie, lobortis vitae tellus.
 
-## Thematic breaks (<hr>)
-
-Mauris viverra dictum ultricies[^3]. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod. **You can put some text inside the horizontal rule like so.**
-
----
-{: data-content="hr with text"}
-
-Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod. **Or you can just have an clean horizontal rule.**
-
----
 
 
-## Tables
 
-Now a table:
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
 
 ## Images
 
