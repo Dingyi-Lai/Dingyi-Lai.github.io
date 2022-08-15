@@ -7,7 +7,7 @@ author: Dingyi Lai
 
 A substential part of products purchased online by customers are returned especially in the case of free return shipping. Given the fierce online competition among online retailers, it is important to predict the potential return behaviour so as to take an extra step, for instance, restrict payment options or display additional marketing communication.
 
-When a customer is about to purchase an item, which is likely to be returned, the shop is planning to show a warning message. Pre-tests suggest that the warning message leads approx. 50% of customers to cancel their purchase. In case of a return, the shop calculates with shipping-related costs of 3 EUR plus 10% of the item value in loss of resale value. Thus, the cost-matrix could be written as following:
+When a customer is about to purchase an item, which is likely to be returned, the shop is planning to show a warning message. Pre-tests suggest that the warning message leads approx. 50% of customers to cancel their purchase. In case of a return, the shop calculates with shipping-related costs of 3 EUR plus 10% of the item value in loss of resale value. Thus, the cost-matrix could be written as the following:
 
 | Tables        | 	Actual_Keep(0)  | Actual_Return(1)  |
 |-------------|:---------------------:| -------------:|
@@ -28,7 +28,7 @@ It is unrealistic to form a pipeline for data processing once for all. A reasona
 Encounter noisy features, truncation and imputation are worth considering. Note that there are several options for imputation, such as 'median', 'most_frequent', 'constant' 'mean'...
 
 ###  Define Methods and Wrap them
-Scrutinize date features, when there is missing, mark them as a new category. Find out potential reason why there is outlier or mistake. Valuable information could hide inside. Otherwise, consider to remove outliers. As for categorical features, grouping and correcting potential misspelling is neccessary. Add counting result as frequency is another good move. Let's move to numerical feature. Truncate it or not, which could be indexed by our parameters above, deserve examination.
+Scrutinize date features, where there is missing, mark them as a new category. Find out potential reason why outlier or mistake exist. Valuable information could hide inside. Otherwise, consider to remove outliers. As for categorical features, grouping and correcting potential misspelling is neccessary. Adding counting result as frequency is another good move. Let's move to numerical feature. Truncating it or not, which could be indexed by our parameters above, deserves examination.
 
 ## EDA and Data Preparation
 ### Load Data and Take a First Glance
@@ -37,7 +37,7 @@ Query some properties of the data such as dimensionality, number of cases and in
 ### Conversion After Comparison of Final Evaluation
 Change data type to reduce memory consumption, which could speed up model building.
 
-Note that for categorical features, there are mainly two convenient ways to rearrange them: dummy encoding, WoE (Weight-of-Evidence) transformation. **Always remember it is significant to keep test data and train data clearily separable**. Therefore the estimation of WoE score could not be accomplished in this part, since it requires the information of cases with the same category level after all conversions. Low-dimensionalities data is suitable converted by dummy encoding. Unlike WoE encoding, it does not need further constrained information but only the categorical features themselves.
+Note that for categorical features, there are mainly two convenient ways to rearrange them: dummy encoding, WoE (Weight-of-Evidence) transformation. **Always remember it is significant to keep test data and train data clearily separable**. Therefore, the estimation of WoE score could not be accomplished in this part, since it requires the information of cases with the same category level after all conversions. Low-dimensionalities data is suitable converted by dummy encoding. Unlike WoE encoding, it does not need further constrained information but only the categorical features themselves.
 
 ### Some Data Description During Exploration
 - General information and slicing
@@ -173,7 +173,7 @@ Based in the results in the table above, the following parameters were chosen, a
 - numeric_standard_scaler_mean = True
 
 ## Cost-Sensitive Learning
-Because we are not only eager to have a high accuracy of prediction, a low expected cost is also desired. Even though `Light GBM` performed best in terms of predicting unseen data, I would still want to keep all models to evaluate which one would result in the lowest cost. In cost-sensitive learning I derived cost-minimal classification cut-off based on Bayes Decision Theory. Then I used empirical thresholding to tune the cut-off. To check the calibration, I used calibration curve. After that, I tried the MetaCost algorithm to improve the result. All things considered, I will choose the final model and cost-sensitive learning method.
+Because we are not only eager to have a high accuracy of prediction, a low expected cost is also desired. Even though `Light GBM` performed best in terms of predicting unseen data, I would still want to keep all models to evaluate which one would result in the lowest cost. In cost-sensitive learning I derived cost-minimal classification cut-off based on Bayes Decision Theory. Then I used empirical thresholding to tune the cut-off. After that, I tried the MetaCost algorithm to improve the result. To check the calibration, I used calibration curve. Other evaluation metrics include accuracy and error cost. All things considered, I will choose the final model and cost-sensitive learning method.
 
 ### Default Threshold = 0.5
 When result is > 0.5, then the obs is classified as return, otherwise is as not return. A cost matrix is thus derived and a 
@@ -182,7 +182,7 @@ When result is > 0.5, then the obs is classified as return, otherwise is as not 
 Next, I calculate average costs for the items with the assumption that all of them were classified as False Positives (FP) or as False Negatives (FN). Then I will use these values to create the cost matrix.
 
 ### Empirical Threshold
-Next, I will perform Empirical Thresholding to see if there is another threshold, that would result in lower costs for my models. Here, the goal is not to find an auc-maximizing cutoff, but a cost-minimizing one. Therefore, a cross-validation approach is performed with an average over all cutoffs with the lowest error-cost for each fold.
+Then, I will perform Empirical Thresholding to see if there is another threshold, that would result in lower costs for my models. Here, the goal is not to find an auc-maximizing cutoff, but a cost-minimizing one. Therefore, a cross-validation approach is performed with an average over all cutoffs with the lowest error-cost for each fold.
 
 ### The MetaCost Algorithm
 Lastly, I will try the MetaCost algorithm. In the first step of the algorithm, I apply the minimal bayes cutoff and use it to label our data. With the probability predictions for the test set for this model, I apply the Bayes minimal cutoff to it. Then this vector is used as the new y_train. Next, another model is trained on the data including the new labels then predict the output of the test set. As the first model, I use Logistic Regression. For the case of Logistic Regression itself, I chose to use XGB as the trained model to label the data.
