@@ -18,8 +18,8 @@ It is important to carefully decide which customers should receive treatments. A
 
   
 The uplift (Devriendt et al., 2018) is considered as the impact of the treatment or respectively the difference in behavior of customers due to the marketing activity (e.g. discount, retention program, newsletter). The uplift $$U(x_i)$$ is defined as the probability of a customer to respond if treated minus the probability of the customer to respond when not treated.:  
-\begin{equation} U(x_i): = p(Y_i | X_i, T_i = 1) -  p(Y_i | X_i, T_i = 0) , \end{equation}  
-where $T$ denotes the treatment variable, $Y$ the target , $X$ the features and $p$ the probability estimated by a model.  
+$$\begin{equation} U(x_i): = p(Y_i | X_i, T_i = 1) -  p(Y_i | X_i, T_i = 0) , \end{equation}  $$
+where $$T$$ denotes the treatment variable, $Y$ the target , $X$ the features and $p$ the probability estimated by a model.  
 
 
 There exists different types of the treatment effects. Here we just briefly mention the parameters that are of our interests.  
