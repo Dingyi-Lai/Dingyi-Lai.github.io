@@ -47,7 +47,7 @@ This section gives an overview of the dataset E-Mail Analytics And Data Mining C
 
 We choose `Kevin Hillstrom` as our data, which is from E-Mail Analytics And Data Mining Challenge (Hillstrom 2008). The dataset consists of records reflecting customers that last purchased within 12 months.
 
-The relevant codes and dataset are in [this repo](https://github.com/Dingyi-Lai/Data-Science/blob/main/%5BProject%5DUflift-Modeling.ipynb)
+The relevant codes and dataset are in [this repo](https://github.com/Dingyi-Lai/Data-Science/blob/main/%5BProject%5DUflift-Modeling.ipynb).
 
 In the data set, we have 64,000 observations in 12 columns, which represents customers' features, treatment and their responses. 
 
