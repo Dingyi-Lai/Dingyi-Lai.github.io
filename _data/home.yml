@@ -13,13 +13,16 @@ project_entries:
     url: prediction-of-return
     desc: Assignment for Business Analytics and Data Science WiSe20/21 (HU Berlin)
     highlight: BA LightGBM
+
   - title: How to predict property prices for Airbnb listings in London?
     url: overview-post
     desc: Assignment for Advanced Data Analytics for Management Support SoSe22 (HU Berlin)
     highlight: BA NLP ImageProcessing
+
   - title: How to optimize advertisement strategy via casual-neural-network-based uplift modeling?
     url: overview-post
     desc: Seminar report for Applied Predictive Analytics SoSe21 (HU Berlin)
+    highlight: CausalML
 
   - title: How to build a German-English translator based on PyTorch?
     url: overview-post
@@ -39,11 +42,13 @@ project_entries:
   - title: CFC or SHAP Values? An empirical study for comparison
     url: overview-post
     desc: Core idea of the conference paper "Approximation of SHAP Values for Randomized Tree Ensembles" published by Springer Nature Switzerland AG 2022
+    highlight: XAI
 
   - title: Conditional Income Distribution Across Age and Race in the U.S. in 2016
     url: overview-post
     desc: Term paper for Econometric Projects WiSe21/22 (HU Berlin)
-
+    highlight: Distributional Regression
+    
 old_project_entries:
   - title: Test1
     url: overview-post

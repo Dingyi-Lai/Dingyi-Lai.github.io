@@ -3,20 +3,40 @@ layout: post
 author: Dingyi Lai
 ---
 
-# Business Setting
+# Introduction
 
-A substential part of products purchased online by customers are returned especially in the case of free return shipping. Given the fierce online competition among online retailers, it is important to predict the potential return behaviour so as to take an extra step, for instance, restrict payment options or display additional marketing communication.
+Uplift models are popular methods to support marketing decision-making problems. With uplifts models marketing analysts are able to estimate the causal effect of marketing treatment on consumer behavior. Consider the example of an e-mail campaign that aims to send digital discount codes to customers as an incentive for the customers to buy, and thus, to e.g. drive sales revenues. The causal effect of the price discount is the treatment effect. It quantifies the change in customer’s buying probability due to the marketing activity (i.e. the price discount). Estimating the causal effect of a marketing activity is crucial to for instance evaluate the true impact of a marketing campaign.
 
-When a customer is about to purchase an item, which is likely to be returned, the shop is planning to show a warning message. Pre-tests suggest that the warning message leads approx. 50% of customers to cancel their purchase. In case of a return, the shop calculates with shipping-related costs of 3 EUR plus 10% of the item value in loss of resale value. Thus, the cost-matrix could be written as the following:
+It is important to carefully decide which customers should receive treatments. As shown in the adapted **Figure 1** by Devriendt et al. (2018), customers can be assigned into four targeting groups based on whether a customer responds when treated or not treated: sure things, lost causes, persuadables, and do-not-disturbs. Uplift models should predict the persuadables. Based on data from which we can observe whether a customer was targeted and whether the customer responded, we want to get the information of those customers who responded because we targeted (i.e. treated) them with our marketing activity (Kane et al., 2014). As discussed by Lai (2006) and Kane et al. (2014) customers can be grouped further into four categories: Control responders, treatment nonresponders, control nonresponders and treatment responders. The latter two are labeled as positive lifts because they contain all persuadables (positive targets, i.e. customers who respond only if they are targeted), whereas the first two are considered as negative lifts. Thus, uplift models must identify those customers who have no initial intention to buy but can be influenced to buy because we target them, which essentially implies causality. With this we can avoid for example negative profit by targeting the wrong customers. Devriendt et al. (2018) give a comprehensive overview of the state-of-the-art in uplift modeling.
 
-| Tables        | 	Actual_Keep(0)  | Actual_Return(1)  |
-|-------------|:---------------------:| -------------:|
-| predicted_Keep(0)	 | C(k,K) = 0 | C(k,R) = 0.5·5·(3+0.1·v) |
-| predicted_Return(1) | C(r,K) = 0.5·v  | C(r,R) = 0 |
+<figure>
+  <img
+  src="https://developer.mozilla.org/static/img/favicon144.png"
+  alt="Conceptual table">
+  <figcaption>Figure 1: Conceptual table. (Devriendt, Moldovan and Verbek, 2018)</figcaption>
+</figure>
 
-Note that in the dataset, **a returned item is denoted as the positive class, and v in the cost-matrix denotes the price of the returned item.**
+                                             Figure 1: Conceptual table. (Devriendt, Moldovan and Verbek, 2018)
 
-Therefore, besides to predict the return rate as accurately as possible, this model is built to minimize the expected costs, put differently, to maximize the revenue of the online retailer as well. 
+
+
+
+  
+The uplift (Devriendt et al., 2018) is considered as the impact of the treatment or respectively the difference in behavior of customers due to the marketing activity (e.g. discount, retention program, newsletter). The uplift $U(x_i)$ is defined as the probability of a customer to respond if treated minus the probability of the customer to respond when not treated.:  
+\begin{equation} U(x_i): = p(Y_i | X_i, T_i = 1) -  p(Y_i | X_i, T_i = 0) , \end{equation}  
+where $T$ denotes the treatment variable, $Y$ the target , $X$ the features and $p$ the probability estimated by a model.  
+
+
+There exists different types of the treatment effects. Here we just briefly mention the parameters that are of our interests.  
+
+The Individual Treatment Effect (ITE): 
+\begin{equation} \tau^{ITE} = \tau_i = Y_i(1) - Y_i(0) \end{equation}   
+The Conditional Average Treatment Effect (CATE), which is the individual or group-level effect of the treatment: \begin{equation} \tau^{CATE} = \tau(x) = E(Y_i(1) - Y_i(0) | X_i = x_i) \end{equation}  
+The Average Treatment Effect (ATE), which is the overall effect of the treatment of the customers:  
+\begin{equation} \tau^{ATE} = E(\tau(x)) = E(Y_i(1) - Y_i(0)) \end{equation}   
+ 
+
+The aim of this notebook is to exploit different methods of neural networks for the estimation of treatment effects in an uplift modeling setting and in a marketing context. For this we use the data of an e-mail marketing campaign provided by Hillstorm (Hillstorm, 2008). The notebook is structured as the following. In the first section we briefly revisit the main concept of uplift modeling, we then give a more comprehensive overview of recent neural network based treatment effect estimation approaches and introduce evaluation metrics. In the next section a descriptive analysis introduces the underlying data set for targeting marketing campaigns. Then we give implementation details on three neural network based methods in an uplift modeling setting, followed by an analysis and evaluation to compare their performances. Lastly, we summarize the results of our project and discuss possible limitations and provide an outlook.   
 
 # Blueprint Design
 It is unrealistic to form a pipeline for data processing once for all. A reasonable way to regulate pipeline systematically is to define potentially adjustable parameters and fragmentary helper functions. Throughout EDA (Exploratory Data Analysis) and different result after all, a relatively optimal pipeline could be wrapped into one `preprocess_df` function. An additional function `transform_columns` is to reduce memory consumption for machine. Codes without accessing to details are presented in [this repo](https://github.com/Dingyi-Lai/-DataScience/blob/main/%5BProject%5DPrediction-of-Return.ipynb)
