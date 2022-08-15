@@ -11,7 +11,7 @@ It is important to carefully decide which customers should receive treatments. A
 
 <figure>
   <img
-  src="https://developer.mozilla.org/static/img/favicon144.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Lift-Response-Matrix_devriendt.png"
   alt="Conceptual table">
   <figcaption>Figure 1: Conceptual table. (Devriendt, Moldovan and Verbek, 2018)</figcaption>
 </figure>
