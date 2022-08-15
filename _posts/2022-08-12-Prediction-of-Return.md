@@ -21,6 +21,8 @@ Therefore, besides to predict the return rate as accurately as possible, this mo
 # Blueprint Design
 It is unrealistic to form a pipeline for data processing once for all. A reasonable way to regulate pipeline systematically is to define potentially adjustable parameters and fragmentary helper functions. Throughout EDA (Exploratory Data Analysis) and different result after all, a relatively optimal pipeline could be wrapped into one `preprocess_df` function. An additional function `transform_columns` is to reduce memory consumption for machine. Codes without accessing to details are presented in [this repo](https://github.com/Dingyi-Lai/-DataScience/blob/main/%5BProject%5DPrediction-of-Return.ipynb)
 
+![MindMap_prediction-of-return](http://www.abhinavsaxena.com/images/abhinav.jpeg)
+
 ## Package Import and Helper Function
 ### Define Parameters
 Encounter noisy features, truncation and imputation are worth considering. Note that there are several options for imputation, such as 'median', 'most_frequent', 'constant' 'mean'...
@@ -57,7 +59,7 @@ Weight of evidence encoding or WoE can be used to check if a variable has predic
 ### Preprocessor Combinition
 Combine via `FeatureUnion`.
 
-### Final DataFrame (just an example) and Train-Test Splitting
+### Final DataFrame and Train-Test Splitting
 Split data into training and testing dataset
 
 ## Model Construction
@@ -74,7 +76,7 @@ For each one of them, I will perform the following tasks:
 5. Plot confusion matrix
     - a table that is used to define the performance of a classification algorithm
 6. Feature coefficients 
-    - find out most predictable features
+    - find out most predictable features (also as a single chapter)
 7. Calculate gini
     - calculates the amount of probability of a specific feature that is classified incorrectly when selected randomly. Usually, the higher the gini, the better
 8. Calculate stability of the model
@@ -85,6 +87,7 @@ For each one of them, I will perform the following tasks:
     - a strictly proper score function or strictly proper scoring rule that measures the accuracy of probabilistic predictions
 11. Model explanation
     - only for chosen models
+
 ### Logistic Regression
 Logistic regression estimates the probability of an event occurring, such as return or didn't return, based on a given dataset of independent variables. Since the outcome is a probability, the dependent variable is bounded between 0 and 1.
 
@@ -169,18 +172,56 @@ Based in the results in the table above, the following parameters were chosen, a
 - numeric_imputer_strategy =  'median' 
 - numeric_standard_scaler_mean = True
 
-## Cost Sensitivity
+## Cost-Sensitive Learning
+Because we are not only eager to have a high accuracy of prediction, a low expected cost is also desired. Even though `Light GBM` performed best in terms of predicting unseen data, I would still want to keep all models to evaluate which one would result in the lowest cost. In cost-sensitive learning I derived cost-minimal classification cut-off based on Bayes Decision Theory. Then I used empirical thresholding to tune the cut-off. To check the calibration, I used calibration curve. After that, I tried the MetaCost algorithm to improve the result. All things considered, I will choose the final model and cost-sensitive learning method.
 
-## Images
+### Default Threshold = 0.5
+When result is > 0.5, then the obs is classified as return, otherwise is as not return. A cost matrix is thus derived and a 
 
-![theme logo](http://www.abhinavsaxena.com/images/abhinav.jpeg)
+### Bayesian Threshold
+Next, I calculate average costs for the items with the assumption that all of them were classified as False Positives (FP) or as False Negatives (FN). Then I will use these values to create the cost matrix.
 
-This is an image[^4]
+### Empirical Threshold
+Next, I will perform Empirical Thresholding to see if there is another threshold, that would result in lower costs for my models. Here, the goal is not to find an auc-maximizing cutoff, but a cost-minimizing one. Therefore, a cross-validation approach is performed with an average over all cutoffs with the lowest error-cost for each fold.
 
----
-{: data-content="footnotes"}
+### The MetaCost Algorithm
+Lastly, I will try the MetaCost algorithm. In the first step of the algorithm, I apply the minimal bayes cutoff and use it to label our data. With the probability predictions for the test set for this model, I apply the Bayes minimal cutoff to it. Then this vector is used as the new y_train. Next, another model is trained on the data including the new labels then predict the output of the test set. As the first model, I use Logistic Regression. For the case of Logistic Regression itself, I chose to use XGB as the trained model to label the data.
 
-[^1]: this is a footnote. You should reach here if you click on the corresponding superscript number.
-[^2]: hey there, don't forget to read all the footnotes!
-[^3]: this is another footnote.
-[^4]: this is a very very long footnote to test if a very very long footnote brings some problems or not; hope that there are no problems but you know sometimes problems arise from nowhere.
+## Evaluating cost-sensitive classifiers
+
+### Accuracy
+
+### Error cost
+
+### Calibration
+To implement cutoff-based approaches for cost-sensitivity, we need well calibrated probability predictions. Well calibrated probability predictions are ones for which the output of model.predict_proba() is such that among the samples to which it gave a prediction value close to 0.8, approximately 80% actually belong to the positive class
+
+### Compare confusion matrices
+### Choose Best Model and Compare All Error Cost
+
+## Optional: Explainability AI
+### Feature Importance
+Impurity-based feature importance for tree-based models provides with a measure capturing the total contribution of the feature age toward impurity reduction in the tree. Repeating the process for every feature in the data set, we can compare how valuable each feature has been.
+
+Although, the results from the impurity-based feature importance analysis is quite reasonable, **we don't know the direction a feature affect predictions**. Also, since Strobl et al. (2007) has demonstrated how the impurity-based approach is biased toward categorical variables with many levels, **the contribution of all WoE values based on high-dimensional features is spurious**. 
+
+### Permutation Importance
+It is a learner-agnostic way to judge the relevance of features and to produce an ordinal feature ranking.
+
+### Partial Dependence Plot
+It depicts the marginal effect of a feature on model predictions.
+
+## Conclusion
+After all of the exhausting data cleaning(missing values, outliers, wrong data), feature transformation(datetime, WoE in pipeline, dummy, scalling in pipeline), descriptive analysis(cross table, count plot, violin plot, correlation plot), model training (random forest and lightgbm), feature selection(IV, Fisher scores), model tunning (GridSearchCV), cost-sensitive analysis(cost-minimal cutoff, empirical approach, MetaCost approach, calibration curve), model evaluation(SMOTE, AUC, return-to-keep ratio, Accuracy, Sensitivity, Specificity, Recall, Precision, G-mean and F1-measure), feature importance analysis (Impurity-based feature importance, Permutation-based feature importance, partial dependence plot), the computation of actual cost based on test data and of expected cost based on unknown data, I got my result. Although through feature importance analysis, I know that my features are not satisfying and perfect, the whole process for business analysis and data science is still badly thought-provoking and educational. The most important and meaningful lessons I learnt in this assignment is: **Always seperate testing data and training data clearily especially in the process of feature transformations**. Pipeline is really a good idea to achieve them.
+
+# Reference
+
+1. Hanley, J. A., & McNeil, B. J. (1983). A method of comparing the areas under receiver operating characteristic curves derived from the same cases. Radiology, 148(3), 839–843. https://doi.org/10.1148/radiology.148.3.6878708
+
+2. Pedro Domingos. 1999. MetaCost: a general method for making classifiers cost-sensitive. In Proceedings of the fifth ACM SIGKDD international conference on Knowledge discovery and data mining (KDD '99). Association for Computing Machinery, New York, NY, USA, 155–164. DOI:https://doi.org/10.1145/312129.312220
+
+3. Strobl, C., Boulesteix, AL., Zeileis, A. et al. Bias in random forest variable importance measures: Illustrations, sources and a solution. BMC Bioinformatics 8, 25 (2007). https://doi.org/10.1186/1471-2105-8-25
+
+4. Geoff Pleiss, Manish Raghavan, Felix Wu, Jon Kleinberg, and Kilian Q. Weinberger. 2017. On fairness and calibration. In Proceedings of the 31st International Conference on Neural Information Processing Systems (NIPS'17). Curran Associates Inc., Red Hook, NY, USA, 5684–5693.
+
+5. https://github.com/Dingyi-Lai/bads/blob/master/tutorials
