@@ -21,7 +21,7 @@ Therefore, besides to predict the return rate as accurately as possible, this mo
 # Blueprint Design
 It is unrealistic to form a pipeline for data processing once for all. A reasonable way to regulate pipeline systematically is to define potentially adjustable parameters and fragmentary helper functions. Throughout EDA (Exploratory Data Analysis) and different result after all, a relatively optimal pipeline could be wrapped into one `preprocess_df` function. An additional function `transform_columns` is to reduce memory consumption for machine. Codes without accessing to details are presented in [this repo](https://github.com/Dingyi-Lai/-DataScience/blob/main/%5BProject%5DPrediction-of-Return.ipynb)
 
-![MindMap_prediction-of-return](http://www.abhinavsaxena.com/images/abhinav.jpeg)
+![MindMap_prediction-of-return]()
 
 ## Package Import and Helper Function
 ### Define Parameters
