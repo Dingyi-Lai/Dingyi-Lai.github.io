@@ -20,7 +20,7 @@ project_entries:
     highlight: BA NLP ImageProcessing
 
   - title: How to optimize advertisement strategy via casual-neural-network-based uplift modeling?
-    url: overview-post
+    url: uplift-modeling
     desc: Seminar report for Applied Predictive Analytics SoSe21 (HU Berlin)
     highlight: CausalML
 
@@ -48,7 +48,7 @@ project_entries:
     url: overview-post
     desc: Term paper for Econometric Projects WiSe21/22 (HU Berlin)
     highlight: Distributional Regression
-    
+
 old_project_entries:
   - title: Test1
     url: overview-post
