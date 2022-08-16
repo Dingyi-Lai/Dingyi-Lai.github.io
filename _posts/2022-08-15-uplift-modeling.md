@@ -5,11 +5,11 @@ author: Dingyi Lai
 
 # Introduction
 
-Uplift models are popular methods to support marketing decision-making problems. With uplifts models marketing analysts are able to estimate the causal effect of marketing treatment on consumer behavior. Consider the example of an e-mail campaign that aims to send digital discount codes to customers as an incentive for the customers to buy, and thus, to e.g. drive sales revenues. The causal effect of the price discount is the treatment effect. It quantifies the change in customer’s buying probability due to the marketing activity (i.e. the price discount). Estimating the causal effect of a marketing activity is crucial to for instance evaluate the true impact of a marketing campaign.
+Uplift models are popular methods to support marketing decision-making problems. With uplifts models, marketing analysts are able to estimate the causal effect of marketing treatment on consumer behavior. Consider the example of an e-mail campaign that aims to send digital discount codes to customers as an incentive for the customers to buy, and thus, to e.g. drive sales revenues. The causal effect of the price discount is the treatment effect. It quantifies the change in customer’s buying probability due to the marketing activity (i.e. the price discount). Estimating the causal effect of a marketing activity is crucial to for instance evaluate the true impact of a marketing campaign.
 
 ![MindMap_uplift-modeling](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]MindMap.png)
 
-It is important to carefully decide which customers should receive treatments. As shown in the adapted **Figure 1** by Devriendt et al. (2018), customers can be assigned into four targeting groups based on whether a customer responds when treated or not treated: sure things, lost causes, persuadables, and do-not-disturbs. Uplift models should predict the persuadables. Based on data from which we can observe whether a customer was targeted and whether the customer responded, we want to get the information of those customers who responded because we targeted (i.e. treated) them with our marketing activity (Kane et al., 2014). As discussed by Lai (2006) and Kane et al. (2014) customers can be grouped further into four categories: Control responders, treatment nonresponders, control nonresponders and treatment responders. The latter two are labeled as positive lifts because they contain all persuadables (positive targets, i.e. customers who respond only if they are targeted), whereas the first two are considered as negative lifts. Thus, uplift models must identify those customers who have no initial intention to buy but can be influenced to buy because we target them, which essentially implies causality. With this we can avoid for example negative profit by targeting the wrong customers. Devriendt et al. (2018) give a comprehensive overview of the state-of-the-art in uplift modeling.
+It is important to carefully decide which customers should receive treatments. As shown in the adapted **Figure 1** by Devriendt et al. (2018), customers can be assigned into four targeting groups based on whether a customer responds when treated or not treated: sure things, lost causes, persuadables, and do-not-disturbs. Uplift models should predict the persuadables. Based on data from which we can observe whether a customer was targeted and whether the customer responded, we want to get the information of those customers who responded because we targeted (i.e. treated) them with our marketing activity (Kane et al., 2014). As discussed by Lai (2006) and Kane et al. (2014), customers can be grouped further into four categories: Control responders, treatment nonresponders, control nonresponders and treatment responders. The latter two are labeled as positive lifts because they contain all persuadables (positive targets, i.e. customers who respond only if they are targeted), whereas the first two are considered as negative lifts. Thus, uplift models must identify those customers who have no initial intention to buy but can be influenced to buy because we target them, which essentially implies causality. With this we can avoid for example negative profit by targeting the wrong customers. Devriendt et al. (2018) give a comprehensive overview of the state-of-the-art in uplift modeling.
 
 <figure>
   <img
@@ -20,7 +20,7 @@ It is important to carefully decide which customers should receive treatments. A
 
 The uplift (Devriendt et al., 2018) is considered as the impact of the treatment or respectively the difference in behavior of customers due to the marketing activity (e.g. discount, retention program, newsletter). The uplift $$U(x_i)$$ is defined as the probability of a customer to respond if treated minus the probability of the customer to respond when not treated:  
 \begin{equation} U(x_i): = p(Y_i | X_i, T_i = 1) -  p(Y_i | X_i, T_i = 0) , \end{equation}
-where $$T$$ denotes the treatment variable, $Y$ the target , $$X$$ the features and $$p$$ the probability estimated by a model.  
+where $$T$$ denotes the treatment variable, $$Y$$ the target , $$X$$ the features and $$p$$ the probability estimated by a model.  
 
 There exists different types of the treatment effects. Here we just briefly mention the parameters that are of our interests.  
 
@@ -105,7 +105,7 @@ We create a pie plot based on customer's decision to purchase, in order to see t
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Pie_Plot.png"
   alt="Pie Plot">
-  <figcaption>Figure 2: Pie Plot)</figcaption>
+  <figcaption>Figure 2: Pie Plot</figcaption>
 </figure>
 
 As you can see, 66.00% customers did not buy anything after they received E-mails, which are almost two times larger than the proportion of those customers(CN) who did not receive any E-mail. In the meanwhile, 7.1% customers in treatment group and 1.9% in contol group purchased  merchandise.
@@ -118,10 +118,10 @@ In the aim to see the distributions of all features, we create histograms.
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Histogram.png"
   alt="Histogram">
-  <figcaption>Figure 3: Histogram)</figcaption>
+  <figcaption>Figure 3: Histogram</figcaption>
 </figure>
 
-The feature `recency` has two peaks, one is near 0, the other one is in 10. This means that the new costumers(`recency` $\in$ [0,2]) form the largest group among all other groups, followed by the group of customers who have not bought anything for 10 months. 
+The feature `recency` has two peaks, one is near 0, the other one is in 10. This means that the new costumers(`recency` $$\in$$ [0,2]) form the largest group among all other groups, followed by the group of customers who have not bought anything for 10 months. 
 
 The histogram of `history` is reasonable: less customers have high spending.
 
@@ -137,7 +137,7 @@ The aim of making a heat map is to check the correlation among these variables.
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Heatmap.png"
   alt="Heatmap">
-  <figcaption>Figure 4: Heatmap)</figcaption>
+  <figcaption>Figure 4: Heatmap</figcaption>
 </figure>
 
 `mens` and `womens` are negative correlated, indicating that those who purchased Mens merchandise in the past year and those who bought Womens merchandise in the past year are generally two seperate groups.
@@ -162,7 +162,7 @@ Another metric to evaluate the performance of uplift models is **Area Under the 
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Qini_Curve.png"
   alt="Qini_Curve">
-  <figcaption>Figure 5: Gain Chart for Uplift-Curve (Radcliffe, 2007))</figcaption>
+  <figcaption>Figure 5: Gain Chart for Uplift-Curve (Radcliffe, 2007)</figcaption>
 </figure>
 
 # Methodology
@@ -172,13 +172,19 @@ Another metric to evaluate the performance of uplift models is **Area Under the 
 
 We choose S- and T-learner, two base-learners in meta-algorithms, as our benchmark models for estimating CATE. According to Kuenzel et al.(2019), the T-learner is a tree-based method and includes two tree base learners in it, in order to estimate the two responses from treatment and control groups.
 
-Step 1: Using any supervised machine learning or regression algorithm as a base learner to estimate $$\mu_0(x)=E[Y(0)|X=x]$$
+Step 1: Using any supervised machine learning or regression algorithm as a base learner to estimate 
+
+$$\mu_0(x)=E[Y(0)|X=x]$$
 
 $$\mu_1(x)=E[Y(1)|X=x]$$ 
 
-With the treated observation, we can denote the estimators by $$\hat{\mu_0}(x)$$ and $$\hat{\mu_1}(x)$$.
+With the treated observation, we can denote the estimators by 
 
-Step 2: The T-learner is defined as:$$\hat{\tau_T}(x)=\hat{\mu_0}(x)-\hat{\mu_1}(x)$$
+$$\hat{\mu_0}(x)$$ and $$\hat{\mu_1}(x)$$.
+
+Step 2: The T-learner is defined as:
+
+$$\hat{\tau_T}(x)=\hat{\mu_0}(x)-\hat{\mu_1}(x)$$
 
 Closely related to the T-learner, S-learner, a "single estimator", estimates the outcome using all of the features and the treatment indicator, without giving the treatment indicator a special role. The predicted CATE for an individual unit is then the difference between the predicted values when the treatment assignment indicator ($w$) is changed from 0 (control) to 1 (treatment), with all other features held fixed. We thus estimate the combined response function,
 
@@ -218,7 +224,11 @@ As the prototype shows (**Figure 7**), there are U=5 hidden neurons, grouped in 
 
 In the paper, they use the average treatment effect(ATE) as their parameter of interest. Empirically, the treatment is being mailed a catalog and the outcome is whether the person is converted. Because we train the model based on the inputs $$X$$, in reality the average realized outcome could be interpreted as estimated ATE.
 
-The estimates of the regression functions $$\mu_t(x) = E[Y(t)|X=x], t \in {0,1}$$ is used for calculation of conditional average treatment effect (CATE): $$\tau(x) = \mu_1(x)-\mu_0(x)$$. Then the optimization function could be fomulated as:
+The estimates of the regression functions
+$$\mu_t(x) = E[Y(t)|X=x], t \in {0,1}$$
+is used for calculation of conditional average treatment effect (CATE): 
+$$\tau(x) = \mu_1(x)-\mu_0(x)$$
+Then the optimization function could be fomulated as:
 
 $$
 \begin{pmatrix} 
@@ -259,7 +269,9 @@ If we equip the neural network with only one hidden layer with 60 neurons, and i
 ## Dragonnet
 **Theory of the Dragonnet**
 
-Shi, Blei and Veitch (2019a) introduce a neural network architecture, the Dragonnet, to estimate the treatment effects for observational data. The Dragonnet is a three-headed neural network architecture that provides an end-to-end training to predict the conditional outcomes and the propensity score (**Figure 8**). The objective of the Dragonnet is to learn a shared representation layer $Z(X)$ that aims for good prediction of the conditional outcomes $Q(t,x) = E[ Y | t, x ]$ (input treatment $T$ and covariates $X$ to predict the outcome $Y$), and also for good prediction of the propensity score $g(x) = P( T=1| x)$ (input covariates $X$ to predict the probability of treatment $T$). The Dragonnet outputs two heads for the conditional outcomes, denoted as $Q(1,X)$ if $t$=1 and $Q(0,X)$ if $t$=0. Additionally, there is one head for the propensity score $g(x)$ which is used to enforce a representation that provides good treatment prediction. 
+Shi, Blei and Veitch (2019a) introduce a neural network architecture, the Dragonnet, to estimate the treatment effects for observational data. The Dragonnet is a three-headed neural network architecture that provides an end-to-end training to predict the conditional outcomes and the propensity score (**Figure 8**). The objective of the Dragonnet is to learn a shared representation layer $$Z(X)$$ that aims for good prediction of the conditional outcomes 
+$$Q(t,x) = E[ Y | t, x ]$$
+(input treatment $$T$$ and covariates $X$ to predict the outcome $Y$), and also for good prediction of the propensity score $$g(x) = P( T=1| x)$$ (input covariates $X$ to predict the probability of treatment $$T$$). The Dragonnet outputs two heads for the conditional outcomes, denoted as $$Q(1,X)$$ if $t$=1 and $$Q(0,X)$$ if $$t$$=0. Additionally, there is one head for the propensity score $$g(x)$$ which is used to enforce a representation that provides good treatment prediction. 
 
 <figure>
   <img
@@ -268,14 +280,21 @@ Shi, Blei and Veitch (2019a) introduce a neural network architecture, the Dragon
   <figcaption>Figure 8: Dragonnet architecture (Shi, Blei and Veitch, 2019a)</figcaption>
 </figure>
 
-The Dragonnet exploits the *sufficiency of the propensity score $$g(x)$$* (Shi, Blei and Veitch, 2019a). This is defined as:  $$\tau = E[E[Y|g(X),T=1]-E[Y|g(X),T=0]]$$ , if $$\tau = E[E[Y|X,T=1]-E[Y|X,T=0]]$$ (if the average treatment effect $$\tau$$ is identifiable from observational data by adjusting for $X$). 
+The Dragonnet exploits the *sufficiency of the propensity score $$g(x)$$* (Shi, Blei and Veitch, 2019a). This is defined as:  
+$$\tau = E[E[Y|g(X),T=1]-E[Y|g(X),T=0]]$$
+if 
+$$\tau = E[E[Y|X,T=1]-E[Y|X,T=0]]$$
+(if the average treatment effect $$\tau$$ is identifiable from observational data by adjusting for $X$). 
 
-So when working with observational data, the theorem of the propensity score states that it is sufficient to adjust only for the information in those features $$X$$ that are relevant for predicting the treatment $$T$$. The other features are relevant for predicting the outcome $Y$, but they do not affect the treatment assignment and thus, are irrelevant for the estimation of the causal effect. One way to efficiently filter the relevant features $$X$$ in the Dragonnet is to correct for the shared hidden layers (i.e. for example to produce a representation layer $$Z(X)$$ and by adding the propensity score as an additional output to discard the irrelevant information and instead focus only on the relevant information in $$X$$). If the propensity score head is removed from the Dragonnet, then the architecture is essentially the TARnet architecture from Shalit et al. (2016) (Shi, Blei and Veitch, 2019a).    
+So when working with observational data, the theorem of the propensity score states that it is sufficient to adjust only for the information in those features $$X$$ that are relevant for predicting the treatment $$T$$. The other features are relevant for predicting the outcome $$Y$$, but they do not affect the treatment assignment and thus, are irrelevant for the estimation of the causal effect. One way to efficiently filter the relevant features $$X$$ in the Dragonnet is to correct for the shared hidden layers (i.e. for example to produce a representation layer $$Z(X)$$ and by adding the propensity score as an additional output to discard the irrelevant information and instead focus only on the relevant information in $$X$$). If the propensity score head is removed from the Dragonnet, then the architecture is essentially the TARnet architecture from Shalit et al. (2016) (Shi, Blei and Veitch, 2019a).    
 
 Shi, Blei and Veitch (2019a) approach has two stages: At first they fit the model for the conditional outcome $$Q(x)$$ and the propensity score $$g(x)$$. In the next stage they plug these fitted models $$Q(x)$$ and $$g(x)$$ into a downstream estimator $$\tau$$.  
 
 The authors use the *estimated average treatment effect with conditional outcome $$\hat{\tau}^{Q}$$*:
-$$\hat{\tau}^{Q} = \frac{1}{n} \sum_i[\hat{Q}(1,x_i)-\hat{Q}(0,x_i)]$$, where $$\hat{Q}$$ is the estimates of the conditional outcome $$Q(t,x) = E[ Y | t, x ]$$. This estimator is extended by considering $$\hat{g}$$ the estimates of the propensity score $$g(x) = P( T=1| x)$$.  
+$$\hat{\tau}^{Q} = \frac{1}{n} \sum_i[\hat{Q}(1,x_i)-\hat{Q}(0,x_i)]$$, where $$\hat{Q}$$ is the estimates of the conditional outcome 
+$$Q(t,x) = E[ Y | t, x ]$$.
+This estimator is extended by considering $$\hat{g}$$ the estimates of the propensity score 
+$$g(x) = P( T=1| x)$$.  
 
 To train the model the authors define the *objective function* as a minimization problem: 
 
@@ -339,7 +358,7 @@ Louizos et al.(2017) propose a new model for estimating ITE, which is based on V
                                                     
 `t` is a treatment, `y` is an outcome, `Z` is an unobserved confounder and `X` is feature variables which has noisy views on `Z`.
 
-As this prototype shows, Louizos et al.(2017) assume that there is a latent variable $Z$, which is an unobserved confounder and has an effect on the outcome $y$. Furthermore, they assume that the joint distribution $p(Z;X;t;y)$ of the latent confounders $Z$ and the observed confounders $X$ can be approximately recovered from the observations $(X; t; y)$ and $y$ is independent of $X$ given $Z$.
+As this prototype shows, Louizos et al.(2017) assume that there is a latent variable $$Z$$, which is an unobserved confounder and has an effect on the outcome $$y$$. Furthermore, they assume that the joint distribution $$p(Z;X;t;y)$$ of the latent confounders $$Z$$ and the observed confounders $$X$$ can be approximately recovered from the observations $$(X; t; y)$$ and $$y$$ is independent of $$X$$ given $$Z$$.
 
 The goal of this paper is to recover the ITE:
 $$ITE(x) := E[y|X = x; do(t = 1)] - E[y|X = x; do(t = 0)]$$
@@ -347,7 +366,8 @@ $$ATE := E[ITE(x)]$$
 
 `do` means using do-calculus rules.
 
-They prove that if $$p (Z;X; t; y)$$ can be recovered then the ITE under the causal model in **Figure 10** would also be recovered. With the theorem, they obtain $$p(y|X; do(t = 1)) = \int_{Z} p(y|t = 1;Z)\; p(Z|X) dZ$$.
+They prove that if $$p (Z;X; t; y)$$ can be recovered then the ITE under the causal model in **Figure 10** would also be recovered. With the theorem, they obtain 
+$$p(y|X; do(t = 1)) = \int_{Z} p(y|t = 1;Z)\; p(Z|X) dZ$$.
 
 <figure>
   <img
@@ -360,7 +380,12 @@ In **Figure 10**, white nodes mean parametrized neural network transformation, g
 
 This is the architecture of CEVAE, which includes two networks, model network(Figure 7, b) and inference network(Figure 7, a). In model networks, ITE and the distribution over $$Z$$ could be recovered. In inference network, samples could be predicted by inferring the distribution over $Z$. While the model network is for training, the inference network is for predicting.
 
-So firstly, they set $$p(z_i)\, =\, \prod_{j=1}^{D_z} N(z_{ij}|0,1)$$, so that they can calculate the conditional probability $$p(x_i|z_i)$$ and $$p(t_i|z_i)$$. It should be mentioned that for a discrete outcome, they use Bernoulli distribution similarly parametrized by a TARnet and Gaussian distribution for a continuous outcome. Thus, $$p(y_i|t_i;z_i) = N(\mu, \sigma^2)$$ or $$p(y_i|t_i;z_i) =  Bern(\pi)$$ would be estimated from neural networks. 
+So firstly, they set 
+$$p(z_i)\, =\, \prod_{j=1}^{D_z} N(z_{ij}|0,1)$$,
+so that they can calculate the conditional probability 
+$$p(x_i\|z_i)$$
+and 
+$$p(t_i\|z_i)$$. It should be mentioned that for a discrete outcome, they use Bernoulli distribution similarly parametrized by a TARnet and Gaussian distribution for a continuous outcome. Thus, $$p(y_i\|t_i;z_i) = N(\mu, \sigma^2)$$ or $$p(y_i\|t_i;z_i) =  Bern(\pi)$$ would be estimated from neural networks. 
 
 So far, the model network has been trained. But how to predict results? In fact, they use the true posterior over $Z$ depends on $X$, $t$ and $y$, in order to employ the following posterior approximation:
 $$q(z_i|x_i; t_i; y_i) =\prod_{j=1}^{D_z} N(\mu_j = \bar{\mu}_{ij} ; \sigma^2_j = \bar{\sigma}^2_{ij})$$
