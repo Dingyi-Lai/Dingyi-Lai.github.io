@@ -2,7 +2,6 @@
 
 source "https://rubygems.org"
 gemspec
-Footer
 
 group :jekyll_plugins do
     gem "jekyll-pdf-embed"
