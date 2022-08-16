@@ -1,6 +1,7 @@
 title: Toolshed of Dingyi
 author: Dingyi Lai
 url: https://dingyi-lai.github.io/ # root address of the site
+baseurl: https://dingyi-lai.github.io/ # root address of the site
 description: > # description of the site (multiple lines allowed)
   A toolshed in my secret garden, with all magics that I have collected all around.
 
