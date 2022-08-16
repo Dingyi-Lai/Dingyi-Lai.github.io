@@ -45,7 +45,7 @@ project_entries:
     highlight: XAI
 
   - title: Conditional Income Distribution Across Age and Race in the U.S. in 2016
-    url: overview-post
+    url: distributional-regression
     desc: Term paper for Econometric Projects WiSe21/22 (HU Berlin)
     highlight: Distributional Regression
 
