@@ -29,6 +29,12 @@ project_entries:
     desc: Course project for Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
     highlight: NLP
 
+  - title: CFC or SHAP Values? An empirical study for comparison
+    url: overview-post
+    desc: Core idea of the conference paper "Approximation of SHAP Values for Randomized Tree Ensembles" published by Springer Nature Switzerland AG 2022
+    highlight: XAI
+
+old_project_entries:
   - title: How to build a grammar corrector based on PyTorch?
     url: overview-post
     desc: Course project for Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
@@ -38,34 +44,16 @@ project_entries:
     url: overview-post
     desc: Course project for Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
     highlight: NLP
-
-  - title: CFC or SHAP Values? An empirical study for comparison
-    url: overview-post
-    desc: Core idea of the conference paper "Approximation of SHAP Values for Randomized Tree Ensembles" published by Springer Nature Switzerland AG 2022
-    highlight: XAI
-
+  
   - title: Conditional Income Distribution Across Age and Race in the U.S. in 2016
     url: distributional-regression
     desc: Term paper for Econometric Projects WiSe21/22 (HU Berlin)
     highlight: Distributional Regression
 
-old_project_entries:
-  - title: Conditional Income Distribution Across Age and Race in the U.S. in 2016
-    url: distributional-regression
-    desc: Term paper for Econometric Projects WiSe21/22 (HU Berlin)
-    highlight: Distributional Regression
-
-  - title: Test2
-    url: overview-post
-    desc: Test
-
-  - title: Test3
-    url: overview-post
-    desc: Test
-
-  - title: Test4
-    url: overview-post
-    desc: Test
+  - title: How to find the best accommodation for foodies in Taichung based on Kmeans
+    url: taichung-gastronomy-map
+    desc: Final project for R Programming Course WiSe17/18 (Feng Chia University)
+    highlight: Kmeans Clustering
 
 footer_entries:
   - title: Dingyi's homepage
