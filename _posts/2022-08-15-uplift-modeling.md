@@ -178,15 +178,13 @@ $$\mu_0(x)=E[Y(0)|X=x]$$
 
 $$\mu_1(x)=E[Y(1)|X=x]$$ 
 
-With the treated observation, we can denote the estimators by 
-
-$$\hat{\mu_0}(x)$$ and $$\hat{\mu_1}(x)$$.
+With the treated observation, we can denote the estimators by $$\hat{\mu_0}(x)$$ and $$\hat{\mu_1}(x)$$.
 
 Step 2: The T-learner is defined as:
 
 $$\hat{\tau_T}(x)=\hat{\mu_0}(x)-\hat{\mu_1}(x)$$
 
-Closely related to the T-learner, S-learner, a "single estimator", estimates the outcome using all of the features and the treatment indicator, without giving the treatment indicator a special role. The predicted CATE for an individual unit is then the difference between the predicted values when the treatment assignment indicator ($w$) is changed from 0 (control) to 1 (treatment), with all other features held fixed. We thus estimate the combined response function,
+Closely related to the T-learner, S-learner, a "single estimator", estimates the outcome using all of the features and the treatment indicator, without giving the treatment indicator a special role. The predicted CATE for an individual unit is then the difference between the predicted values when the treatment assignment indicator ($$w$$) is changed from 0 (control) to 1 (treatment), with all other features held fixed. We thus estimate the combined response function,
 
 $$\mu(x,w):=E[Y^{obs}|X=x,\;W=w],$$
 
@@ -200,7 +198,7 @@ The difference between S-learner and T-learner is that, in S-learner in which pa
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]S&T.jpeg"
   alt="S&T">
-  <figcaption>Figure 6: The Architectures of T- & S-learner (Kuenzel et al., 2019))</figcaption>
+  <figcaption>Figure 6: The Architectures of T- & S-learner (Kuenzel et al., 2019)</figcaption>
 </figure>
 
 **Implementation of Baseline Models**
@@ -237,7 +235,7 @@ $$
 \end{pmatrix} := \underset{\tilde{\mu_0},\tilde{\tau}}{\operatorname{argmin}}\sum^{n}_{i=1}\frac{1}{2}(y_i-\tilde{\mu_0}(x_i)-\tilde{\tau}(x_i)t_i)^2
 $$
 
-This formular comes directly from the original paper, where $y_i$ are targets (in our context is convertion), $x_i$ are features, $$\mu_0(x_i)$$ reflects original conversion (0 or 1), and $$\tau(x) = \hat{\mu_1}(x_i)-\hat{\mu_0}(x_i)$$ is the CATE of catalog mailing.
+This formular comes directly from the original paper, where $$y_i$$ are targets (in our context is convertion), $$x_i$$ are features, $$\mu_0(x_i)$$ reflects original conversion (0 or 1), and $$\tau(x) = \hat{\mu_1}(x_i)-\hat{\mu_0}(x_i)$$ is the CATE of catalog mailing.
 
 Accordingly, we could expect that our ATE should be between 0 and 1. For example, if one customer is originally not converted, then after the mailing strategy, the conversion might be increased, but the conversion target should still be smaller or equal 1. If our target is `spend`, then the range of "lift" will not have such limitation.
 
@@ -271,7 +269,7 @@ If we equip the neural network with only one hidden layer with 60 neurons, and i
 
 Shi, Blei and Veitch (2019a) introduce a neural network architecture, the Dragonnet, to estimate the treatment effects for observational data. The Dragonnet is a three-headed neural network architecture that provides an end-to-end training to predict the conditional outcomes and the propensity score (**Figure 8**). The objective of the Dragonnet is to learn a shared representation layer $$Z(X)$$ that aims for good prediction of the conditional outcomes 
 $$Q(t,x) = E[ Y | t, x ]$$
-(input treatment $$T$$ and covariates $X$ to predict the outcome $Y$), and also for good prediction of the propensity score $$g(x) = P( T=1| x)$$ (input covariates $X$ to predict the probability of treatment $$T$$). The Dragonnet outputs two heads for the conditional outcomes, denoted as $$Q(1,X)$$ if $t$=1 and $$Q(0,X)$$ if $$t$$=0. Additionally, there is one head for the propensity score $$g(x)$$ which is used to enforce a representation that provides good treatment prediction. 
+(input treatment $$T$$ and covariates $$X$$ to predict the outcome $$Y$$), and also for good prediction of the propensity score $$g(x) = P( T=1| x)$$ (input covariates $$X$$ to predict the probability of treatment $$T$$). The Dragonnet outputs two heads for the conditional outcomes, denoted as $$Q(1,X)$$ if $$t$$=1 and $$Q(0,X)$$ if $$t$$=0. Additionally, there is one head for the propensity score $$g(x)$$ which is used to enforce a representation that provides good treatment prediction. 
 
 <figure>
   <img
@@ -284,14 +282,15 @@ The Dragonnet exploits the *sufficiency of the propensity score $$g(x)$$* (Shi, 
 $$\tau = E[E[Y|g(X),T=1]-E[Y|g(X),T=0]]$$
 if 
 $$\tau = E[E[Y|X,T=1]-E[Y|X,T=0]]$$
-(if the average treatment effect $$\tau$$ is identifiable from observational data by adjusting for $X$). 
+(if the average treatment effect $$\tau$$ is identifiable from observational data by adjusting for $$X$$). 
 
 So when working with observational data, the theorem of the propensity score states that it is sufficient to adjust only for the information in those features $$X$$ that are relevant for predicting the treatment $$T$$. The other features are relevant for predicting the outcome $$Y$$, but they do not affect the treatment assignment and thus, are irrelevant for the estimation of the causal effect. One way to efficiently filter the relevant features $$X$$ in the Dragonnet is to correct for the shared hidden layers (i.e. for example to produce a representation layer $$Z(X)$$ and by adding the propensity score as an additional output to discard the irrelevant information and instead focus only on the relevant information in $$X$$). If the propensity score head is removed from the Dragonnet, then the architecture is essentially the TARnet architecture from Shalit et al. (2016) (Shi, Blei and Veitch, 2019a).    
 
 Shi, Blei and Veitch (2019a) approach has two stages: At first they fit the model for the conditional outcome $$Q(x)$$ and the propensity score $$g(x)$$. In the next stage they plug these fitted models $$Q(x)$$ and $$g(x)$$ into a downstream estimator $$\tau$$.  
 
 The authors use the *estimated average treatment effect with conditional outcome $$\hat{\tau}^{Q}$$*:
-$$\hat{\tau}^{Q} = \frac{1}{n} \sum_i[\hat{Q}(1,x_i)-\hat{Q}(0,x_i)]$$, where $$\hat{Q}$$ is the estimates of the conditional outcome 
+$$\hat{\tau}^{Q} = \frac{1}{n} \sum_i[\hat{Q}(1,x_i)-\hat{Q}(0,x_i)]$$,
+where $$\hat{Q}$$ is the estimates of the conditional outcome 
 $$Q(t,x) = E[ Y | t, x ]$$.
 This estimator is extended by considering $$\hat{g}$$ the estimates of the propensity score 
 $$g(x) = P( T=1| x)$$.  
@@ -299,11 +298,12 @@ $$g(x) = P( T=1| x)$$.
 To train the model the authors define the *objective function* as a minimization problem: 
 
 \begin{equation}
-\hat{\theta} = argmin_{\theta} \hat{R}(\theta;X), where \\  
-\hat{\mathbf{R}}(\theta;X) = \frac{1}{n} \sum_i [(Q^{nn}(t_i,x_i;\theta)-y_i)^2 + \alpha CrossEntropy(g^{nn}(x_i;\theta),t_i)] 
+\hat{\theta} = argmin_{\theta} \hat{R}(\theta;X),
+where \hat{\mathbf{R}}(\theta;X) = \frac{1}{n} \sum_i [(Q^{nn}(t_i,x_i;\theta)-y_i)^2 + \alpha CrossEntropy(g^{nn}(x_i;\theta),t_i)] 
 \end{equation} 
 
 and $$\theta$$ denotes some parameters of the Dragonnet, $$\hat{Q}^{nn}(t_i, x_i; \theta)$$ and $$\hat{g}^{nn}(x_i; \theta)$$ are the output heads and $$\alpha \in \mathbb{R}_+$$ is a hyperparameter weighting the loss components of the loss function. Based on the fitted outcome model $$\hat{Q}$$, the treatment effect with the estimator $$\hat{\tau}^Q$$ can be estimated (Shi, Blei and Veitch, 2019a).  
+
 Alternatively, the modified objective function, the *targeted regularization*, can be used for training the neural network (Shi, Blei and Veitch, 2019a). The targeted regularization is based on the non-parametric estimation theory. With this a fitted model with asymptotic properties can be guaranteed if $$\hat{Q}$$ and $$\hat{g}$$ are consistent estimators for the conditional outcome and propensity scores and if the tuples satisfies the non-parametric estimating equation:
 
 \begin{equation}
@@ -383,14 +383,23 @@ This is the architecture of CEVAE, which includes two networks, model network(Fi
 So firstly, they set 
 $$p(z_i)\, =\, \prod_{j=1}^{D_z} N(z_{ij}|0,1)$$,
 so that they can calculate the conditional probability 
-$$p(x_i\|z_i)$$
+$$p(x_i|z_i)$$
 and 
-$$p(t_i\|z_i)$$. It should be mentioned that for a discrete outcome, they use Bernoulli distribution similarly parametrized by a TARnet and Gaussian distribution for a continuous outcome. Thus, $$p(y_i\|t_i;z_i) = N(\mu, \sigma^2)$$ or $$p(y_i\|t_i;z_i) =  Bern(\pi)$$ would be estimated from neural networks. 
+$$p(t_i|z_i)$$.
+It should be mentioned that for a discrete outcome, they use Bernoulli distribution similarly parametrized by a TARnet and Gaussian distribution for a continuous outcome. Thus, 
+$$p(y_i|t_i;z_i) = N(\mu, \sigma^2)$$
+or
+$$p(y_i|t_i;z_i) =  Bern(\pi)$$
+would be estimated from neural networks. 
 
-So far, the model network has been trained. But how to predict results? In fact, they use the true posterior over $Z$ depends on $X$, $t$ and $y$, in order to employ the following posterior approximation:
+So far, the model network has been trained. But how to predict results? In fact, they use the true posterior over $$Z$$ depends on $$X$$, $$t$$ and $$y$$, in order to employ the following posterior approximation:
 $$q(z_i|x_i; t_i; y_i) =\prod_{j=1}^{D_z} N(\mu_j = \bar{\mu}_{ij} ; \sigma^2_j = \bar{\sigma}^2_{ij})$$
 
-Same as before, parameters $$\sigma$$ and $$\mu$$ will be estimated from neural network. They get the treatment assignment $t$ from its outcome $y$ before inferring the distribution over $Z$ from distributions $$q(t_i|x_i)$$ and $$q(y_i|t_i;z_i)$$, whose parameters would be trained by networks, too. 
+Same as before, parameters $$\sigma$$ and $$\mu$$ will be estimated from neural network. They get the treatment assignment $$t$$ from its outcome $$y$$ before inferring the distribution over $$Z$$ from distributions 
+$$q(t_i|x_i)$$
+and
+$$q(y_i|t_i;z_i)$$,
+whose parameters would be trained by networks, too. 
 
 **In this algorithm, they also mention the variational lower bound, but because of its difficult calculation and limits, we did not use it in our paper.**
 
