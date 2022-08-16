@@ -50,10 +50,10 @@ project_entries:
     highlight: Distributional Regression
 
 old_project_entries:
-  - title: Test1
-    url: overview-post
-    desc: Test
-    highlight: NEW
+  - title: Conditional Income Distribution Across Age and Race in the U.S. in 2016
+    url: distributional-regression
+    desc: Term paper for Econometric Projects WiSe21/22 (HU Berlin)
+    highlight: Distributional Regression
 
   - title: Test2
     url: overview-post
