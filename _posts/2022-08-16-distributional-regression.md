@@ -11,6 +11,6 @@ author: Dingyi Lai
     </embed>
 </object> -->
 
-<iframe src="_pdfs/[DR]term_paper.pdf" style="width:1000px; height:800px;" frameborder="0" allowfullscreen></iframe>
+<iframe src="../_pdfs/[DR]term_paper.pdf" style="width:1000px; height:800px;" frameborder="0" allowfullscreen></iframe>
 
 <!-- [DR]term_paper.pdf -->
