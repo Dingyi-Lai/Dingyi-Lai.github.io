@@ -11,22 +11,22 @@ navbar_entries:
 project_entries:
   - title: How to predict risk in return by an online retailer?
     url: prediction-of-return
-    desc: Assignment for Business Analytics and Data Science WiSe20/21 (HU Berlin)
+    desc: Assignment of Business Analytics and Data Science WiSe20/21 (HU Berlin)
     highlight: BA LightGBM
 
   - title: How to predict property prices for Airbnb listings in London?
     url: overview-post
-    desc: Assignment for Advanced Data Analytics for Management Support SoSe22 (HU Berlin)
+    desc: Assignment of Advanced Data Analytics for Management Support SoSe22 (HU Berlin)
     highlight: BA NLP ImageProcessing
 
   - title: How to optimize advertisement strategy via casual-neural-network-based uplift modeling?
     url: uplift-modeling
-    desc: Seminar report for Applied Predictive Analytics SoSe21 (HU Berlin)
+    desc: Seminar report of Applied Predictive Analytics SoSe21 (HU Berlin)
     highlight: CausalML
 
   - title: How to build a German-English translator based on PyTorch?
     url: overview-post
-    desc: Course project for Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
+    desc: Course project of Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
     highlight: NLP
 
   - title: CFC or SHAP Values? An empirical study for comparison
@@ -37,23 +37,28 @@ project_entries:
 old_project_entries:
   - title: How to build a grammar corrector based on PyTorch?
     url: overview-post
-    desc: Course project for Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
+    desc: Course project of Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
     highlight: NLP
   
   - title: How to build a text generator based on PyTorch?
     url: overview-post
-    desc: Course project for Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
+    desc: Course project of Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
     highlight: NLP
   
   - title: Conditional Income Distribution Across Age and Race in the U.S. in 2016
     url: distributional-regression
-    desc: Term paper for Econometric Projects WiSe21/22 (HU Berlin)
-    highlight: Distributional Regression
+    desc: Term paper of Econometric Projects WiSe21/22 (HU Berlin)
+    highlight: DistributionalRegression
+
+  - title: How to detect anxiety from Taiwan Index 50
+    url: investment-psychology
+    desc: Final project of Software for Data Analysis Course WiSe17/18 (Feng Chia University)
+    highlight: PCA StockAnalysis
 
   - title: How to find the best accommodation for foodies in Taichung based on Kmeans
     url: taichung-gastronomy-map
-    desc: Final project for R Programming Course WiSe17/18 (Feng Chia University)
-    highlight: Kmeans Clustering
+    desc: Final project of R Programming Course WiSe17/18 (Feng Chia University)
+    highlight: KmeansClustering
 
 footer_entries:
   - title: Dingyi's homepage
