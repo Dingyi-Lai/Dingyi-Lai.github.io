@@ -50,6 +50,11 @@ old_project_entries:
     desc: Term paper of Econometric Projects WiSe21/22 (HU Berlin)
     highlight: DistributionalRegression
 
+  - title: How to assess the stock price of TTM
+    url: stocks-assessment
+    desc: Final project of Securities Investment Course WiSe17/18 (Feng Chia University)
+    highlight: MA BollingerBand StockAnalysis
+
   - title: How to detect anxiety from Taiwan Index 50
     url: investment-psychology
     desc: Final project of Software for Data Analysis Course WiSe17/18 (Feng Chia University)
