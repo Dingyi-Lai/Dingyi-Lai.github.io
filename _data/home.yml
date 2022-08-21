@@ -51,9 +51,9 @@ old_project_entries:
     highlight: DistributionalRegression
 
   - title: How to assess the stock price of TTM
-    url: stocks-assessment
+    url: stocks-assessment-T-T-M
     desc: Final project of Securities Investment Course WiSe17/18 (Feng Chia University)
-    highlight: MA BollingerBand StockAnalysis
+    highlight: Long-short-MA BollingerBand StockAnalysis
 
   - title: How to detect anxiety from Taiwan Index 50
     url: investment-psychology
