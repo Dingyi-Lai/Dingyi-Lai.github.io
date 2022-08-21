@@ -35,6 +35,7 @@ project_entries:
     highlight: XAI
 
 old_project_entries:
+
   - title: How to build a grammar corrector based on PyTorch?
     url: overview-post
     desc: Course project of Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
@@ -49,22 +50,43 @@ old_project_entries:
     url: distributional-regression
     desc: Term paper of Econometric Projects WiSe21/22 (HU Berlin)
     highlight: DistributionalRegression
-
+  
+  - title: Empirical Dynamic Modeling and Convergent Cross-Mapping
+    url: EDM-CCM
+    desc: Final project of Applied Time Series Course SoSe18 (CUC)
+    highlight: EDM CCM
+  
   - title: How to assess the stock price of TTM
     url: stocks-assessment-t-t-m
-    desc: Final project of Securities Investment Course WiSe17/18 (Feng Chia University)
+    desc: Final project of Securities Investment Course WiSe17/18 (FCU)
     highlight: Long-short-MA BollingerBand StockAnalysis
 
   - title: How to detect anxiety from Taiwan Index 50
     url: investment-psychology
-    desc: Final project of Software for Data Analysis Course WiSe17/18 (Feng Chia University)
+    desc: Final project of Software for Data Analysis Course WiSe17/18 (FCU)
     highlight: PCA StockAnalysis
 
   - title: How to find the best accommodation for foodies in Taichung based on Kmeans
     url: taichung-gastronomy-map
-    desc: Final project of R Programming Course WiSe17/18 (Feng Chia University)
+    desc: Final project of R Programming Course WiSe17/18 (FCU)
     highlight: KmeansClustering
 
+  - title: Trickle-down effect in China from the perspective of social comparison
+    url: trickle-down-effect
+    desc: Term paper of Econometrics Course SoSe17 (CUC)
+    highlight: FixedEffectsOLS 2SLS CFPS
+
+  - title: Influence of parent-child communication on the mental state of adolescents
+    url: parent-child-communication
+    desc: Term paper of Multivariate Statistical Analysis Course SoSe17 (CUC)
+    highlight: Clustering PCA
+ 
+  - title: GLMMs in insurance pricing via SAS
+    url: GLMMs-SAS
+    desc: Final project of SAS Course SoSe17 (CUC)
+    highlight: GLMMs
+
+  
 footer_entries:
   - title: Dingyi's homepage
     url: https://dingyi-lai.github.io/
@@ -72,10 +94,10 @@ footer_entries:
   - title: LeetCode
     url: https://leetcode.com/Dingyi_Lai/
 
-  - title: github
+  - title: GitHub
     url: https://github.com/Dingyi-Lai
 
-  - title: feed
+  - title: Feed
     url: feed.xml
 
 misc_entries:
