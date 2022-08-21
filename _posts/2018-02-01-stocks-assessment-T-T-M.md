@@ -3,12 +3,12 @@ layout: post
 author: Dingyi Lai
 ---
 
-Updated: The following report was written in Chinese originally at the end of 2017, so lots of observation and analysis are outdated and biased due to my limited knowledge and perspective at that time, and the translation could be flawed. But the paradigm of stock assessment is still practical, because according to the performance of TTM subsequently, my assessment and prediction conforms perfectly to the reality afterwards.
+Updated: The following report was written in Chinese originally at the end of 2017, so lots of observation and analysis are outdated and biased due to my limited knowledge and perspective at that time, and the translation could be flawed. But the paradigm of stock assessment is still practical, because according to the performance of TTM subsequently, my assessment and prediction conforms perfectly to the reality afterwards. Codes in stock price assessment is in [this repo](https://github.com/Dingyi-Lai/Data-Science/blob/main/%5BProject%5DTTM_Stock_Assessment.R)
 
 # Abstract
 TATA MOTOR Ltd. has experienced intense volatility of share price under the ticker symbol TTM since it was listed on the New York Stock Exchange (NYSE) in 2004. Generally, foreigners are optimistic about the Indian market according to both my field study and the Indian index. However, the financial reports of Tata Motors over the years infers that Tata Motors is unfortunately in a poor financial situation. Its most competitive advantage is Jaguar Land Rover, which was acquired from Ford in 2008, and its main market is in China. Recently, Tata Group has stepped up efforts to prevent other groups from acquiring Tata Motors, which is worrying. However, we can infer from the relationship among the stock price, the price-to-book value ratio and the price-earnings ratio that Tata Motors' current EPS has risen sharply. In terms of the stock price, Tata Motors will rise sharply in the short term in the near future, and investors can take a long positon from the end of 2017 to the beginning of 2018. However, from the financial reports of the past years, three rules of thumb can be used to roughly estimate respectively. The reasonable share price of Tata Motors should be 23.86, 27.85 and 33.75 respectively, and no matter which one it should be, the current share price of Tata Motors, 33.87, is too expensive. Hence, in the longer run, investors are suggested to be short.
 
-
+![MindMap_TTM](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]MindMap.png)
 
 # Industry Research
 ## Goal
@@ -193,7 +193,7 @@ The WisdomTree India Earnings Index is a fundamentally weighted index that measu
 ### iShares India 50 ETF
 The iShares India 50 ETF seeks to track the investment results of an index composed of 50 of the largest Indian equities. [^18] It has $770M in assets and 0.94% fee. As the 15th largest holding stock, Tata Motors Ltd owns a 1.95% investment ratio and holds 3,575,693 shares. But it is worth noting that as a competitor, MARUTI SUZUKI INDIA LTD, as INDY's 12th largest shareholding, has a 2.79% investment ratio and holds 253,234 shares; Mahindra & Mahindra Ltd, as INDY's 17th largest shareholding, Owns 1.64% investment ratio and holds 887,493 shares.[^19]
 
-# Cooperation Research
+# Cooperation Research (Financial Report)
 Tata Motors Limited, a part of Tata Group, was founded in 1945 and ranks among the top ten commercial vehicle manufacturers in the world with an annual turnover of US$2 billion. It has a 59% share of the Indian market. It cooperated with German Daimler-Benz in 1954 and was able to independently design its own products in 1969. Commercial vehicles cover products ranging from 2-40 tons. In 1999, Tata entered the passenger car segment with a market share of around 16%, best known for its self-developed and designed Indica and Indigo series.
 
 Since the 1960s, automobiles have been exported to some countries and regions such as Europe, Africa and Asia. TATA's cars are also well-known. The small car Indica is elegant, stylish and low-priced. It has received more than 110,000 orders in a short period of time. The product is in short supply, creating the highest record for car sales in India. Tata's main products include small cars, 4-drive off-road vehicles, buses, medium and heavy trucks, etc. [^20].
@@ -215,30 +215,25 @@ Ford spent $2.5 billion to acquire Jaguar in 1989, and acquired Land Rover for $
 
 But it is worth noting that the biggest consumer of Tata's Jaguar Land Rover is China, and Jaguar Land Rover has become Tata Motors and Tata Group's largest cash cow, and if Tata has not found another plan that can replace this cutting edge, then facing the unknown future market of China, the risk is very great. In late 2017, American auto website Automotive News cited from Indian media reports that Tata Sons was buying Tata Motors for nearly 200 hundred million rupees (approximately $312 million) as Tata Group sought to protect Jaguar Land Rover from a potential takeover.
 
-## Corporate Financial Reporting
-### Profitability
+## Profitability
 The value of the industry peer level is from the msn financial website.[^22] Tata Motors' net profit margin has been lower than its peers since 2015, and gross margins have continued to decline. It shows that the profitability of Tata Motors is not as good as before.
 <figure>
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Net_Profit_Margin_0417.png"
   alt="[TTM]Net_Profit_Margin_0417">
   <figcaption>Figure 10: Net Profit Margin of Tata Motors from 2004 to 2017</figcaption>
-</figure>
-<figure>
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Gross_Margin_0417.png"
   alt="[TTM]Gross_Margin_0417">
   <figcaption>Figure 11: Gross Margin of Tata Motors from 2004 to 2017</figcaption>
-</figure>
-<figure>
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]EPS_Adjusted_0417.png"
   alt="[TTM]EPS_Adjusted_0417">
   <figcaption>Figure 12: EPS Adjusted for Extraordinary Items from 2004 to 2017</figcaption>
 </figure>
 
-### Growth
-According to William J O'Neil's "How to Make Money in Stocks: A Winning System in Good Times Or Bad": A good stock should have EPS growing significantly over the past five years compared to the previous year. A growth stock should have a compound annual EPS growth rate of 25% to 50%, or even more than 100%, over the past four to five years. But if EPS decelerates noticeably for two consecutive quarters, be careful.
+## Growth
+According to William J O'Neil's *How to Make Money in Stocks: A Winning System in Good Times Or Bad*, a good stock should have EPS growing significantly over the past five years compared to the previous year. A growth stock should have a compound annual EPS growth rate of 25% to 50%, or even more than 100%, over the past four to five years. But if EPS decelerates noticeably for two consecutive quarters, be careful.
 <figure>
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Growth_EPS_Adjusted_0417.png"
@@ -256,10 +251,136 @@ As can be seen from the above figure, TTM's performance in 2011 reached more tha
 
 The net income growth rate is also unstable, indicating that Tata Motors is in an unstable state of operation.
 
-### Price Rate
+## Price Ratio
+In Anthony Bolton's *Investing Against the Tide: Lessons From a Life Running Money*, Old-fashioned P/E ratios can predict surpluses for the current and the next two years. As can be seen from the chart below: Tata Motors' P/E increased from 2015 to 2017, but the decline in P/E in 2017 may indicate that future earnings may also decline.
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]PE_Ratio_0417.png"
+  alt="[TTM]PE_Ratio_0417">
+  <figcaption>Figure 15: Price-Earnings Ratio from September 2004 to August 2017</figcaption>
+</figure>
+
+However, the figure below shows that the price-to-book ratio in 2017 is higher than that in 2016, indicating that the stock price in 2017 is higher than that in 2016, and combined with the decline in the price-to-earnings ratio, it can be inferred that the company's current EPS has increased significantly.
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]PB_Ratio_0417.png"
+  alt="[TTM]PB_Ratio_0417">
+  <figcaption>Figure 16: Price-to-Book Ratio from 2004 to 2017</figcaption>
+</figure>
+
+## Financial Soundness
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Financial_Soundness.png"
+  alt="[TTM]Financial_Soundness">
+  <figcaption>Figure 17: Financial Soundness from 2007 to 2016</figcaption>
+</figure>
+
+The light blue line represents debt-to-equity ratio, while the dark blue line is for book value per share. On the right, column names are financial ratio, company, industry respectively. In the column of financial ratio, from above to bottom is listed: debt-to-equity ratio, current ratio, quick ratio, interest coverage ratio, leverage ratio.[^22]
+
+The debt-to-equity ratio of Tata Motors has remained at around 1 after a rare peak in 2009 (probably is related to frequent acquisitions and the launch of Nano in 2008), indicating long-term poor solvency, and the corporate capital structure is no safer than its peers. The current ratio and quick ratio are both lower than those of the industry, indicating that the short-term solvency is not good, and the company's ability to convert assets into cash is not reliable. Although the interest coverage ratio is higher than 2, it is far below the level of the industry, indicating that the ability to pay interest is lower than peers. The leverage ratio is slightly higher than that of its peers, indicating that investors have high profitability, but also take a large risk of loss.
+
+Combining the comparison of the net profit ratio, it can be found that the debt-to-equity ratio in 2013 to 2016 generally decreased, and the net profit ratio also decreased.
+
+To sum up: Tata Motors is a high-reward, high-risk company with low creditor protection.
+
+## Management Efficiency
+The value of the industry peer level is from the msn financial website.[^22] We can know from the following three rates of return that the financial situation of Tata Motors has changed a lot. As I expected, it fell very sharply in 2009, but then rebounded abruptly, but in recent years, the return rate has tended to be similar to the peers in industry. So it is confirmed once again: Tata Motors' Jaguar Land Rover dividend is about to pass, and if there is no new something, then the company's prospects are bleak.
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Return_on_Assets_0417.png"
+  alt="[TTM]Return_on_Assets_0417">
+  <figcaption>Figure 18: Historical Return on Assets from 2004 to 2017</figcaption>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Return_Shareholders_Equity_0417.png"
+  alt="[TTM]Return_Shareholders_Equity_0417">
+  <figcaption>Figure 19: Historical Return on Shareholders' Equity from 2004 to 2017</figcaption>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Return_Investment_0417.png"
+  alt="[TTM]Return_Investment_0417">
+  <figcaption>Figure 20: Historical Return on Investment from 2004 to 2017</figcaption>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Inventory_Turnover_1417.png"
+  alt="[TTM]Inventory_Turnover_1417">
+  <figcaption>Figure 21: Inventory Turnover from 2014 to 2017</figcaption>
+</figure>
+
+It can be seen from the above figure that the inventory turnover rate of Tata Motors is far lower than that of its peers, and it has even declined in recent years.
+
+## Dividend Policy
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Dividend_Payout_0417.png"
+  alt="[TTM]Dividend_Payout_0417">
+  <figcaption>Figure 22: Dividend Payout from March 2004 to March 2017</figcaption>
+</figure>
+
+The above chart shows that Tata Motors' dividend payout [^23] is very volatile, and also shows that this stock has potential, despite its recent poor performance.
 
 # Price Research
+## Stock Price Chart
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Price_0418.png"
+  alt="[TTM]Price_0418">
+  <figcaption>Figure 23: Stock Price from 27th September 2004 to 5th January 2018</figcaption>
+</figure>
 
+Because Tata Motors has many ex-dividends and ex-rights, in order to apply the moving average, the stock price is restored as shown below.
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Price_restored_0418.png"
+  alt="[TTM]Price_restored_0418">
+  <figcaption>Figure 24: Restored Stock Price from 27th September 2004 to 5th January 2018</figcaption>
+</figure>
+
+## Long and Short lines of optimal return on investment 
+Tuning short-term alternative moving average from 1 to 20 days, and long-term alternative moving average from 21 to 40 days, the final result is: 8-day moving average as a short-term, 23-day moving average as a long-term assisted for decision-making. When short-term line is higher than long-term line, then buy in; When long-term line is higher than short-term line, then sell out. This operation can obtain the highest average return on investment from TTM.
+
+Take a closer look from 2015 to 2017.
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Price_restored_1518.png"
+  alt="[TTM]Price_restored_1518">
+  <figcaption>Figure 24: Restored Stock Price from 5th January 2015 to 5th January 2018</figcaption>
+</figure>
+
+## Bollinger Bands
+Bollinger Bands are an indicator that uses "price channels" to display various levels of market prices. When the market is stable, the price channel narrows, which may signal a temporary lull in market volatility. When the market price moves beyond the upper bound of the narrow price channel, it indicates that the market is about to go up violently; when the market price volatility exceeds the lower rail of the narrow price channel, it also indicates that the market will go downwards dramatically.[^24]
+
+We use Bollinger Bands with a 20-day simple moving average and a standard deviation of 2 as a reference.
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Bollinger_Bands_1518.png"
+  alt="[TTM]Bollinger_Bands_1518">
+  <figcaption>Figure 25: Bollinger Bands from 5th January 2015 to 5th January 2018</figcaption>
+</figure>
+
+According to the optimal strategy of 8-day short-term and 23-day long-term, the nearest long-term line is still below the short-term line, indicating a bull market recently. When the K line goes above the middle line of the Bollinger Band and breaks above the upper Bollinger line, it indicates that the market's strong characteristics have been established, and it may rise sharply in the short-term. Of course, we can see from the previous analysis of the company's financial reports that although investors can go long in the short-term, they still need to be vigilant.
+
+Here are some rule-of-thumb stock price estimates[^25]. Note that the current share price is 33.87.
+
+## Rule of Thumb for Rough Estimation of Stock Price
+### Dividend Method 
+- Dividend this year: 1.193
+- Low stock price: 15*1.193=17.895 
+- Justified stock price: 20*1.193=23.86 
+- High stock price: 30*1.193=35.79 
+- Conclusion: current share price 33.87 is relatively too high
+
+### Price-to-Earning Ratio Method
+- Low stock price: $$\frac{EPS TTM(Trailing Twelve Months)+ Average EPS in recent 10 years}{2} \times Average of lowest P/E in recent 10 years = 18.7486332$$
+- Justified stock price: $$\frac{EPS TTM(Trailing Twelve Months)+ Average EPS in recent 10 years}{2} \times Average P/E in recent 10 years = 27.85359427$$
+- High stock price: $$\frac{EPS TTM(Trailing Twelve Months)+ Average EPS in recent 10 years}{2} \times Average of highest P/E in recent 10 years = 34.0864304$$
+- Conclusion: current share price 33.87 is relatively too high
+
+### Price-to-Book Ratio Method
+- Low stock price: $$Net Value in latest quarter \times Average value of lowest P/B over the years = 27.0125$$
+- Justified stock price: $$Net Value in latest quarter \times Average value of P/B over the years = 33.7548$$
+- High stock price: $$Net Value in latest quarter \times Average value of highest P/B over the years =  41.6267$$
+- Conclusion: current share price 33.87 is relatively too high
+
+# Reference
 [^1]: TATA MOTOR Ltd., Q2 FY18 BUSINESS REVIEW_TATA MOTORS Connecting Aspirations
 [^2]: From https://finance.technews.tw/2017/07/27/india-finds-reform-not-reformers/
 [^3]: From https://en.wikipedia.org/wiki/Index_of_industrial_production
@@ -282,3 +403,6 @@ The net income growth rate is also unstable, indicating that Tata Motors is in a
 [^20]: From http://wiki.mbalib.com/zh-tw/塔塔汽车公司
 [^21]: From http://news.ltn.com.tw/news/business/paper/615746
 [^22]: From https://www.msn.com/zh-tw/money/stockdetails/analysis/fi-126.1.TTM.NYS
+[^23]: If the number of days of holding the shares is relatively small, and if the dividends are also given bonus shares, they might be charged a high tax. In the end, you might fail to get the bonus, but pay from your own pocket.
+[^24]: From https://iask.sina.com.cn/b/14034303.html
+[^25]: From http://www.cmoney.tw/notes/note-detail.aspx?cid=22814&nid=5833
