@@ -51,7 +51,7 @@ old_project_entries:
     highlight: DistributionalRegression
 
   - title: How to assess the stock price of TTM
-    url: stocks-assessment-T-T-M
+    url: stocks-assessment-t-t-m
     desc: Final project of Securities Investment Course WiSe17/18 (Feng Chia University)
     highlight: Long-short-MA BollingerBand StockAnalysis
 
