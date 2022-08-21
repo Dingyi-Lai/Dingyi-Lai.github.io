@@ -2,7 +2,7 @@ title: Toolshed of Dingyi
 author: Dingyi Lai
 url: https://dingyi-lai.github.io/ # root address of the site
 description: > # description of the site (multiple lines allowed)
-  Welcome to my toolshed, with all magics that I have collected all around. All my current projects are in Portfolio, others are in Old Projects. The contents is kept updating.
+  Welcome to my toolshed, with all magics that I have collected all around. All my current projects are in Portfolio, others are in Old Projects. The contents are kept updating.
 permalink: /:slug
 
 favicon: "./logo.png" # relative path to site's favicon
