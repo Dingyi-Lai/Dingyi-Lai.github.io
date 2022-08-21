@@ -218,6 +218,45 @@ But it is worth noting that the biggest consumer of Tata's Jaguar Land Rover is 
 ## Corporate Financial Reporting
 ### Profitability
 The value of the industry peer level is from the msn financial website.[^22] Tata Motors' net profit margin has been lower than its peers since 2015, and gross margins have continued to decline. It shows that the profitability of Tata Motors is not as good as before.
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Net_Profit_Margin_0417.png"
+  alt="[TTM]Net_Profit_Margin_0417">
+  <figcaption>Figure 10: Net Profit Margin of Tata Motors from 2004 to 2017</figcaption>
+</figure>
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Gross_Margin_0417.png"
+  alt="[TTM]Gross_Margin_0417">
+  <figcaption>Figure 11: Gross Margin of Tata Motors from 2004 to 2017</figcaption>
+</figure>
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]EPS_Adjusted_0417.png"
+  alt="[TTM]EPS_Adjusted_0417">
+  <figcaption>Figure 12: EPS Adjusted for Extraordinary Items from 2004 to 2017</figcaption>
+</figure>
+
+### Growth
+According to William J O'Neil's "How to Make Money in Stocks: A Winning System in Good Times Or Bad": A good stock should have EPS growing significantly over the past five years compared to the previous year. A growth stock should have a compound annual EPS growth rate of 25% to 50%, or even more than 100%, over the past four to five years. But if EPS decelerates noticeably for two consecutive quarters, be careful.
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Growth_EPS_Adjusted_0417.png"
+  alt="[TTM]Growth_EPS_Adjusted_0417">
+  <figcaption>Figure 13: Growth of EPS Adjusted for Extraordinary Items from 2004 to 2017</figcaption>
+</figure>
+
+As can be seen from the above figure, TTM's performance in 2011 reached more than 73%, which is an extraordinary performance. However, since the sales of Nanu automobiles dropped significantly in 2012, it is obvious from the EPS growth rate that the company's decline can be seen. Especially with the negative growth from 2015 to 2017, investors need to be very cautious.
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Net_Income_Groth_0417.png"
+  alt="[TTM]Net_Income_Groth_0417">
+  <figcaption>Figure 14: Net Income Growth from 2004 to 2017</figcaption>
+</figure>
+
+The net income growth rate is also unstable, indicating that Tata Motors is in an unstable state of operation.
+
+### Price Rate
 
 # Price Research
 
