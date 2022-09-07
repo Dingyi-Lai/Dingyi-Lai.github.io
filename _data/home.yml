@@ -25,7 +25,7 @@ project_entries:
     highlight: CausalML
 
   - title: How to build a German-English translator based on PyTorch?
-    url: overview-post
+    url: german-english-translator
     desc: Course project of Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
     highlight: NLP
 
