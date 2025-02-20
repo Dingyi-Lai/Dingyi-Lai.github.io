@@ -197,3 +197,16 @@ p code, li code {
     color: var(--links);
   }
 }
+
+// Custom CSS to adjust the width and style of R code chunks
+.r-container pre {
+  max-width: 800px; /* Adjust the width as needed */
+  margin: 0 auto;
+  padding: 1em;
+  background-color: var(--bg-secondary);
+  border-radius: 0.5em;
+  overflow-x: auto;
+  font-family: "Anonymous Pro", "Courier New", monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
