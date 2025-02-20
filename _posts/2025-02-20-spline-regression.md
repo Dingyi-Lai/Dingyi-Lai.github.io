@@ -23,8 +23,7 @@ Let’s simulate a dataset where the true relationship is non-linear (say, a sin
 
 Below is an R code example using the `splines` package. We’ll simulate data, fit models with varying numbers of knots, and extract the effective degrees of freedom.
 
-<div class="code">
-```r
+```{r}
 # Load necessary library
 library(splines)
 set.seed(123)
@@ -60,7 +59,6 @@ lines(x, predict(model2, newdata = data), col = "red", lwd = 2)
 lines(x, predict(model3, newdata = data), col = "green", lwd = 2)
 legend("topright", legend = c("3 knots", "5 knots", "7 knots"), col = c("blue", "red", "green"), lwd = 2)
 ```
-</div>
 
 <figure>
   <img
