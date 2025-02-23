@@ -1,3 +1,8 @@
+---
+layout: post
+author: Dingyi Lai
+---
+
 Spline regression is a flexible, powerful tool for modeling non‐linear relationships between a response and one or more predictors. Recently, I am conducting a simulation study involving the calculation of some statistics from a spline regression. Therefore, in this blog, I'll try to introduce the basic idea of spline regression, the relationships among its key parameters, and the procedures for its uncertainty quantification from the perspective of the frequentists. I'll implement these ideas in both R and Python for better illustration.
 
 ---
@@ -84,8 +89,9 @@ There are mainly three ways to decide the smoothness of the overall curve -- The
 
 - **Number of Knots:** As illustrated in the former section, the more knots there are, the more detailed it is when the line fit the data. Given the number of knots $$K$$ , there are $$2^K$$ possible models for automatic knot selection, if you consider including or excluding each candicate independently.
 
- where 1 indicates that an intercept is included.
+- **Degrees of Freedom (DF):** In the context of spline regression, the degrees of freedom refer to the number of independent parameters estimated. More knots mean more basis functions and, hence, higher degrees of freedom (more flexibility) but also a higher risk of overfitting.
 
+For example, using a cubic spline with no knots would be equivalent to fitting a cubic polynomial (4 degrees of freedom). Adding knots increases the DF roughly by the number of knots added (though this can vary slightly with different spline implementations).
 
 ### Type of splines
 
@@ -104,32 +110,46 @@ Accordingly, there are several types of splines:
 
 Apparently, the spline function with the degree of the piecewise polynomial being $$p$$ has $$p-1$$ continuous derivatives. The higher the $$p$$ is, the smoother the estimated line.
 
+All the spline functions that I've discussed so far is called the truncated power functions, with its basis being:
+
+$$
+1,\, x,\, \ldots,\, x^p,\quad (x - \kappa_1)_+^p,\ \ldots,\ (x - \kappa_K)_+^p,
+$$
+
+which is known as the **truncated power basis** of degree $$p$$. The $$p$$-th-degree spline is
+
+$$
+f(x) \;=\; \beta_0 \;+\; \beta_1\,x \;+\; \cdots \;+\; \beta_p\,x^p \;+\; \sum_{k=1}^{K} \beta_{pk}\,\bigl(x - \kappa_k\bigr)_+^p.
+$$
+
+However, there are other types of splines that has equivalent bases with more stable numerical properties such as *B-spline* basis.
+
+- **B splines** provide a numerically stable and efficient way to represent spline functions. Instead of working directly with truncated power functions, B-splines use a local basis—meaning each basis function is nonzero over a limited range of $$x$$. This local support often makes B-splines computationally more stable and efficient to fit than their truncated-power-function counterparts.
+
+- **Natural cubic splines** are cubic splines that impose additional boundary constraints so that the function is linear outside the outermost knots. This helps avoid the wild oscillations that can occur at the boundaries. Natural splines thus have fewer degrees of freedom than a regular cubic spline with the same knots, because of these boundary constraints.
+
+- **Radial basis functions** are commonly used in higher-dimensional settings. An RBF spline typically depends on the distance between the predictor variable (often in multiple dimensions) and the knot location. A popular example is the Gaussian RBF $$\exp\bigl(-\gamma \lVert x - \kappa \rVert^2\bigr)$$. These are especially powerful for smoothing in spatial or multi-dimensional data, but they also come with their own complexities in selecting parameters (like $$\gamma$$).
+
+
 ### Penalized Spline Regression
 
-Consider a spline model with $$K$$ knots, $$\beta$$ in the following formula, which is the coefficients of the knots, has $$K$$ elements. To predefine some constraints on $$\beta$$ given some number \(\lambda \ge 0\) leads to the solution:
+Consider a spline model with $$K$$ knots, $$\beta$$ in the following formula, which is the coefficients of the knots, has $$K$$ elements. To predefine some constraints on $$\beta$$ given some number $$\lambda \ge 0$$ leads to the solution:
 
-\[
+$$
 \hat{\beta} = \bigl(X^\mathsf{T}X + \lambda^2 D\bigr)^{-1} X^\mathsf{T}y.
-\]
+$$
 
-The term \(\lambda^2 \beta^\mathsf{T} D \beta\) is called a **roughness penalty** because it penalizes fits that are too rough, thus yielding a smoother result. The amount of smoothing is controlled by \(\lambda\), which is therefore usually referred to as a **smoothing parameter**. 
+The term $$\lambda^2 \beta^\mathsf{T} D \beta$$ is called a **roughness penalty** because it penalizes fits that are too rough, thus yielding a smoother result. The amount of smoothing is controlled by $$\lambda$$, which is therefore usually referred to as a **smoothing parameter**. 
 
 The fitted values for a penalized spline regression are then given by:
 
-\[
+$$
 \hat{y} \;=\; X \,\bigl(X^\mathsf{T}X + \lambda^2 D\bigr)^{-1} X^\mathsf{T}y.
-\]
-
+$$
 
  
 
 
-
-
-
-- **Degrees of Freedom (DF):** In the context of spline regression, the degrees of freedom refer to the number of independent parameters estimated. More knots mean more basis functions and, hence, higher degrees of freedom (more flexibility) but also a higher risk of overfitting.
-
-For example, using a cubic spline with no knots would be equivalent to fitting a cubic polynomial (4 degrees of freedom). Adding knots increases the DF roughly by the number of knots added (though this can vary slightly with different spline implementations).
 
 ---
 
@@ -141,7 +161,7 @@ Let’s simulate a dataset where the true relationship is non-linear (say, a sin
 
 Below is an R code example using the `splines` package. We’ll simulate data, fit models with varying numbers of knots, and extract the effective degrees of freedom.
 
-```{r}
+```R
 # Load necessary library
 library(splines)
 set.seed(123)
