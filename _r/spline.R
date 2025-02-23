@@ -36,6 +36,6 @@ plot(x, y, main = "Spline Regression with Different Numbers of Knots",
 lines(x, predict(model1, newdata = data), col = "blue", lwd = 2)
 lines(x, predict(model2, newdata = data), col = "red", lwd = 2)
 lines(x, predict(model3, newdata = data), col = "green", lwd = 2)
-legend("topright", legend = c("3 knot", "9 knots", "15 knots"),
+legend("topright", legend = c("4 knots", "9 knots", "15 knots"),
        col = c("blue", "red", "green"), lwd = 2)
 dev.off()
