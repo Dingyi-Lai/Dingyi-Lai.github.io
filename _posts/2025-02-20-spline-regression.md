@@ -11,13 +11,15 @@ Spline regression is a flexible, powerful tool for modeling non‐linear relatio
 
 In linear algebra, the most straightforward example of the basis for any vector described as a pair number, which means it starts from $$(0,0)$$, are the coordinates in the $$xy$$-coordinate system. Some detailed vivid illustration can be found in [the fantastic blog along with its video by 3B1B](https://www.3blue1brown.com/lessons/span). More precisely, a basis of a vector space can be defined as a set, $$V$$, of elements of the space such that there exist uniquely a linear combination of elements of $$V$$ that is able to express any element of the space.
 
-For example, in a linear regression model $$y = \beta_0 + \beta_1 x+ error$$, the basis functions are 1 and x. Hence, $${1, x}$$ can be viewed as a basis for the vector space in x for all linear polynomials. It can be illustrated by the following figure:
+For example, in a linear regression model $$y = \beta_0 + \beta_1 x+ error$$, the basis functions are 1 and x. Hence, $$\{1, x\}$$ can be viewed as a basis for the vector space in $$x$$ for all linear polynomials. It can be illustrated by the following figure:
 
 <figure>
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.2.png"
   alt="Conceptual table">
-  <figcaption>Figure 1: The simple linear regression model</figcaption>
+   <figcaption style="display:block; text-align:center;">
+    Figure 1: The simple linear regression model
+  </figcaption>
 </figure>
 
 Next, consider the nonlinear regression model such as $$y = \beta_0 + \beta_1 x + \beta_2 x^2 + error$$:
@@ -26,7 +28,9 @@ Next, consider the nonlinear regression model such as $$y = \beta_0 + \beta_1 x 
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.3.png"
   alt="Conceptual table">
-  <figcaption>Figure 2: The quadratic regression model</figcaption>
+   <figcaption style="display:block; text-align:center;">
+    Figure 2: The quadratic regression model
+  </figcaption>
 </figure>
 
 where the basis is obviously $${1, x, x^2}$$
@@ -37,7 +41,7 @@ When it's extended to more complex model like the *broken stick* model, the indi
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.4.png"
   alt="Conceptual table">
-  <figcaption>Figure 3: The broken stick regression model</figcaption>
+  <figcaption style="display:block; text-align:center;">Figure 3: The broken stick regression model</figcaption>
 </figure>
 
 Moreover, more indicator functions are included when the right-hand half has more intricate structure:
@@ -46,7 +50,7 @@ Moreover, more indicator functions are included when the right-hand half has mor
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.5.png"
   alt="Conceptual table">
-  <figcaption>Figure 4: The whip regression model</figcaption>
+  <figcaption style="display:block; text-align:center;">Figure 4: The whip regression model</figcaption>
 </figure>
 
 And its basis can be written as:
@@ -55,7 +59,7 @@ And its basis can be written as:
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Basis_Whilp.png"
   alt="Conceptual table">
-  <figcaption>Figure 4: The whip regression model</figcaption>
+  <figcaption style="display:block; text-align:center;">Figure 4: The whip regression model</figcaption>
 </figure>
 
 The turning point $$\kappa$$ in the indicator $(x-\kappa)_{+}$$ is called *knot*, which leads to the introduction of splines below.
@@ -71,7 +75,7 @@ Another great idea to think of spline is to imagine the [connected scatterplots]
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Connected_Scatterplot.png"
   alt="Conceptual table">
-  <figcaption>Figure 5: Vanilla Connected Scatterplot</figcaption>
+  <figcaption style="display:block; text-align:center;">Figure 5: Vanilla Connected Scatterplot</figcaption>
 </figure>
 
 Or you can connect them in a smooth way:
@@ -80,7 +84,7 @@ Or you can connect them in a smooth way:
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Connected_Scatterplot_smooth.png"
   alt="Conceptual table">
-  <figcaption>Figure 6: "Chocolate" Connected Scatterplot</figcaption>
+  <figcaption style="display:block; text-align:center;">Figure 6: "Chocolate" Connected Scatterplot</figcaption>
 </figure>
 
 There are mainly three ways to decide the smoothness of the overall curve -- The number of knots, the type of splines and the constraints predefined.
