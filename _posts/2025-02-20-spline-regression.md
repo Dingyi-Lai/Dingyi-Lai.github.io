@@ -91,7 +91,7 @@ There are mainly three ways to decide the smoothness of the overall curve -- The
 
 - **Degrees of Freedom (DF):** In the context of spline regression, the degrees of freedom refer to the number of independent parameters estimated. More knots mean more basis functions and, hence, higher degrees of freedom (more flexibility) but also a higher risk of overfitting.
 
-For example, using a cubic spline with no knots would be equivalent to fitting a cubic polynomial (4 degrees of freedom). Adding knots increases the DF roughly by the number of knots added (though this can vary slightly with different spline implementations).
+- **Relationship**: For a spline of degree $$p$$ with $$K$$ interior knots (assuming knots are fixed), the DF is $$K + p + 1$$
 
 ### Type of splines
 
@@ -124,12 +124,11 @@ $$
 
 However, there are other types of splines that has equivalent bases with more stable numerical properties such as *B-spline* basis.
 
-- **B splines** provide a numerically stable and efficient way to represent spline functions. Instead of working directly with truncated power functions, B-splines use a local basis—meaning each basis function is nonzero over a limited range of $$x$$. This local support often makes B-splines computationally more stable and efficient to fit than their truncated-power-function counterparts.
+- **B splines** is equivalent to the truncated power basis of the same degree in the sense that they span the same set of functions. By *span* it means the set of all possible linear combinations of the basis functions.
 
 - **Natural cubic splines** are cubic splines that impose additional boundary constraints so that the function is linear outside the outermost knots. This helps avoid the wild oscillations that can occur at the boundaries. Natural splines thus have fewer degrees of freedom than a regular cubic spline with the same knots, because of these boundary constraints.
 
 - **Radial basis functions** are commonly used in higher-dimensional settings. An RBF spline typically depends on the distance between the predictor variable (often in multiple dimensions) and the knot location. A popular example is the Gaussian RBF $$\exp\bigl(-\gamma \lVert x - \kappa \rVert^2\bigr)$$. These are especially powerful for smoothing in spatial or multi-dimensional data, but they also come with their own complexities in selecting parameters (like $$\gamma$$).
-
 
 ### Penalized Spline Regression
 
@@ -161,7 +160,7 @@ Let’s simulate a dataset where the true relationship is non-linear (say, a sin
 
 Below is an R code example using the `splines` package. We’ll simulate data, fit models with varying numbers of knots, and extract the effective degrees of freedom.
 
-```R
+```{r}
 # Load necessary library
 library(splines)
 set.seed(123)
