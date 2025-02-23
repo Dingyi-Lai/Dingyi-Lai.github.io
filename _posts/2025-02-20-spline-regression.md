@@ -3,7 +3,7 @@ layout: post
 author: Dingyi Lai
 ---
 
-Spline regression is a flexible, powerful tool for modeling non‐linear relationships between a response and one or more predictors. Since I am conducting a simulation study involving the calculation of some statistics from a spline regression, I am more than happy trying to introduce the basic idea of spline regression, the relationships among its key parameters, and the procedures for its uncertainty quantification from the perspective of the frequentists. I'll give an example in both R and Python for better illustration.
+Spline regression is a flexible, powerful tool for modeling non‐linear relationships between a response and one or more predictors. Since I am conducting a simulation study involving the calculation of some statistics from a spline regression, I am more than happy trying to introduce the basic idea of spline regression and the relationships among its key parameters. I'll give an example in both R and Python for better illustration.
 
 ---
 
