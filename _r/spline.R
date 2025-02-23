@@ -8,23 +8,25 @@ x <- seq(0, 10, length.out = n)
 y <- sin(x) + rnorm(n, sd = 0.3)
 data <- data.frame(x, y)
 
+write.csv(data, "_data/spline.csv", row.names = FALSE)
+
 # Fit spline regression with different numbers of knots
 # Model 1: 3 interior knots
-model1 <- lm(y ~ bs(x, knots = c(3, 5, 7)), data = data)
-df1 <- summary(model1)$df[2]  # residual DF
+model1 <- lm(y ~ bs(x, df = 7), data = data)
+knots1 <- attr(bs(x, df = 7), "knots")
 
 # Model 2: 5 interior knots
-model2 <- lm(y ~ bs(x, knots = c(2, 4, 6, 8, 9)), data = data)
-df2 <- summary(model2)$df[2]
+model2 <- lm(y ~ bs(x, df = 12), data = data)
+knots2 <- attr(bs(x, df = 12), "knots")
 
 # Model 3: 7 interior knots
-model3 <- lm(y ~ bs(x, knots = c(1.5, 3, 4.5, 6, 7.5, 9, 10)), data = data)
-df3 <- summary(model3)$df[2]
+model3 <- lm(y ~ bs(x, df=18), data = data)
+knots3 <- attr(bs(x, df = 18), "knots")
 
 # Print degrees of freedom
-cat("Degrees of freedom for model with 3 knots:", df1, "\n")
-cat("Degrees of freedom for model with 5 knots:", df2, "\n")
-cat("Degrees of freedom for model with 7 knots:", df3, "\n")
+cat("Number of knots for cubic spline model with df=4:", length(knots1), "\n")
+cat("Number of knots for cubic spline model with df=10:", length(knots2), "\n")
+cat("Number of knots for cubic spline model with df=16:", length(knots3), "\n")
 
 # Plot the data and fitted curves
 # file.exists("_images")
@@ -34,6 +36,6 @@ plot(x, y, main = "Spline Regression with Different Numbers of Knots",
 lines(x, predict(model1, newdata = data), col = "blue", lwd = 2)
 lines(x, predict(model2, newdata = data), col = "red", lwd = 2)
 lines(x, predict(model3, newdata = data), col = "green", lwd = 2)
-legend("topright", legend = c("3 knots", "5 knots", "7 knots"),
+legend("topright", legend = c("3 knot", "9 knots", "15 knots"),
        col = c("blue", "red", "green"), lwd = 2)
 dev.off()
