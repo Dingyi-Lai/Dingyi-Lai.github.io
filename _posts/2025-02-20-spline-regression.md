@@ -3,7 +3,7 @@ layout: post
 author: Dingyi Lai
 ---
 
-Spline regression is a flexible, powerful tool for modeling non‐linear relationships between a response and one or more predictors. Recently, I am conducting a simulation study involving the calculation of some statistics from a spline regression. Therefore, in this blog, I'll try to introduce the basic idea of spline regression, the relationships among its key parameters, and the procedures for its uncertainty quantification from the perspective of the frequentists. I'll implement these ideas in both R and Python for better illustration.
+Spline regression is a flexible, powerful tool for modeling non‐linear relationships between a response and one or more predictors. Since I am conducting a simulation study involving the calculation of some statistics from a spline regression, I am more than happy trying to introduce the basic idea of spline regression, the relationships among its key parameters, and the procedures for its uncertainty quantification from the perspective of the frequentists. I'll give an example in both R and Python for better illustration.
 
 ---
 
@@ -103,7 +103,7 @@ Accordingly, there are several types of splines:
 - **Quadratic spline** bases has a continuous first derivative
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR][SR]Penalized_Spline_linear_quadratic.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/refs/heads/main/_images/%5BSR%5DPenalized_Spline_linear_quadratic.png"
   alt="Conceptual table">
   <figcaption>Figure 7: Penalized spline regression fits to the fossil data based on (a) linear spline basis functions and (b) quadratic spline basis functions. In each case, eleven equally space knots are used.</figcaption>
 </figure>
@@ -147,9 +147,6 @@ $$
 $$
 
  
-
-
-
 ---
 
 ## An Example: Simulating Non-Linear Data
@@ -291,3 +288,8 @@ Feel free to experiment with the provided code examples to better understand how
 ---
 
 *Happy modeling!*
+
+Reference: 
+
+1. Ruppert, D., Wand, M.P. and Carroll, R.J. (2003) Semiparametric Regression. Cambridge: Cambridge University Press (Cambridge Series in Statistical and Probabilistic Mathematics).
+2. https://www.3blue1brown.com/lessons/span
