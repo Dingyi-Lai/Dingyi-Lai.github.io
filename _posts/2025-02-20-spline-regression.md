@@ -1,14 +1,132 @@
-Spline regression is a flexible, powerful tool for modeling non‐linear relationships between a response and one or more predictors. In this blog, we’ll dive into the basics of spline regression, explain the role of knots and degrees of freedom, and illustrate with concrete examples. We’ll implement these ideas in both R and Python, then compare the two approaches.
+Spline regression is a flexible, powerful tool for modeling non‐linear relationships between a response and one or more predictors. Recently, I am conducting a simulation study involving the calculation of some statistics from a spline regression. Therefore, in this blog, I'll try to introduce the basic idea of spline regression, the relationships among its key parameters, and the procedures for its uncertainty quantification from the perspective of the frequentists. I'll implement these ideas in both R and Python for better illustration.
 
 ---
 
+## What are the basis?
+
+In linear algebra, the most straightforward example of the basis for any vector described as a pair number, which means it starts from $$(0,0)$$, are the coordinates in the $$xy$$-coordinate system. Some detailed vivid illustration can be found in [the fantastic blog along with its video by 3B1B](https://www.3blue1brown.com/lessons/span). More precisely, a basis of a vector space can be defined as a set, $$V$$, of elements of the space such that there exist uniquely a linear combination of elements of $$V$$ that is able to express any element of the space.
+
+For example, in a linear regression model $$y = \beta_0 + \beta_1 x+ error$$, the basis functions are 1 and x. Hence, $${1, x}$$ can be viewed as a basis for the vector space in x for all linear polynomials. It can be illustrated by the following figure:
+
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.2.png"
+  alt="Conceptual table">
+  <figcaption>Figure 1: The simple linear regression model</figcaption>
+</figure>
+
+Next, consider the nonlinear regression model such as $$y = \beta_0 + \beta_1 x + \beta_2 x^2 + error$$:
+
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.3.png"
+  alt="Conceptual table">
+  <figcaption>Figure 2: The quadratic regression model</figcaption>
+</figure>
+
+where the basis is obviously $${1, x, x^2}$$
+
+When it's extended to more complex model like the *broken stick* model, the indicator function such as $$(x-0.6)_{+}$$ needs to be included in the basis, as the sloped lines are connected stiffly at $$x=0.6$$. Note that this indicator function mean that if $$x-0.6$$ is positive, then it indicates $$x-0.6$$; rather, it's equal to 0 otherwise.
+
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.4.png"
+  alt="Conceptual table">
+  <figcaption>Figure 3: The broken stick regression model</figcaption>
+</figure>
+
+Moreover, more indicator functions are included when the right-hand half has more intricate structure:
+
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.5.png"
+  alt="Conceptual table">
+  <figcaption>Figure 4: The whip regression model</figcaption>
+</figure>
+
+And its basis can be written as:
+
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Basis_Whilp.png"
+  alt="Conceptual table">
+  <figcaption>Figure 4: The whip regression model</figcaption>
+</figure>
+
+The turning point $$\kappa$$ in the indicator $(x-\kappa)_{+}$$ is called *knot*, which leads to the introduction of splines below.
+
+
 ## What Are Splines?
 
-Splines are piecewise polynomial functions that are smoothly connected at points called **knots**. Instead of forcing a single polynomial to fit the entire dataset—which can lead to underfitting or overfitting—spline regression fits separate polynomial segments between knots. The smoothness constraints (usually continuity of the function and some of its derivatives) at the knots ensure that the overall curve is smooth.
+Splines are piecewise polynomial functions that are smoothly connected at points **knots** similar to above. Instead of forcing a single polynomial to fit the entire dataset—which can lead to underfitting or overfitting—spline regression fits separate polynomial segments between knots. For example, $$(x-0.6)_{+}$$ can be called as a *linear spline basis function*, where its knot is at 0.6 and the function itself is called a *spline*.
 
-### Knots and Degrees of Freedom
+Another great idea to think of spline is to imagine the [connected scatterplots](https://www.youtube.com/watch?v=YMl25iCCRew) for the cartoon figures that you draw in your childhood. You can connect the dots bluntly:
 
-- **Knots:** These are the values of the predictor variable where the polynomial pieces join. The number and placement of knots determine the flexibility of the spline.  
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Connected_Scatterplot.png"
+  alt="Conceptual table">
+  <figcaption>Figure 5: Vanilla Connected Scatterplot</figcaption>
+</figure>
+
+Or you can connect them in a smooth way:
+
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Connected_Scatterplot_smooth.png"
+  alt="Conceptual table">
+  <figcaption>Figure 6: "Chocolate" Connected Scatterplot</figcaption>
+</figure>
+
+There are mainly three ways to decide the smoothness of the overall curve -- The number of knots, the type of splines and the constraints predefined.
+
+### Number of knots and its Relationship to Degrees of Freedom
+
+- **Number of Knots:** As illustrated in the former section, the more knots there are, the more detailed it is when the line fit the data. Given the number of knots $$K$$ , there are $$2^K$$ possible models for automatic knot selection, if you consider including or excluding each candicate independently.
+
+ where 1 indicates that an intercept is included.
+
+
+### Type of splines
+
+Besides the number of knots, the smoothness constraints (usually continuity of the function and some of its derivatives) at the knots restrict their influence, thus ensuring that the overall curve is smooth.
+
+Accordingly, there are several types of splines:
+
+- **Linear spline** is equivalent to the **vanilla connected scatterplot** 
+- **Quadratic spline** bases has a continuous first derivative
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR][SR]Penalized_Spline_linear_quadratic.png"
+  alt="Conceptual table">
+  <figcaption>Figure 7: Penalized spline regression fits to the fossil data based on (a) linear spline basis functions and (b) quadratic spline basis functions. In each case, eleven equally space knots are used.</figcaption>
+</figure>
+
+Apparently, the spline function with the degree of the piecewise polynomial being $$p$$ has $$p-1$$ continuous derivatives. The higher the $$p$$ is, the smoother the estimated line.
+
+### Penalized Spline Regression
+
+Consider a spline model with $$K$$ knots, $$\beta$$ in the following formula, which is the coefficients of the knots, has $$K$$ elements. To predefine some constraints on $$\beta$$ given some number \(\lambda \ge 0\) leads to the solution:
+
+\[
+\hat{\beta} = \bigl(X^\mathsf{T}X + \lambda^2 D\bigr)^{-1} X^\mathsf{T}y.
+\]
+
+The term \(\lambda^2 \beta^\mathsf{T} D \beta\) is called a **roughness penalty** because it penalizes fits that are too rough, thus yielding a smoother result. The amount of smoothing is controlled by \(\lambda\), which is therefore usually referred to as a **smoothing parameter**. 
+
+The fitted values for a penalized spline regression are then given by:
+
+\[
+\hat{y} \;=\; X \,\bigl(X^\mathsf{T}X + \lambda^2 D\bigr)^{-1} X^\mathsf{T}y.
+\]
+
+
+ 
+
+
+
+
+
 - **Degrees of Freedom (DF):** In the context of spline regression, the degrees of freedom refer to the number of independent parameters estimated. More knots mean more basis functions and, hence, higher degrees of freedom (more flexibility) but also a higher risk of overfitting.
 
 For example, using a cubic spline with no knots would be equivalent to fitting a cubic polynomial (4 degrees of freedom). Adding knots increases the DF roughly by the number of knots added (though this can vary slightly with different spline implementations).
