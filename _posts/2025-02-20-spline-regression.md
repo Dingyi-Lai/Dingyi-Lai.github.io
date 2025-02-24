@@ -335,3 +335,4 @@ Reference:
 4. https://www.rdocumentation.org/packages/splines/versions/3.6.2/topics/bs
 5. https://www.statsmodels.org/dev/generated/statsmodels.gam.smooth_basis.BSplines.html
 6. https://github.com/HelmholtzAI-Consultants-Munich/PySDDR/tree/master/sddr
+7. https://www.kirenz.com/blog/posts/2021-12-06-regression-splines-in-python/
