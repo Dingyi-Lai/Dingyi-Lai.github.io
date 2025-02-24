@@ -245,7 +245,7 @@ x_2d = x[:, None]
 
 # ---- Model 1: Using 4 degrees of freedom ----
 # In this context, we set df=[4] which mimics R's bs(x, df=4) for a single predictor.
-bs1 = BSplines(x_2d, df=[7], degree=[3])
+bs1 = BSplines(x_2d, df=[8], degree=[3])
 # Fit OLS using the spline basis
 model1 = sm.OLS(y, bs1.transform(x_2d)).fit()
 # Extract knots; bs1.knots is a list (one array per predictor)
