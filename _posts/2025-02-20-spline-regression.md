@@ -245,23 +245,23 @@ x_2d = x[:, None]
 
 # ---- Model 1: Using 4 degrees of freedom ----
 # In this context, we set df=[4] which mimics R's bs(x, df=4) for a single predictor.
-bs1 = BSplines(x_2d, df=[5], degree=[3])
+bs1 = BSplines(x_2d, df=[7], degree=[3])
 # Fit OLS using the spline basis
 model1 = sm.OLS(y, bs1.transform(x_2d)).fit()
 # Extract knots; bs1.knots is a list (one array per predictor)
-knots1 = bs1.basis.shape[1]
+knots1 = bs1.dim_basis - bs1.degrees[0]
 print("Number of knots for cubic spline model with df=4:", knots1)
 
 # ---- Model 2: Using 10 degrees of freedom ----
-bs2 = BSplines(x_2d, df=[10], degree=[3])
+bs2 = BSplines(x_2d, df=[13], degree=[3])
 model2 = sm.OLS(y, bs2.transform(x_2d)).fit()
-knots2 = bs2.basis.shape[1]
+knots2 = bs2.dim_basis - bs2.degrees[0]
 print("Number of knots for cubic spline model with df=10:", knots2)
 
 # ---- Model 3: Using 16 degrees of freedom ----
-bs3 = BSplines(x_2d, df=[16], degree=[3])
+bs3 = BSplines(x_2d, df=[19], degree=[3])
 model3 = sm.OLS(y, bs3.transform(x_2d)).fit()
-knots3 = bs3.basis.shape[1]
+knots3 = bs3.dim_basis - bs3.degrees[0]
 print("Number of knots for cubic spline model with df=16:", knots3)
 
 # Create a fine grid for prediction
@@ -310,9 +310,9 @@ plt.show()
 - **Definition from different versions:**  
   - `df` in R from `library(splines)`: df	
   degrees of freedom; one can specify df rather than knots; bs() then chooses df-degree (minus one if there is an intercept) knots at suitable quantiles of x (which will ignore missing values). The default, NULL, takes the number of inner knots as length(knots). If that is zero as per default, that corresponds to df = degree - intercept
- - `df` in Python from `from statsmodels.gam.api import BSplines`
+  - `df` in Python from `from statsmodels.gam.api import BSplines`
   number of basis functions or degrees of freedom; should be equal in length to the number of columns of x; may be an integer if x has one column or is 1-D.
- - `df` in Python from `from sddr.splines import spline, Spline`
+  - `df` in Python from `from sddr.splines import spline, Spline`
   Number of degrees of freedom (equals the number of columns in s.basis) because `Intercept` is set to be True by default
 
 ---
