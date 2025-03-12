@@ -7,9 +7,9 @@ Spline regression is a flexible, powerful tool for modeling non‐linear relatio
 
 ---
 
-## What are the basis?
+## What is the basis?
 
-In linear algebra, the most straightforward example of the basis for any vector described as a pair number, which means it starts from $$(0,0)$$, are the coordinates in the $$xy$$-coordinate system. Some detailed vivid illustration can be found in [the fantastic blog along with its video by 3B1B](https://www.3blue1brown.com/lessons/span). More precisely, a basis of a vector space can be defined as a set, $$V$$, of elements of the space such that there exist uniquely a linear combination of elements of $$V$$ that is able to express any element of the space.
+In linear algebra, the most straightforward example of the basis for any vector described as a pair number, which means it starts from $$(0,0)$$, are the coordinates in the $$xy$$-coordinate system. Some detailed vivid illustrations can be found in [the fantastic blog along with its video by 3B1B](https://www.3blue1brown.com/lessons/span). More precisely, a basis of a vector space can be defined as a set, $$V$$, of elements of the space such that there exist a unique linear combination of elements of $$V$$ that is able to express any element of the space.
 
 For example, in a linear regression model $$y = \beta_0 + \beta_1 x+ error$$, the basis functions are 1 and x. Hence, $$\{1, x\}$$ can be viewed as a basis for the vector space in $$x$$ for all linear polynomials. It can be illustrated by the following figure:
 
@@ -35,7 +35,7 @@ Next, consider the nonlinear regression model such as $$y = \beta_0 + \beta_1 x 
 
 where the basis is obviously $$\{1, x, x^2\}$$
 
-When it's extended to more complex model like the *broken stick* model, the indicator function such as $$(x-0.6)_{+}$$ needs to be included in the basis, as the sloped lines are connected stiffly at $$x=0.6$$. Note that this indicator function mean that if $$x-0.6$$ is positive, then it indicates $$x-0.6$$; rather, it's equal to 0 otherwise.
+When it's extended to more complex model like the *broken stick* model, the indicator function such as $$(x-0.6)_{+}$$ needs to be included in the basis, as the sloped lines are connected in a stiff manner at $$x=0.6$$. Note that this indicator function mean that if $$x-0.6$$ is positive, then it indicates itself; otherwise, it's equal to 0.
 
 <figure>
   <img
