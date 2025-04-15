@@ -45,7 +45,7 @@ project_entries:
     highlight: NLP
 
   - title: CFC or SHAP Values? An empirical study for comparison
-    url: overview-post
+    url: explainable-scores-for-randomized-tree-ensembles
     desc: Core idea of the conference paper "Approximation of SHAP Values for Randomized Tree Ensembles" published by Springer Nature Switzerland AG 2022
     highlight: XAI
 
