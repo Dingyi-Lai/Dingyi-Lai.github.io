@@ -133,7 +133,3 @@ Similarly, for XGBoost, the correlations are nearly identical—though this pane
 In summary, this blog reviewed two popular explainable scoring methods for ML models—SHAP values and Conditional Feature Contributions (CFCs). While SHAP provides strong theoretical underpinnings and consistent local explanations by averaging feature contributions over all orderings, it can be computationally heavy for high-dimensional data. CFCs, on the other hand, offer an efficient and intuitive alternative based on the tree’s decision path; however, they may suffer from local biases in single trees. Fortunately, when applied to randomized tree ensembles, these local inconsistencies diminish, and global CFC scores become nearly indistinguishable from SHAP values. This finding underscores the potential of using computationally efficient methods like CFC as reliable approximations for large-scale, production-level interpretability without compromising accuracy.
 
 By integrating these approaches, researchers and practitioners can achieve transparent and reliable explanations, fostering trust in machine learning models across various applications.
-
-# Reference
-[^1]: https://www.researchgate.net/publication/362629537_Approximation_of_SHAP_Values_for_Randomized_Tree_Ensembles
-[^2]: https://markusloecher.github.io/CFC-SHAP-Visualization/#approximation-of-shap-by-cfc
