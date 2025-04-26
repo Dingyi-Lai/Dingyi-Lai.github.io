@@ -3,7 +3,152 @@ layout: post
 author: Dingyi Lai
 ---
 
-Spline regression is a flexible, powerful tool for modeling non‐linear relationships between a response and one or more predictors. Since I am conducting a simulation study involving the calculation of some statistics from a spline regression, I am more than happy trying to introduce the basic idea of spline regression and the relationships among its key parameters. I'll give an example in both R and Python for better illustration.
+Spline regression is a flexible, powerful tool for modeling non‐linear relationships between a response and one or more predictors. Since I am conducting a simulation study involving the calculation of some statistics from a spline regression, I am happy to introduce the basic idea of spline regression and explain the relationships among its key parameters. I provide examples in both R and Python for clarity.
+
+---
+
+## What Is a Basis?
+
+A **basis** of a vector space is a set of functions (or vectors) such that any element of the space can be written uniquely as a linear combination of those basis functions. In a simple linear regression model
+
+```math
+y = \beta_0 + \beta_1 x + \varepsilon,
+```
+
+the natural basis functions are \(1\) and \(x\), since every linear polynomial in \(x\) can be expressed as
+
+```math
+f(x) = \beta_0 \cdot 1 + \beta_1 \cdot x.
+```
+
+When we move to higher‐order or piecewise models, we add additional basis functions such as \(x^2\), \((x-\kappa)_+^p\), etc.
+
+## From Polynomials to Splines
+
+### Truncated Power Basis and Knots
+
+To model non‑linearity, we can use **truncated‑power** basis functions of degree \(p\):
+
+```math
+\{\,1, x, x^2, \dots, x^p, (x - \kappa_1)_+^p, \dots, (x - \kappa_K)_+^p\},
+```
+
+where each \((x - \kappa_k)_+^p = \max(0, x - \kappa_k)^p\) is “turned on” only to the right of knot \(\kappa_k\).
+
+- **Knots** (\(\kappa_k\)) mark locations where the piecewise polynomial segments join.
+- A degree‑\(p\) spline with \(K\) interior knots has **\((p+1) + K\)**** degrees of freedom** (DF) ([bmcmedresmethodol.biomedcentral.com](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-019-0666-3?utm_source=chatgpt.com)), counting the intercept and monomial terms plus one basis per knot.
+
+### Continuity at Knots
+
+By construction, a degree‑\(p\) spline is \(C^{p-1}\) continuous at each knot (the function and its first \(p-1\) derivatives are continuous) ([bmcmedresmethodol.biomedcentral.com](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-019-0666-3?utm_source=chatgpt.com)).
+
+## Types of Splines
+
+- **Regression Splines**: Fit piecewise polynomials with a fixed knot set and estimate coefficients by least squares.
+- **Penalized Splines (P‑splines)**: Use a **reduced** set of knots plus a roughness penalty (e.g. on \(\int f''(x)^2dx\)), trading off fit and smoothness.
+- **Smoothing Splines**: Special case where a **knot is placed at every data point** and the only tuning parameter \(\lambda\) controls the penalty on curvature ([en.wikipedia.org](https://en.wikipedia.org/wiki/Smoothing_spline?utm_source=chatgpt.com)).
+- **Natural Cubic Splines**: Impose linearity beyond the boundary knots, reducing DF by two so that a natural spline with \(K\) interior knots has exactly **\(K\)**** DF** ([en.wikipedia.org](https://en.wikipedia.org/wiki/List_of_numerical_analysis_topics?utm_source=chatgpt.com)).
+
+### Basis Types
+
+- **Truncated Power Basis**: Intuitive but can be numerically unstable.
+- **B‑Spline Basis**: Numerically stable, minimal support, and spans the same space as truncated power splines ([en.wikipedia.org](https://en.wikipedia.org/wiki/B-spline?utm_source=chatgpt.com)).
+
+## Degrees of Freedom and Smoothness
+
+- For a **degree‑****\(p\)**** regression spline** with \(K\) interior knots, DF = \((p+1) + K\).
+- For a **natural cubic spline** with \(K\) interior knots, DF = \(K\).
+- In **P‑splines**, DF reflects the number of basis functions; in **smoothing splines**, DF equals the trace of the smoother matrix and is chosen via cross‑validation on \(\lambda\).
+
+## Implementation Examples
+
+```r
+library(splines)
+set.seed(123)
+
+data <- data.frame(
+  x = seq(0,10,length=200),
+  y = sin(seq(0,10,length=200)) + rnorm(200,0,0.3)
+)
+
+# Cubic regression splines with specified DF
+model1 <- lm(y ~ bs(x, df = 7, degree = 3), data)
+# Note: df=7 → 7 basis functions → 6 interior knots (since intercept counts),
+# which implies 6 + 3 + 1 = 10 DF in truncated‑power terms.
+
+# Natural spline with 5 DF
+model2 <- lm(y ~ ns(x, df = 5), data)
+# ns() uses natural cubic spline → DF = df (no extra adjustment).
+
+# Smoothing spline
+model3 <- smooth.spline(data$x, data$y, spar = 0.6)
+# Places a knot at each data point; spar controls the penalty.
+
+# Plot
+plot(data$x, data$y, pch=19, col='grey')
+lines(data$x, predict(model1), col='blue', lwd=2)
+lines(data$x, predict(model2), col='red', lwd=2)
+lines(model3, col='green', lwd=2)
+legend('topright', c('Regression','Natural','Smoothing'),
+       col=c('blue','red','green'), lwd=2)
+```
+
+### Python (using patsy & statsmodels)
+
+```python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from patsy import dmatrix
+import statsmodels.api as sm
+
+np.random.seed(123)
+
+data = pd.read_csv('_data/spline.csv')
+x = data['x']; y = data['y']
+
+# Regression spline design (B-spline basis)
+# patsy.bs() by default generates B-spline basis with df basis functions.
+X1 = dmatrix('bs(x, df=7, degree=3, include_intercept=True)', {'x':x})
+model1 = sm.OLS(y, X1).fit()
+
+# Natural spline via patsy
+X2 = dmatrix('cr(x, df=5)', {'x':x})
+model2 = sm.OLS(y, X2).fit()
+
+# Plotting
+ticks = np.linspace(0,10,500)
+X1_pred = dmatrix('bs(x, df=7, degree=3, include_intercept=True)', {'x':ticks})
+X2_pred = dmatrix('cr(x, df=5)', {'x':ticks})
+
+plt.scatter(x, y, c='grey', s=10)
+plt.plot(ticks, model1.predict(X1_pred), 'b', lw=2)
+plt.plot(ticks, model2.predict(X2_pred), 'r', lw=2)
+plt.title('Spline Regression: R vs. Python')
+plt.show()
+```
+
+## Conclusion
+
+Spline regression balances flexibility and interpretability through choice of basis, knot placement, and penalization. Regression splines, P‑splines, smoothing splines, and natural splines each offer a different trade‑off between bias and variance. The corrected DF formulas and basis clarifications should help avoid common misunderstandings.
+
+---
+
+#### References
+
+1. Breheny, P. (2012). Nonparametric Statistics Lecture Notes. Univ. Iowa ([myweb.uiowa.edu](https://myweb.uiowa.edu/pbreheny/uk/teaching/621/notes/11-20.pdf?utm_source=chatgpt.com))
+2. Ruppert, D., Wand, M.P., & Carroll, R.J. (2003). Semiparametric Regression. Cambridge Univ. Press.
+3. Wikipedia contributors. Truncated power function. *Wikipedia*. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Truncated_power_function?utm_source=chatgpt.com))
+4. Wikipedia contributors. Smoothing spline. *Wikipedia*. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Smoothing_spline?utm_source=chatgpt.com))
+5. Wikipedia contributors. List of numerical analysis topics (Natural cubic spline DF). *Wikipedia*. ([en.wikipedia.org](https://en.wikipedia.org/wiki/List_of_numerical_analysis_topics?utm_source=chatgpt.com))
+6. de Boor, C. (2001). A Practical Guide to Splines. Springer.
+7. Smith et al. (2019). Regression Splines in Python. BMC Med Res Methodol. ([bmcmedresmethodol.biomedcentral.com](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-019-0666-3?utm_source=chatgpt.com))
+8. statsmodels Developers. BSplines API. ([statsmodels.org](https://www.statsmodels.org/dev/generated/statsmodels.gam.smooth_basis.BSplines.html?utm_source=chatgpt.com))
+9. Eilers, P.H.C. & Marx, B. Flexible smoothing with B-splines and penalties. *Statistical Science* ([en.wikipedia.org](https://en.wikipedia.org/wiki/Smoothing_spline?utm_source=chatgpt.com))
+10. Smith College. Lab 13—Splines in Python. ([science.smith.edu](https://www.science.smith.edu/~jcrouser/SDS293/labs/lab13-py.html?utm_source=chatgpt.com))
+
+
+<!-- Spline regression is a flexible, powerful tool for modeling non‐linear relationships between a response and one or more predictors. Since I am conducting a simulation study involving the calculation of some statistics from a spline regression, I am more than happy trying to introduce the basic idea of spline regression and the relationships among its key parameters. I'll give an example in both R and Python for better illustration.
 
 ---
 
@@ -335,4 +480,4 @@ Reference:
 4. https://www.rdocumentation.org/packages/splines/versions/3.6.2/topics/bs
 5. https://www.statsmodels.org/dev/generated/statsmodels.gam.smooth_basis.BSplines.html
 6. https://github.com/HelmholtzAI-Consultants-Munich/PySDDR/tree/master/sddr
-7. https://www.kirenz.com/blog/posts/2021-12-06-regression-splines-in-python/
+7. https://www.kirenz.com/blog/posts/2021-12-06-regression-splines-in-python/ -->
