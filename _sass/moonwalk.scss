@@ -126,7 +126,7 @@ html.transition *:after {
 .theme-toggle {
   color: var(--text);
   background-color: transparent;
-  padding: 2px;
+  padding: 1px;
   cursor: pointer;
   margin: 1em;
   position: fixed;
@@ -174,7 +174,7 @@ mark {
 }
 p code, li code {
   background-color: var(--bg-secondary);
-  padding: 0.2rem;
+  padding: 0.1rem;
   color: var(--code-text);
   font-weight: bold;
 }
