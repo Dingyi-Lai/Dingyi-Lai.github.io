@@ -26,9 +26,12 @@ To answer this, we:
 
 2. **State** identification assumptions (e.g. no hidden back-doors).  
 - **Assumption 1** (Consistency). 
+```latex
 For any unit $i$, in the pre-treatment period, treated units $Y_{i \in M, t \le T_0} = Y^{(0)}_{i \in M, t \le T_0}$ and control units $Y_{i \in C, t \le T_0} = Y^{(0)}_{i \in C, t \le T_0}$; in the post-treatment period, treated units $Y_{i \in M, t > T_0} = Y^{(1)}_{i \in M, t > T_0}$ and control units $Y_{i \in C, t > T_0} = Y^{(1)}_{i \in C, t > T_0}$ if treated.
+```
 - **Assumption 2** (Generalized fixed-effects model). 
 For unit $i$ and time $t$:
+```latex
 \begin{flalign}\label{eq:Generalized_fixed}
 &\begin{aligned}
     \qquad Y_{i \in M, t} = &\begin{cases}
@@ -38,6 +41,7 @@ For unit $i$ and time $t$:
     \qquad Y_{i \in C, t} = &\begin{aligned} \qquad \quad \delta_t + \zeta_{i \in C} + \mu^\top_{i \in C}\lambda_t + \xi^\top_{i \in C}X_{i \in C, t} +\epsilon_{i \in C, t}, \qquad & \text{for all } t\end{aligned} 
 \end{aligned}&
 \end{flalign}
+```
 
 3. **Run** placebo tests to validate the model’s ability to reproduce a “null effect.”  
 4. **Estimate** probabilistic causal effects across quantiles using forecasts.
