@@ -43,6 +43,7 @@ table, th, td {
   border-collapse: collapse;
   padding: 0.1em;
   table-layout: fixed;
+  text-align: center; /* Optional: Center-align text for better appearance */
 }
 
 div.highlighter-rouge pre code, pre code.highlighter-rouge {
