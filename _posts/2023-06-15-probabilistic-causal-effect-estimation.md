@@ -6,7 +6,7 @@ author: Dingyi Lai
 ## Comparative Study of Probabilistic Causal-Effect Estimation Using Global Models
 
 ### Why This Matters  
-Estimating how treatments or interventions influence outcomes over time is at the heart of causal inference—but real-world systems often react differently at different quantiles (e.g. the worst-affected vs. median cases). In my master’s thesis, I introduce a **unified “global” framework** that marries causal analysis with modern predictive algorithms—allowing us to uncover not just *whether* an intervention worked, but *how* its impact varies across the full outcome distribution citeturn1file4.
+Estimating how treatments or interventions influence outcomes over time is at the heart of causal inference—but real-world systems often react differently at different quantiles (e.g. the worst-affected vs. median cases). In my master’s thesis, I introduce a **unified “global” framework** that marries causal analysis with modern predictive algorithms—allowing us to uncover not just *whether* an intervention worked, but *how* its impact varies across the full outcome distribution.
 
 ---
 
@@ -15,9 +15,32 @@ Estimating how treatments or interventions influence outcomes over time is at th
 
 To answer this, we:
 1. **Define** causal mechanisms via Directed Acyclic Graphs (DAGs).  
+<figure>
+  <img
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[PCE]DAG_corrected.png"
+  alt="Conceptual table">
+   <figcaption style="display:block; text-align:center;">
+    Figure 1: DAG for Synthetic Control Method in the Thesis
+  </figcaption>
+</figure>
+
 2. **State** identification assumptions (e.g. no hidden back-doors).  
+- **Assumption 1** (Consistency). 
+For any unit $i$, in the pre-treatment period, treated units $Y_{i \in M, t \le T_0} = Y^{(0)}_{i \in M, t \le T_0}$ and control units $Y_{i \in C, t \le T_0} = Y^{(0)}_{i \in C, t \le T_0}$; in the post-treatment period, treated units $Y_{i \in M, t > T_0} = Y^{(1)}_{i \in M, t > T_0}$ and control units $Y_{i \in C, t > T_0} = Y^{(1)}_{i \in C, t > T_0}$ if treated.
+- **Assumption 2** (Generalized fixed-effects model). 
+For unit $i$ and time $t$:
+\begin{flalign}\label{eq:Generalized_fixed}
+&\begin{aligned}
+    \qquad Y_{i \in M, t} = &\begin{cases}
+        \qquad \delta_t + \zeta_{i \in M} + \mu^\top_{i \in M}\lambda_t + \xi^\top_{i \in M}X_{i \in M, t} +\epsilon_{i \in M, t}, & \text{if } t \leq T_0 \\
+        \beta_t + \delta_t + \zeta_{i \in M} + \mu^\top_{i \in M}\lambda_t + \xi^\top_{i \in M}X_{i \in M, t} +\epsilon_{i \in M, t}, & \text{if } t > T_0
+    \end{cases} \\
+    \qquad Y_{i \in C, t} = &\begin{aligned} \qquad \quad \delta_t + \zeta_{i \in C} + \mu^\top_{i \in C}\lambda_t + \xi^\top_{i \in C}X_{i \in C, t} +\epsilon_{i \in C, t}, \qquad & \text{for all } t\end{aligned} 
+\end{aligned}&
+\end{flalign}
+
 3. **Run** placebo tests to validate the model’s ability to reproduce a “null effect.”  
-4. **Estimate** probabilistic causal effects across quantiles using forecasts citeturn1file4.
+4. **Estimate** probabilistic causal effects across quantiles using forecasts.
 
 ---
 

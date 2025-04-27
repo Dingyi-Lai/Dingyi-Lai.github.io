@@ -19,8 +19,8 @@ project_entries:
     desc: Interesting Topics
     highlight: LLM
 
-  - title: Causal effect estimation for time series
-    url: causal-ml
+  - title: Probabilistic Causal Effect Estimation for Panel Data
+    url: probabilistic-causal-effect-estimation
     desc: Master's Thesis
     highlight: Structual_Causal_Model Synthetic_Control_Method Decounfounding
 
