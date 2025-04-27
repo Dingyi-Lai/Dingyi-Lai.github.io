@@ -53,7 +53,7 @@ div.highlighter-rouge pre code, pre code.highlighter-rouge {
 blockquote {
   font-style: italic;
   border: thin solid black;
-  padding: 0.5em;
+  padding: 1em;
 
   p { margin: 0; }
 }
@@ -119,7 +119,7 @@ html.transition,
 html.transition *,
 html.transition *:before,
 html.transition *:after {
-    transition: all 250ms !important;
+    transition: all 100ms !important;
     transition-delay: 0 !important;
 }
 
