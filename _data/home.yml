@@ -14,6 +14,11 @@ project_entries:
     desc: The relationship between the degree of freedom and the number of knots in the spline
     highlight: Spline
 
+  - title: Scientific Simulation vs Industrial A/B testing
+    url: simulation-study-design
+    desc: Different testing methods for laboratory and field trials
+    highlight: testing
+
   - title: LLMs learning notes
     url: large-language-models
     desc: Interesting Topics
