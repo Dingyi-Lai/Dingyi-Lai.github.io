@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html { height: 100%; }
 
 body {
@@ -40,7 +34,7 @@ li { margin: 0.4em 0; }
 .w {
   max-width: 720px;
   margin: 0 auto;
-  padding: 4em 2em;
+  padding: 2em 1em;
 }
 
 table, th, td {
