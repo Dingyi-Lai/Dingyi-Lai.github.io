@@ -3,8 +3,6 @@ layout: post
 author: Dingyi Lai
 ---
 
-## Comparative Study of Probabilistic Causal-Effect Estimation Using Global Models
-
 ### Why This Matters  
 Estimating how treatments or interventions influence outcomes over time is at the heart of causal inference—but real-world systems often react differently at different quantiles (e.g. the worst-affected vs. median cases). In my master’s thesis, I introduce a **unified “global” framework** that marries causal analysis with modern predictive algorithms—allowing us to uncover not just *whether* an intervention worked, but *how* its impact varies across the full outcome distribution.
 
