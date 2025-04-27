@@ -32,28 +32,28 @@ p { margin: 1em 0; }
 li { margin: 0.4em 0; }
 
 .w {
-  max-width: 7200px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 0 0;
+  padding: 0.1em 0.1em;
 }
 
 table, th, td {
   width: 100%;
   border: thin solid black;
   border-collapse: collapse;
-  padding: 0.4em;
+  padding: 0.1em;
 }
 
 div.highlighter-rouge pre code, pre code.highlighter-rouge {
   display: block;
   overflow-x: auto;
-  padding: 1em;
+  padding: 0.1em;
 }
 
 blockquote {
   font-style: italic;
   border: thin solid black;
-  padding: 1em;
+  padding: 0.1em;
 
   p { margin: 0; }
 }
@@ -119,20 +119,20 @@ html.transition,
 html.transition *,
 html.transition *:before,
 html.transition *:after {
-    transition: all 250ms !important;
+    transition: all 25ms !important;
     transition-delay: 0 !important;
 }
 
 .theme-toggle {
   color: var(--text);
   background-color: transparent;
-  padding: 4px;
+  padding: 1px;
   cursor: pointer;
   margin: 1em;
   position: fixed;
   right: 0;
   top: 0;
-  border: 2px transparent solid;
+  border: 1px transparent solid;
   outline: none;
 }
 
@@ -174,7 +174,7 @@ mark {
 }
 p code, li code {
   background-color: var(--bg-secondary);
-  padding: 0.2rem;
+  padding: 0.1rem;
   color: var(--code-text);
   font-weight: bold;
 }
@@ -201,7 +201,7 @@ p code, li code {
 .tag {
   font-family: "Roboto Mono", "Courier New", monospace;
   color: var(--text-secondary);
-  padding: 0.4em 1em;
+  padding: 0.1em 0.1em;
   margin-right: 0.5em;
   border-radius: 1em;
   background-color: var(--bg-secondary);
