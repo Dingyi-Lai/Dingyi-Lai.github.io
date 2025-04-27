@@ -24,6 +24,8 @@ project_entries:
     desc: Master's Thesis
     highlight: Structual_Causal_Model Synthetic_Control_Method Decounfounding
 
+old_project_entries:
+
   - title: How to predict risk in return by an online retailer?
     url: prediction-of-return
     desc: Assignment of Business Analytics and Data Science WiSe20/21 (HU Berlin)
@@ -48,9 +50,6 @@ project_entries:
     url: explainable-scores-for-randomized-tree-ensembles
     desc: Core idea of the conference paper "Approximation of SHAP Values for Randomized Tree Ensembles" published by Springer Nature Switzerland AG 2022
     highlight: XAI
-
-old_project_entries:
-
   - title: How to build a grammar corrector based on PyTorch?
     url: overview-post
     desc: Course project of Introduction to Natural Language Processing WiSe21/22 (HU Berlin)
