@@ -9,19 +9,16 @@ navbar_entries:
     url: https://dingyi-lai.github.io/
 
 project_entries:
-  - title: Basic Introduction to Spline Regression
-    url: spline-regression
-    desc: The relationship between the degree of freedom and the number of knots in the spline
-    highlight: Spline
+  
 
   - title: Scientific Simulation vs Industrial A/B testing
     url: simulation-study-design
     desc: Different testing methods for laboratory and field trials
     highlight: testing
 
-  - title: LLMs learning notes
-    url: large-language-models
-    desc: Interesting Topics
+  - title: Research Hub Chatbot Illustration
+    url: research-chatbot
+    desc: I built my own chatbot based on GPT-3.5 and LangChain
     highlight: LLM
 
   - title: Probabilistic Causal Effect Estimation for Panel Data
@@ -31,6 +28,16 @@ project_entries:
 
 old_project_entries:
 
+  - title: Basic Introduction to Spline Regression
+    url: spline-regression
+    desc: The relationship between the degree of freedom and the number of knots in the spline
+    highlight: Spline
+
+  - title: LLMs learning notes
+    url: large-language-models
+    desc: Interesting Topics
+    highlight: LLM
+  
   - title: How to predict risk in return by an online retailer?
     url: prediction-of-return
     desc: Assignment of Business Analytics and Data Science WiSe20/21 (HU Berlin)
