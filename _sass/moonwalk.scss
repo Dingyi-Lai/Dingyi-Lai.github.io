@@ -42,6 +42,7 @@ table, th, td {
   border: thin solid black;
   border-collapse: collapse;
   padding: 0.1em;
+  table-layout: fixed;
 }
 
 div.highlighter-rouge pre code, pre code.highlighter-rouge {
