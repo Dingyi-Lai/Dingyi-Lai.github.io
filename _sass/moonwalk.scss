@@ -174,7 +174,7 @@ mark {
 }
 p code, li code {
   background-color: var(--bg-secondary);
-  padding: 0.1rem;
+  padding: 0.2rem;
   color: var(--code-text);
   font-weight: bold;
 }
@@ -201,7 +201,7 @@ p code, li code {
 .tag {
   font-family: "Roboto Mono", "Courier New", monospace;
   color: var(--text-secondary);
-  padding: 0.1em 0.1em;
+  padding: 0.4em 1em;
   margin-right: 0.5em;
   border-radius: 1em;
   background-color: var(--bg-secondary);
