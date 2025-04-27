@@ -1,3 +1,8 @@
+---
+layout: post
+author: Dingyi Lai
+---
+
 Current Notes from *Generative AI with Large Language Models*: https://www.coursera.org/learn/generative-ai-with-llms
 
 ![Generative_AI_notes_1](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/%5BLLM%5DGenerative_AI_notes_1.png)

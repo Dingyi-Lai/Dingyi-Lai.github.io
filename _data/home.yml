@@ -9,7 +9,10 @@ navbar_entries:
     url: https://dingyi-lai.github.io/
 
 project_entries:
-  
+  - title: Parrallel and Concurrent Computing in Python
+    url: parellel-and-concurrent-computation-in-python
+    desc: How to increase efficiency in large-scale data processing
+    highlight: scaling
 
   - title: Scientific Simulation vs Industrial A/B testing
     url: simulation-study-design-vs-industry-AB-test
@@ -35,7 +38,7 @@ old_project_entries:
 
   - title: LLMs learning notes
     url: large-language-models
-    desc: Interesting Topics
+    desc: Build a pizza ordering chatbot!
     highlight: LLM
   
   - title: How to predict risk in return by an online retailer?
