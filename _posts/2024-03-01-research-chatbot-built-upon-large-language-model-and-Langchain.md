@@ -2,12 +2,10 @@
 layout: post
 author: Dingyi Lai
 ---
-# A Research Hub Built Upon Large Language Model & Notion
-## A Practical Experience to Embrace LLM in Academic Research
+
 
 Building a custom Research-Hub Chatbot has allowed me to turn my growing Notion knowledge base into an interactive Q&A assistant. Here’s how I approached it:
 
----
 
 ## 1. Motivation: Why a Chatbot-Powered Hub?  
 - **Unified Access**: Instead of manually browsing dozens of pages, a chatbot lets me ask natural queries (“Show me my notes on spline regression”) and get instant answers.  

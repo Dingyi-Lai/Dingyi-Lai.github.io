@@ -12,12 +12,12 @@ project_entries:
   
 
   - title: Scientific Simulation vs Industrial A/B testing
-    url: simulation-study-design
+    url: simulation-study-design-vs-industry-AB-test
     desc: Different testing methods for laboratory and field trials
     highlight: testing
 
   - title: Research Hub Chatbot Illustration
-    url: research-chatbot
+    url: research-chatbot-built-upon-large-language-model-and-Langchain
     desc: I built my own chatbot based on GPT-3.5 and LangChain
     highlight: LLM
 

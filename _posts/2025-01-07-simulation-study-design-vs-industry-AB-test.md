@@ -3,7 +3,6 @@ layout: post
 author: Dingyi Lai
 ---
 
-# Simulation Studies vs. Industry A/B Tests
 When I designed the simulation studies for my research, I observed that there are quite some differences between the designs for scientific simulation and industry A/B test, such as:
 
 | Aspect               | Scientific Simulation                                      | Industry A/B Test                                       |
