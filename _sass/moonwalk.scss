@@ -156,8 +156,8 @@ mark {
 
 .post-date {
   color: var(--secondary-text);
-  //margin-bottom: 1rem;
-  font-size: 0.8em;
+  margin-bottom: 1rem;
+  font-size: 0.7em;
 }
 .home-date {
   font-family: monospace;
@@ -170,6 +170,7 @@ mark {
 }
 .text-upcase {
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 p code, li code {
   background-color: var(--bg-secondary);
@@ -196,4 +197,16 @@ p code, li code {
   a:hover {
     color: var(--links);
   }
+}
+.tag {
+  font-family: "Roboto Mono", "Courier New", monospace;
+  color: var(--text-secondary);
+  padding: 0.4em 1em;
+  margin-right: 0.5em;
+  border-radius: 1em;
+  background-color: var(--bg-secondary);
+  font-size: 0.7em;
+  font-weight: bold;
+  text-transform: lowercase;
+  //border: 1px solid var(--text-secondary);
 }
