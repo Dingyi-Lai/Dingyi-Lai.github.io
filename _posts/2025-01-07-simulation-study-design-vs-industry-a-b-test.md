@@ -5,7 +5,7 @@ author: Dingyi Lai
 
 When I designed the simulation studies for my research, I observed that there are quite some differences between the designs for scientific simulation and industry A/B test, such as:
 
-| Aspect               | Scientific Simulation                                      | Industry A/B Test                                       |
+<!-- | Aspect               | Scientific Simulation                                      | Industry A/B Test                                       |
 |----------------------|-------------------------------------------------------------|----------------------------------------------------------|
 | **Control over DGP** | Complete: I generate every datapoint from known laws       | Limited: users self-select, and the “real world” may shift |
 | **Ground truth**     | Fully known (I decide which effects are nonzero)           | Unknown; the goal is to *discover* whether a change works |
@@ -13,7 +13,54 @@ When I designed the simulation studies for my research, I observed that there ar
 | **Scale & Cost**     | Computational cost only                                      | Real users—risk of lost revenue or user dissatisfaction   |
 | **Ethics & Risk**    | No human subjects, so experiments can be extreme             | Must limit exposure; changes may harm user experience     |
 | **Inference focus**  | Method validation (bias, coverage, power)                    | Causal effect estimation under real-world constraints     |
-| **Flexibility**      | Try any hypothetical scenario (e.g. extreme noise levels)     | Constrained by legal, business, and ethical considerations |
+| **Flexibility**      | Try any hypothetical scenario (e.g. extreme noise levels)     | Constrained by legal, business, and ethical considerations | -->
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Scientific Simulation</th>
+      <th>Industry A/B Test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Control over DGP</strong></td>
+      <td>Complete: I generate every datapoint from known laws</td>
+      <td>Limited: users self-select, and the “real world” may shift</td>
+    </tr>
+    <tr>
+      <td><strong>Ground truth</strong></td>
+      <td>Fully known (I decide which effects are nonzero)</td>
+      <td>Unknown; the goal is to <em>discover</em> whether a change works</td>
+    </tr>
+    <tr>
+      <td><strong>Replicability</strong></td>
+      <td>High: any researcher can rerun the same code & seeds</td>
+      <td>Moderate: depends on rollout timing, user population</td>
+    </tr>
+    <tr>
+      <td><strong>Scale & Cost</strong></td>
+      <td>Computational cost only</td>
+      <td>Real users—risk of lost revenue or user dissatisfaction</td>
+    </tr>
+    <tr>
+      <td><strong>Ethics & Risk</strong></td>
+      <td>No human subjects, so experiments can be extreme</td>
+      <td>Must limit exposure; changes may harm user experience</td>
+    </tr>
+    <tr>
+      <td><strong>Inference focus</strong></td>
+      <td>Method validation (bias, coverage, power)</td>
+      <td>Causal effect estimation under real-world constraints</td>
+    </tr>
+    <tr>
+      <td><strong>Flexibility</strong></td>
+      <td>Try any hypothetical scenario (e.g. extreme noise levels)</td>
+      <td>Constrained by legal, business, and ethical considerations</td>
+    </tr>
+  </tbody>
+</table>
 
 In short, **simulation studies** let me **guarantee** my method works when its assumptions hold, and **diagnose** failure modes under controlled stress tests. **A/B tests**, by contrast, operate on **live systems** to measure actual user responses, often trading off experimental purity for real-world relevance.
 
