@@ -11,7 +11,7 @@ Estimating how treatments or interventions influence outcomes over time is at th
 ---
 
 ### The Big Question  
-> **How would treated units have evolved, at each forecast horizon, **if they’d never received the treatment?** 
+> **How would treated units have evolved, at each forecast horizon, if they’d never received the treatment?** 
 
 To answer this, we:
 1. **Define** causal mechanisms via Directed Acyclic Graphs (DAGs).  
