@@ -51,7 +51,41 @@ Y_{i \in C, t}
 \quad \forall t.
 $$
 
+Deducing from Assumptions 1 and 2, the treatment effect is
+$$
+\tau_t
+= Y^{(1)}_{i\in M,\;t>T_0}
+- Y^{(0)}_{i\in M,\;t>T_0}
+= \beta_t,
+$$
+as for any $$i$$ and $$t$$:
 
+**Treated units** $$i\in M$$:
+$$
+Y_{i\in M, t} =
+\begin{cases}
+Y^{(0)}_{i\in M, t}
+= \delta_t + \zeta_{i\in M}
++ \mu_{i\in M}^\top \lambda_t
++ \xi_{i\in M}^\top X_{i\in M, t}
++ \epsilon_{i\in M, t}, 
+& t \le T_0,\\[6pt]
+Y^{(1)}_{i\in M, t}
+= Y^{(0)}_{i\in M, t} + \beta_t,
+& T_0 < t \le T.
+\end{cases}
+$$
+
+**Control units** $$i\in C$$:
+$$
+Y_{i\in C, t}
+= Y^{(1)}_{i\in C, t} = Y^{(0)}_{i\in C, t}
+= \delta_t + \zeta_{i\in C}
++ \mu_{i\in C}^\top \lambda_t
++ \xi_{i\in C}^\top X_{i\in C, t}
++ \epsilon_{i\in C, t},
+\quad \forall t.
+$$
 
 3. **Run** placebo tests to validate the model’s ability to reproduce a “null effect.”  
 4. **Estimate** probabilistic causal effects across quantiles using forecasts.
