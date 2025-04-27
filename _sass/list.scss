@@ -3,6 +3,7 @@ ul.horizontal-list {
     //justify-content: space-between;
     margin-top: 0em;
     margin-left: -20px;
+    margin: 1em auto;
     flex-wrap: wrap;
   
     li {
@@ -49,7 +50,7 @@ ul.horizontal-list {
       width: 100%;
       display: block;
       margin-bottom: 1em;
-      margin-left: 0.5em;
+      margin-left: 1em;
       a, .header {
         font-size: 1em;
       }
