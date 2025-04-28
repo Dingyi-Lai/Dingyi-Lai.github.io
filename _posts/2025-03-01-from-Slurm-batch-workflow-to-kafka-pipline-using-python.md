@@ -3,120 +3,131 @@ layout: post
 author: Dingyi Lai
 ---
 
-中文版本见后半部分。
+Below is a technical deep-dive showing how to reproduce a HAICORE/Slurm batch workflow as a real-time Kafka pipeline using Python and `kafka-python`. You’ll learn:
 
-这篇技术博客将带你一步步复现 HAICORE 上基于 Slurm 的批处理脚本，并演示如何将其改写为基于 `kafka-python` 的 `Producer`/`Consumer` 示例，实现从集群缓存到持久化存储的流式数据管道。我们先简要概述关键流程：HAICORE 平台作业提交流程（登录节点→Slurm 调度→BeeOND/本地临时存储→家目录持久化）与 Kafka 数据管道（Producer→Topic 缓冲→Consumer→外部系统）高度契合，接着给出原始 Slurm 脚本与等效的 Python 代码示例，帮助你快速上手。
+1. How HAICORE’s Slurm → $TMPDIR → $SLURM_SUBMIT_DIR flow maps to Kafka’s Producer → Topic buffer → Consumer model.  
+2. An example Slurm script and its equivalent Python Kafka code (Producer & Consumer).  
+3. Key considerations for ensuring reliable, high-throughput streaming with Kafka.
 
-## 背景介绍
+## 1. HAICORE + Slurm Batch Workflow
 
-### HAICORE 平台概览  
-HAICORE 是 KIT 的 Helmholtz AI 分区，集成于 HoreKa 超算，共有 16 台计算节点，采用 InfiniBand 4×HDR 互联，提供低延迟高吞吐的计算环境 citeturn3search0。集群操作依赖 Slurm 管理资源调度，并在 BeeOND 临时文件系统中进行高性能中间数据读写，最终将结果同步到用户家目录或并行文件系统 citeturn3search7。
+HAICORE is KIT’s Helmholtz AI partition within the HoreKa supercomputer, comprising 16 compute nodes interconnected by InfiniBand 4×HDR for <1 μs latency and high throughput citeturn1view0.  
+Each node runs RHEL 8.x with open-source tools such as **Slurm** for job scheduling already installed citeturn1view0.  
+Users develop and debug interactively on the **login node**, then submit batch jobs via `sbatch` to Slurm, which queues and dispatches them to compute nodes when resources free up citeturn3search0.  
+Within a job, `$TMPDIR` (local SSD or BeeOND mount) is used for high-speed temporary I/O; after processing, output is copied back to the submission directory (`$SLURM_SUBMIT_DIR`) for persistence citeturn4search0 citeturn7search0.  
 
-### Slurm 作业流程  
-用户在登录节点编写批处理脚本，通过 `sbatch` 提交至 Slurm 控制器，Slurm 按队列和资源可用性分配计算节点并执行脚本 citeturn1search3。脚本开头以 `#SBATCH` 指令声明作业名称、节点数、任务数、运行时长等，随后执行加载模块及核心计算命令 citeturn1search0。脚本运行时，程序可读写 `$TMPDIR`（本地临时目录）或 BeeOND 文件系统，作业结束后将输出结果复制回 `$SLURM_SUBMIT_DIR`（默认作业提交目录）以持久化 citeturn2search0。
-
-## Kafka 数据管道概述  
-Apache Kafka 是分布式日志系统，专注于实时消息发布/订阅，具备高吞吐、低延迟的特性，常用作流式数据管道的缓冲层 citeturn0search0。生产者（Producer）将消息写入 Topic，消息被追加存储后可由多个消费者（Consumer）并行拉取并落地至外部系统 citeturn0search3。借助 `kafka-python` 库，Python 应用可快速构建生产者和消费者示例 citeturn0search2。
-
-## 复现 HAICORE/Slurm 作业脚本
-
-### 原始 Slurm 脚本示例  
-以下示例脚本假定在登录节点的工作目录下编写 `my_job.slurm` 并提交，脚本加载 Python 模块，然后在本地临时目录处理数据并将结果保存回提交目录：
+### 1.1 Example Slurm Script
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=demo_job            # 作业名称 citeturn1search0
-#SBATCH --output=demo_job.out          # 标准输出文件
-#SBATCH --error=demo_job.err           # 标准错误文件
-#SBATCH --partition=normal             # 作业队列
-#SBATCH --nodes=1                      # 节点数量
-#SBATCH --ntasks-per-node=1            # 每节点任务数
-#SBATCH --cpus-per-task=4              # 每任务 CPU 核心数
-#SBATCH --time=02:00:00                # 最长运行时间
-#SBATCH --mail-type=END                # 完成时邮件通知
-#SBATCH --mail-user=you@example.com    # 邮件接收地址
+#SBATCH --job-name=demo_job                # Name of the job citeturn3search0
+#SBATCH --output=demo_job.%j.out           # Stdout (with JobID)
+#SBATCH --error=demo_job.%j.err            # Stderr (with JobID)
+#SBATCH --partition=normal                 # Partition/queue
+#SBATCH --nodes=1                          # Number of nodes
+#SBATCH --ntasks-per-node=1                # Tasks per node
+#SBATCH --cpus-per-task=4                  # CPUs per task
+#SBATCH --time=02:00:00                    # Walltime
+#SBATCH --mail-type=END                    # Email at end
+#SBATCH --mail-user=you@example.com        # Email address
 
-module load python/3.9                  # 加载 Python 环境
-echo "Job starts at $(date)"
-cd $SLURM_SUBMIT_DIR                    # 切换到提交目录 citeturn2search0
+module load python/3.9                      # Load Python  
+cd $SLURM_SUBMIT_DIR                        # Switch to submit dir citeturn4search0
 
-# 在本地临时目录处理数据
-input_file="$TMPDIR/input.csv"
-cp data/input.csv $input_file           # 复制至本地高速存储 citeturn3search7
-python process_data.py --input $input_file --output $TMPDIR/result.csv
+# Copy input to fast local storage (BeeOND or $TMPDIR)
+cp data/input.csv $TMPDIR/input.csv         # High-performance I/O citeturn7search0
+python process_data.py --input $TMPDIR/input.csv --output $TMPDIR/result.csv
 
-# 同步结果回提交目录
-cp $TMPDIR/result.csv $SLURM_SUBMIT_DIR/output_$(date +%s).csv
-echo "Job ends at $(date)"
+# Copy result back for long-term storage
+cp $TMPDIR/result.csv $SLURM_SUBMIT_DIR/output_${SLURM_JOB_ID}.csv
 ```
 
-## 改写为 kafka-python 的 Producer/Consumer 示例
+## 2. Mapping to a Kafka Data Pipeline
 
-### 安装依赖  
+**Apache Kafka** is an open-source distributed event streaming platform for building high-throughput, low-latency data pipelines and streaming applications citeturn5search1.  
+A **streaming pipeline** “ingests data as it’s generated, buffers it in Kafka topics, and delivers it to one or more consumers” citeturn5search0.  
+
+| Slurm Workflow Component                | Kafka Pipeline Component             |
+|-----------------------------------------|--------------------------------------|
+| `sbatch` submits job to Slurm controller | **Producer** publishes messages to a Topic |
+| `$TMPDIR` / BeeOND local cache           | **Topic partition** buffer (in-memory/disk) |
+| Copy back to `$SLURM_SUBMIT_DIR`        | **Consumer** reads from Topic and writes to sink |
+
+You can reuse your familiarity with batch submission (producer logic), temporary storage (topic buffering), and final persistence (consumer logic) when transitioning to Kafka.
+
+## 3. Python + `kafka-python` Example
+
+### 3.1 Installing the Client
+
 ```bash
 pip install kafka-python
 ```
 
-### KafkaProducer 示例  
-下面代码在本地模拟生产者，将处理后的数据流式发送到 Kafka 的 `haicore_topic`。  
+### 3.2 Producer: Streaming Job Results
+
 ```python
 from kafka import KafkaProducer
-import json, time, os
+import json, time
 
-# 初始化 Producer
+# Initialize Producer for topic 'haicore_topic'
 producer = KafkaProducer(
     bootstrap_servers=['kafka-broker1:9092'],
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)  # citeturn0search2
+)  # Asynchronous send by default citeturn6search1
 
 def stream_results():
-    # 假设处理脚本输出保存在当前目录 result.csv
-    with open('result.csv') as f:
+    # Simulate reading processed output
+    with open('result.csv', 'r') as f:
         for line in f:
             record = {'timestamp': time.time(), 'data': line.strip()}
-            # 异步发送消息
             producer.send('haicore_topic', record)
             print(f"Sent: {record}")
-            time.sleep(0.1)  # 模拟流速
+            time.sleep(0.1)  # Throttle for demonstration
 
-    # 确保所有消息发送完毕
-    producer.flush()
+    # Ensure all pending messages are flushed to brokers
+    producer.flush()  # Blocks until all records are sent citeturn8search0
 
 if __name__ == '__main__':
     stream_results()
 ```
-- 使用 `KafkaProducer.send()` 将消息异步写入 Topic citeturn0search0。  
-- `flush()` 用于在程序退出前阻塞等待所有消息传输完成citeturn0search6。
 
-### KafkaConsumer 示例  
-下面示例实现从 `haicore_topic` 拉取消息并写入本地文件，类似于 Slurm 将缓存结果持久化。  
+- **`producer.send()`** enqueues messages for the background I/O thread citeturn6search1.  
+- **`producer.flush()`** blocks until all buffered records are acknowledged or error out citeturn8search0.
+
+### 3.3 Consumer: Persisting Streamed Data
+
 ```python
 from kafka import KafkaConsumer
 import json
 
-# 初始化 Consumer
+# Initialize Consumer for 'haicore_topic'
 consumer = KafkaConsumer(
     'haicore_topic',
     bootstrap_servers=['kafka-broker1:9092'],
     auto_offset_reset='earliest',
     enable_auto_commit=True,
     value_deserializer=lambda m: json.loads(m.decode('utf-8'))
-)  # citeturn0search3
+)  # Lazy offset reset and auto-commit citeturn9search0
 
-output_path = 'sink_output.csv'
-with open(output_path, 'w') as fout:
-    for message in consumer:
-        rec = message.value
+with open('sink_output.csv', 'w') as fout:
+    for msg in consumer:
+        rec = msg.value
         fout.write(f"{rec['timestamp']},{rec['data']}\n")
         print(f"Consumed: {rec}")
 ```
-- `auto_offset_reset='earliest'` 确保从最早消息开始消费citeturn0search3。  
-- 消费完毕后文件即为持久化结果，等同于 Slurm 脚本中的家目录保存。
 
-## 小结  
-通过以上示例，你可以将 HAICORE/Slurm 上的作业脚本思路迁移到 Kafka 流式管道：  
-1. **Slurm Producer**：`sbatch` + 本地缓存 → `kafka-python.KafkaProducer` 流式发送；  
-2. **中间缓冲**：BeeOND/$TMPDIR ↔ Kafka Topic 分区缓冲；  
-3. **Slurm Consumer**：本地文件复制回家目录 ↔ `kafka-python.KafkaConsumer` 消费并落盘。  
+- **`auto_offset_reset='earliest'`** ensures consumption from the beginning citeturn9search0.  
+- Persisted records in `sink_output.csv` mirror Slurm’s final copy-back step.
 
-这种转换不仅复用了你对集群作业调度、临时存储与家目录同步的理解，也让你具备了构建实时、可扩展数据管道的实战能力。下一步可结合 Spark Streaming 或 Flink 等计算引擎进一步丰富流处理能力。
+## 4. Next Steps
+
+- Integrate **Spark Structured Streaming** or **Flink** for real-time transformations.  
+- Use **Kafka Connect** to sink data directly into databases or object stores.  
+- Monitor throughput and latency via **Kafka’s metrics** and adjust producer/consumer configs (e.g. `linger_ms`, batch sizes, retries).
+
+---
+
+By following this recipe, you seamlessly leverage your Slurm/HAICORE expertise to build robust, real-time Kafka pipelines in Python—perfectly aligning with modern “Data Analysis Engineer” roles that demand scalable, streaming data architectures.
+
+Chinese version:
+
