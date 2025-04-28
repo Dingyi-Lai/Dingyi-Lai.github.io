@@ -38,7 +38,7 @@ export OMP_NUM_THREADS=1 #  forces OpenMP to use only one thread, preventing ove
 module load python/3.9                      # Load Python  
 module load jupyter/ai                      # Load AI environment
 
-cd $SLURM_SUBMIT_DIR                        # Switch to submit dir citeturn4search0
+cd $SLURM_SUBMIT_DIR                        # Switch to submit dir
 
 # Copy input to fast local storage (BeeOND or $TMPDIR)
 cp data/input.csv $TMPDIR/input.csv         # High-performance I/O 
