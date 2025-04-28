@@ -3,7 +3,7 @@ layout: post
 author: Dingyi Lai
 ---
 
-Below is a technical deep-dive showing how to reproduce a HAICORE/Slurm batch workflow as a real-time Kafka pipeline using Python and `kafka-python`. You’ll learn:
+Below is a technical deep-dive showing how to reproduce a [HAICORE](https://www.nhr.kit.edu/userdocs/haicore/)/Slurm batch workflow as a real-time Kafka pipeline using Python and `kafka-python`. You’ll learn:
 
 1. How HAICORE’s Slurm → $TMPDIR → $SLURM_SUBMIT_DIR flow maps to Kafka’s Producer → Topic buffer → Consumer model.  
 2. An example Slurm script and its equivalent Python Kafka code (Producer & Consumer).  
@@ -11,10 +11,10 @@ Below is a technical deep-dive showing how to reproduce a HAICORE/Slurm batch wo
 
 ## 1. HAICORE + Slurm Batch Workflow
 
-HAICORE is KIT’s Helmholtz AI partition within the HoreKa supercomputer, comprising 16 compute nodes interconnected by InfiniBand 4×HDR for <1 μs latency and high throughput citeturn1view0.  
-Each node runs RHEL 8.x with open-source tools such as **Slurm** for job scheduling already installed citeturn1view0.  
-Users develop and debug interactively on the **login node**, then submit batch jobs via `sbatch` to Slurm, which queues and dispatches them to compute nodes when resources free up citeturn3search0.  
-Within a job, `$TMPDIR` (local SSD or BeeOND mount) is used for high-speed temporary I/O; after processing, output is copied back to the submission directory (`$SLURM_SUBMIT_DIR`) for persistence citeturn4search0 citeturn7search0.  
+HAICORE is KIT’s Helmholtz AI partition within the HoreKa supercomputer, comprising 16 compute nodes interconnected by InfiniBand 4×HDR for <1 μs latency and high throughput (See [Hardware Overview](https://www.nhr.kit.edu/userdocs/haicore/hardware/)).  
+Each node runs RHEL 8.x with open-source tools such as [**Slurm**](https://slurm.schedmd.com/sbatch.html) for job scheduling already installed.  
+Users develop and debug interactively on the **login node**, then submit batch jobs via `sbatch` to Slurm, which queues and dispatches them to compute nodes when resources free up (See [ARCH Advanced Research Computing](https://www.arch.jhu.edu/short-tutorial-how-to-create-a-slurm-script/)).  
+Within a job, `$TMPDIR` (local SSD or BeeOND mount) is used for high-speed temporary I/O; after processing, output is copied back to the submission directory (`$SLURM_SUBMIT_DIR`) for persistence (See [File Systems - NHR@KIT User Documentation](https://www.nhr.kit.edu/userdocs/haicore/filesystems/)). 
 
 ### 1.1 Example Slurm Script
 
@@ -44,8 +44,8 @@ cp $TMPDIR/result.csv $SLURM_SUBMIT_DIR/output_${SLURM_JOB_ID}.csv
 
 ## 2. Mapping to a Kafka Data Pipeline
 
-**Apache Kafka** is an open-source distributed event streaming platform for building high-throughput, low-latency data pipelines and streaming applications citeturn5search1.  
-A **streaming pipeline** “ingests data as it’s generated, buffers it in Kafka topics, and delivers it to one or more consumers” citeturn5search0.  
+**Apache Kafka** is an open-source distributed event streaming platform for building high-throughput, low-latency data pipelines and streaming applications.  
+A **streaming pipeline** “ingests data as it’s generated, buffers it in Kafka topics, and delivers it to one or more consumers”.  
 
 | Slurm Workflow Component                | Kafka Pipeline Component             |
 |-----------------------------------------|--------------------------------------|
@@ -73,7 +73,7 @@ import json, time
 producer = KafkaProducer(
     bootstrap_servers=['kafka-broker1:9092'],
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)  # Asynchronous send by default citeturn6search1
+)  # Asynchronous send by default
 
 def stream_results():
     # Simulate reading processed output
@@ -85,13 +85,13 @@ def stream_results():
             time.sleep(0.1)  # Throttle for demonstration
 
     # Ensure all pending messages are flushed to brokers
-    producer.flush()  # Blocks until all records are sent citeturn8search0
+    producer.flush()  # Blocks until all records are sent
 
 if __name__ == '__main__':
     stream_results()
 ```
 
-- **`producer.send()`** enqueues messages for the background I/O thread citeturn6search1.  
+- **`producer.send()`** enqueues messages for the background I/O thread.  
 - **`producer.flush()`** blocks until all buffered records are acknowledged or error out citeturn8search0.
 
 ### 3.3 Consumer: Persisting Streamed Data
@@ -107,7 +107,7 @@ consumer = KafkaConsumer(
     auto_offset_reset='earliest',
     enable_auto_commit=True,
     value_deserializer=lambda m: json.loads(m.decode('utf-8'))
-)  # Lazy offset reset and auto-commit citeturn9search0
+)  # Lazy offset reset and auto-commit
 
 with open('sink_output.csv', 'w') as fout:
     for msg in consumer:
@@ -128,6 +128,4 @@ with open('sink_output.csv', 'w') as fout:
 ---
 
 By following this recipe, you seamlessly leverage your Slurm/HAICORE expertise to build robust, real-time Kafka pipelines in Python—perfectly aligning with modern “Data Analysis Engineer” roles that demand scalable, streaming data architectures.
-
-Chinese version:
 
