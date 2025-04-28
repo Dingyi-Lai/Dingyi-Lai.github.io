@@ -9,6 +9,11 @@ navbar_entries:
     url: https://dingyi-lai.github.io/
 
 project_entries:
+  - title: From Slurm Batch Workflow to Kafka Pipline Using Python
+    url: from-Slurm-batch-workflow-to-kafka-pipline-using-python
+    desc: 复现 HAICORE 上基于 Slurm 的批处理脚本，并演示如何将其改写为基于 kafka-python 的 Producer/Consumer 示例
+    highlight: bigdata
+
   - title: Parrallel and Concurrent Computing in Python
     url: parellel-and-concurrent-computation-in-python
     desc: How to increase efficiency in large-scale data processing
