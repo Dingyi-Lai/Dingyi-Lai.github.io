@@ -3,7 +3,7 @@ layout: post
 author: Dingyi Lai
 ---
 
-PostgreSQL and MySQL are both very popular open-source relational database management systems (RDBMS), but they have some key differences in their design philosophies, features, and typical use cases. In my previous internship experience, we used MySQL. But after some research, I found that there are the main distinctions between the two:
+PostgreSQL and MySQL are both very popular open-source relational database management systems (RDBMS), but they have some key differences in their design philosophies, features, and typical use cases. In one of my previous working experience, we used MySQL. But after some research, I found that there are the main distinctions between the two:
 
 1.  **System Type and Design Philosophy:**
     * **PostgreSQL:** Is an **Object-Relational Database Management System (ORDBMS)**. This means it supports standard relational features plus more complex data types (like arrays, JSON/JSONB, custom types), inheritance, and other object-oriented concepts. Its design philosophy emphasizes **feature richness, strict adherence to SQL standards, data integrity, and extensibility**.
