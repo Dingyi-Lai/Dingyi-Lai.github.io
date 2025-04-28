@@ -10,7 +10,7 @@ navbar_entries:
 
 project_entries:
   - title: Difference Between PostgreSQL and MySQL
-      url: from-slurm-batch-workflow-to-kafka-pipline-using-python
+      url: difference-between-postgresql-and-mysql
       desc: Deeper understanding of PostgreSQL and MySQL as open-source relational database management systems (RDBMS)
       highlight: database
 
