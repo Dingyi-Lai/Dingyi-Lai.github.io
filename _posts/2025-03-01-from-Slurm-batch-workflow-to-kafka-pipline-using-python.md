@@ -131,7 +131,3 @@ with open('sink_output.csv', 'w') as fout:
 - Use **Kafka Connect** to sink data directly into databases or object stores.  
 - Monitor throughput and latency via **Kafka’s metrics** and adjust producer/consumer configs (e.g. `linger_ms`, batch sizes, retries).
 
----
-
-By following this recipe, you seamlessly leverage your Slurm/HAICORE expertise to build robust, real-time Kafka pipelines in Python—perfectly aligning with modern “Data Analysis Engineer” roles that demand scalable, streaming data architectures.
-
