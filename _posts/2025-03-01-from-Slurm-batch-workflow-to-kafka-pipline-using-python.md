@@ -20,22 +20,28 @@ Within a job, `$TMPDIR` (local SSD or BeeOND mount) is used for high-speed tempo
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=demo_job                # Name of the job citeturn3search0
-#SBATCH --output=demo_job.%j.out           # Stdout (with JobID)
-#SBATCH --error=demo_job.%j.err            # Stderr (with JobID)
+#SBATCH --job-name=demo_job                # Name of the job
+#SBATCH --output=output_%j.log             # Output log (_%j = job ID)
+#SBATCH --error=error_%j.log               # Error log (_%j = job ID)
 #SBATCH --partition=normal                 # Partition/queue
 #SBATCH --nodes=1                          # Number of nodes
+#SBATCH --ntask=1                          # Number of tasks
 #SBATCH --ntasks-per-node=1                # Tasks per node
 #SBATCH --cpus-per-task=4                  # CPUs per task
 #SBATCH --time=02:00:00                    # Walltime
-#SBATCH --mail-type=END                    # Email at end
+#SBATCH --mail-type=ALL                    # Email for starting, ending and failling
 #SBATCH --mail-user=you@example.com        # Email address
 
+export TF_ENABLE_ONEDNN_OPTS=0 # disables oneDNN optimizations in TensorFlow to prevent minor floating-point discrepancies due to parallel execution order​
+export OMP_NUM_THREADS=1 #  forces OpenMP to use only one thread, preventing oversubscription and context-switch overhead in nested parallel regions
+
 module load python/3.9                      # Load Python  
+module load jupyter/ai                      # Load AI environment
+
 cd $SLURM_SUBMIT_DIR                        # Switch to submit dir citeturn4search0
 
 # Copy input to fast local storage (BeeOND or $TMPDIR)
-cp data/input.csv $TMPDIR/input.csv         # High-performance I/O citeturn7search0
+cp data/input.csv $TMPDIR/input.csv         # High-performance I/O 
 python process_data.py --input $TMPDIR/input.csv --output $TMPDIR/result.csv
 
 # Copy result back for long-term storage
@@ -116,7 +122,7 @@ with open('sink_output.csv', 'w') as fout:
         print(f"Consumed: {rec}")
 ```
 
-- **`auto_offset_reset='earliest'`** ensures consumption from the beginning citeturn9search0.  
+- **`auto_offset_reset='earliest'`** ensures consumption from the beginning.  
 - Persisted records in `sink_output.csv` mirror Slurm’s final copy-back step.
 
 ## 4. Next Steps
