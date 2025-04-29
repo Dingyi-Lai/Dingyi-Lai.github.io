@@ -41,7 +41,7 @@ table, th, td {
   width: auto;
   border: thin solid black;
   border-collapse: collapse;
-  padding: 0.1em;
+  padding: 0.4em;
   table-layout: fixed;
   text-align: center; /* Optional: Center-align text for better appearance */
 }
@@ -49,13 +49,13 @@ table, th, td {
 div.highlighter-rouge pre code, pre code.highlighter-rouge {
   display: block;
   overflow-x: auto;
-  padding: 0.1em;
+  padding: 1em;
 }
 
 blockquote {
   font-style: italic;
   border: thin solid black;
-  padding: 0.1em;
+  padding: 1em;
 
   p { margin: 0; }
 }
