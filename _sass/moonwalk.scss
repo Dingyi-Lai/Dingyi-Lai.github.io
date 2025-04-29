@@ -34,7 +34,7 @@ li { margin: 0.4em 0; }
 .w {
   max-width: 1400px; /* the width of the main body */
   margin: 0 auto;
-  padding: 0.05em 0.05em;
+  padding: 4em 2em;
 }
 
 table, th, td {
@@ -121,20 +121,20 @@ html.transition,
 html.transition *,
 html.transition *:before,
 html.transition *:after {
-    transition: all 25ms !important;
+    transition: all 250ms !important;
     transition-delay: 0 !important;
 }
 
 .theme-toggle {
   color: var(--text);
   background-color: transparent;
-  padding: 1px;
+  padding: 4px;
   cursor: pointer;
   margin: 1em;
   position: fixed;
   right: 0;
   top: 0;
-  border: 1px transparent solid;
+  border: 2px transparent solid;
   outline: none;
 }
 
@@ -176,7 +176,7 @@ mark {
 }
 p code, li code {
   background-color: var(--bg-secondary);
-  padding: 0.1rem;
+  padding: 0.2rem;
   color: var(--code-text);
   font-weight: bold;
 }
@@ -203,7 +203,7 @@ p code, li code {
 .tag {
   font-family: "Roboto Mono", "Courier New", monospace;
   color: var(--text-secondary);
-  padding: 0.1em 0.1em;
+  padding: 0.4em 0.1em;
   margin-right: 0.5em;
   border-radius: 1em;
   background-color: var(--bg-secondary);
