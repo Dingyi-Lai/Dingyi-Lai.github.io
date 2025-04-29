@@ -16,7 +16,7 @@ For example, in a linear regression model $$y = \beta_0 + \beta_1 x+ error$$, th
 <figure>
   <img
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SR_Figure 3.2.png"
-  alt="Conceptual table">
+  style="overflow:clip !important">
    <figcaption style="display:block; text-align:center;">
     Figure 1: The simple linear regression model
   </figcaption>
