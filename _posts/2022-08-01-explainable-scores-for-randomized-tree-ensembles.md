@@ -117,7 +117,7 @@ In the ensemble setting, the discrepancies observed in Figure 3 between CFC and 
   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SCT]correlation.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
-    Figure 3: Perfect Correlation of CFC values and SHAP values for Randomized Tree Ensembles
+    Figure 4: Perfect Correlation of CFC values and SHAP values for Randomized Tree Ensembles
   </figcaption>
 </figure>
 
