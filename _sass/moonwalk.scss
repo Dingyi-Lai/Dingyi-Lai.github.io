@@ -64,7 +64,16 @@ img {
   max-width: 100%;
   display: block;
   margin: 0 auto;
+  overflow: visible;
 }
+
+fig {
+  display: block; /* Ensure the figure is visible */
+  margin: 0;
+  padding: 0;
+  overflow: visible; /* Prevent clipping */
+}
+
 html {
     --bg: #FFF;
     --bg-secondary: #f8f8f8;
