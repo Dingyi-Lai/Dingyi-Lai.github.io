@@ -9,6 +9,11 @@ navbar_entries:
     url: https://dingyi-lai.github.io/
 
 project_entries:
+  - title: From Notion Research Hub to Data Warehouse
+    url: from-notion-research-hub-to-data-warehouse
+    desc: Architected a live analytical pipeline from Notion to Snowflake, mirroring enterprise DW best practices
+    highlight: database
+
   - title: Difference Between PostgreSQL and MySQL
     url: difference-between-postgresql-and-mysql
     desc: Deeper understanding of PostgreSQL and MySQL as open-source relational database management systems (RDBMS)

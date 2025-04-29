@@ -98,7 +98,7 @@ if __name__ == '__main__':
 ```
 
 - **`producer.send()`** enqueues messages for the background I/O thread.  
-- **`producer.flush()`** blocks until all buffered records are acknowledged or error out citeturn8search0.
+- **`producer.flush()`** blocks until all buffered records are acknowledged or error out.
 
 ### 3.3 Consumer: Persisting Streamed Data
 
