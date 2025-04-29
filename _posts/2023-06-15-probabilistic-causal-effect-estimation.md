@@ -15,7 +15,7 @@ To answer this, we:
 1. **Define** causal mechanisms via Directed Acyclic Graphs (DAGs).  
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[PCE]DAG_corrected.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/PCE_DAG_corrected.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 1: DAG for Synthetic Control Method in the Thesis
@@ -31,7 +31,7 @@ To answer this, we:
 3. **Run** placebo tests to validate the model’s ability to reproduce a “null effect.”  
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[PCE]unrate_prob.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/PCE_unrate_prob.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 2: Quantile Distribution for the Simulated Treated Units
@@ -41,7 +41,7 @@ To answer this, we:
 4. **Estimate** probabilistic causal effects across quantiles using forecasts.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[PCE]911DeepProbCP.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/PCE_911DeepProbCP.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 3: Counterfactual Results for Real-world Data from DeepProbCP
@@ -55,7 +55,7 @@ To answer this, we:
 - **Global methods** instead pool information across *all* series before vs. after treatment—learning a single predictor that can generate counterfactual paths for every unit simultaneously.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[PCE]DeepProbCP_dataset_structure.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/PCE_DeepProbCP_dataset_structure.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 4: Dataset Structure for 911 Emergency Call Dataset
@@ -91,7 +91,7 @@ To answer this, we:
    - Heterogeneous effects across quantiles (e.g. 10th vs. 90th percentile) reveal that the strongest impact fell on the highest-demand counties.
    <figure>
    <img
-   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[PCE]ATE_prob.png"
+   src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/PCE_ATE_prob.png"
    alt="Conceptual table">
       <figcaption style="display:block; text-align:center;">
       Figure 4: Estimation of the Average Treatment Effect on the Treated per Quantile

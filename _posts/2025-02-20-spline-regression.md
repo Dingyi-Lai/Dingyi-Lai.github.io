@@ -15,7 +15,7 @@ For example, in a linear regression model $$y = \beta_0 + \beta_1 x+ error$$, th
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.2.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SR_Figure 3.2.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 1: The simple linear regression model
@@ -26,7 +26,7 @@ Next, consider the nonlinear regression model such as $$y = \beta_0 + \beta_1 x 
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.3.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SR_Figure 3.3.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 2: The quadratic regression model
@@ -39,7 +39,7 @@ When it's extended to more complex model like the *broken stick* model, the indi
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.4.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SR_Figure 3.4.png"
   alt="Conceptual table">
   <figcaption style="display:block; text-align:center;">Figure 3: The broken stick regression model</figcaption>
 </figure>
@@ -48,7 +48,7 @@ Moreover, more indicator functions are included when the right-hand half has mor
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Figure 3.5.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SR_Figure 3.5.png"
   alt="Conceptual table">
   <figcaption style="display:block; text-align:center;">Figure 4: The whip regression model</figcaption>
 </figure>
@@ -57,7 +57,7 @@ And its basis can be written as:
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Basis_Whilp.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SR_Basis_Whilp.png"
   alt="Conceptual table">
   <figcaption style="display:block; text-align:center;">Figure 4: The whip regression model</figcaption>
 </figure>
@@ -73,7 +73,7 @@ Another great idea to think of spline is to imagine the [connected scatterplots]
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Connected_Scatterplot.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SR_Connected_Scatterplot.png"
   alt="Conceptual table"
   style="width:50%;">
   <figcaption style="display:block; text-align:center;">Figure 5: Vanilla Connected Scatterplot</figcaption>
@@ -83,7 +83,7 @@ Or you can connect them in a smooth way:
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]Connected_Scatterplot_smooth.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SR_Connected_Scatterplot_smooth.png"
   alt="Conceptual table"
   style="width:50%;">
   <figcaption style="display:block; text-align:center;">Figure 6: "Chocolate" Connected Scatterplot</figcaption>
@@ -198,7 +198,7 @@ cat("Number of knots for cubic spline model with df=16:", length(knots3), "\n")
 
 # Plot the data and fitted curves
 # file.exists("_images")
-png("_images/[SR]spline_regression_R.png", width = 800, height = 600)
+png("_images/SR_spline_regression_R.png", width = 800, height = 600)
 plot(x, y, main = "Spline Regression with Different Numbers of Knots", 
      pch = 19, col = "grey", xlab = "x", ylab = "y")
 lines(x, predict(model1, newdata = data), col = "blue", lwd = 2)
@@ -212,7 +212,7 @@ dev.off()
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]spline_regression_R.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SR_spline_regression_R.png"
   alt="Conceptual table">
   <figcaption>Figure 8: Spline Regression with Different Numbers of Knots in R</figcaption>
 </figure>
@@ -283,14 +283,14 @@ plt.xlabel("x")
 plt.ylabel("y")
 plt.legend(loc="upper right")
 # Save the plot to a file (ensure that the directory '_images' exists)
-plt.savefig("../_images/[SR]spline_regression_python.png", dpi=300)
+plt.savefig("../_images/SR_spline_regression_python.png", dpi=300)
 plt.show()
 
 ```
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SR]spline_regression_python.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SR_spline_regression_python.png"
   alt="Conceptual table">
   <figcaption>Figure 9: Spline Regression with Different Numbers of Knots in Python</figcaption>
 </figure>

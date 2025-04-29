@@ -8,7 +8,7 @@ Updated: The following report was written in Chinese originally at the end of 20
 # Abstract
 TATA MOTOR Ltd. has experienced intense volatility of share price under the ticker symbol TTM since it was listed on the New York Stock Exchange (NYSE) in 2004. Generally, foreigners are optimistic about the Indian market according to both my field study and the Indian index. However, the financial reports of Tata Motors over the years infers that Tata Motors is unfortunately in a poor financial situation. Its most competitive advantage is Jaguar Land Rover, which was acquired from Ford in 2008, and its main market is in China. Recently, Tata Group has stepped up efforts to prevent other groups from acquiring Tata Motors, which is worrying. However, we can infer from the relationship among the stock price, the price-to-book value ratio and the price-earnings ratio that Tata Motors' current EPS has risen sharply. In terms of the stock price, Tata Motors will rise sharply in the short term in the near future, and investors can take a long positon from the end of 2017 to the beginning of 2018. However, from the financial reports of the past years, three rules of thumb can be used to roughly estimate respectively. The reasonable share price of Tata Motors should be 23.86, 27.85 and 33.75 respectively, and no matter which one it should be, the current share price of Tata Motors, 33.87, is too expensive. Hence, in the longer run, investors are suggested to be short.
 
-![MindMap_TTM](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]MindMap.png)
+![MindMap_TTM](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_MindMap.png)
 
 # Industry Research
 ## Goal
@@ -51,7 +51,7 @@ Perhaps in India we can find the shadow of China's past, in Japan we can peep at
 Note: The following fiscal years are divided into March, for example, FY18 is from March 31, 2017 to March 31, 2018. From fiscal year 2016 to the first quarter of fiscal year 2018 (i.e. March 31, 2015 to July 31, 2017), we can get the following macro data[^1]:
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]GDP_growth_1618.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_GDP_growth_1618.png"
   alt="GDP_growth_1618">
   <figcaption>Figure 1: India's GDP growth overall and in three industries from FY16Q1 to FY18Q1</figcaption>
 </figure>
@@ -61,7 +61,7 @@ From the above figure, we can see that after experiencing rapid development from
 It shows that India is undergoing an era of industrial transformation, but can the weak primary and secondary industries support the huge tertiary industry? The underperforming secondary sector appears to be the main factor behind the slowdown in India's GDP growth. The GST reform (Goods and Service Tax, GST) has had a negative impact on the manufacturing sector, delaying related investment activities.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]GDP_expenditure_1517.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_GDP_expenditure_1517.png"
   alt="DP_expenditure_1517">
   <figcaption>Figure 2: India's GDP by Expenditure (% change in real terms) from FY15Q1 to FY17Q1</figcaption>
 </figure>
@@ -72,7 +72,7 @@ From the above figure, we can see that India has gradually opened up its import 
 Quarterly GDP growth is not enough to monitor the latest  India's industrial climate, so we look at the monthly industrial production index. This is a composite indicator that measures the short-term changes in the volume of production of a basket of industrial products during a given period with respect to that in a chosen base period.[^3].
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]IIP_12month_MA_1617.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_IIP_12month_MA_1617.png"
   alt="IIP_12month_MA_1617">
   <figcaption>Figure 3: India IIP index and its 12-month moving average trend from 2016 to 2017</figcaption>
 </figure>
@@ -87,7 +87,7 @@ Wholesale price index is a price index compiled based on the weighted average pr
 The consumer price index is an indicator of price changes that reflects the prices of products and services related to residents' lives. It is expressed in the form of a percentage change and is one of the main indicators to measure inflation.[^5]
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]WPI_CPI_17.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_WPI_CPI_17.png"
   alt="[TTM]WPI_CPI_17">
   <figcaption>Figure 4: Comparison of the annual growth rate of WPI and CPI from April 2017 to September 2017</figcaption>
 </figure>
@@ -104,7 +104,7 @@ Repo rate is the rate at which the central bank of a country (Reserve Bank of In
 Cash Reserve Ratio (CRR) is a specified minimum fraction of the total deposits of customers, which commercial banks have to hold as reserves either in cash or as deposits with the central bank. CRR is set according to the guidelines of the central bank of a country.[^8]
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Key_Policy_Rates_1617.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Key_Policy_Rates_1617.png"
   alt="[TTM]Key_Policy_Rates_1617">
   <figcaption>Figure 5: Movement in Key Policy Rates (%) from September 2016 to April 2017</figcaption>
 </figure>
@@ -115,7 +115,7 @@ The Indian auto industry sprouted in 1940. However, due to the influence of the 
 Major Indian automakers are Maruti. Maruti Suzuki[^9], Hyundai Motor India, Tata Motors and Mahindra & Mahindra. Tata Motors also sells the world's cheapest car, the Tata Nano, with a market price of $2,200. Foreign automakers currently operating in India include General Motors, Ford, Hyundai, Honda, Suzuki, Nissan Motors, Toyota, Volkswagen, Audi, Skoda, BMW, Renault, Mitsubishi, Jaguar Land Rover, Fiat and Mercedes Benz. PSA Peugeot Citroën and Volvo are setting up factories, while Lexus, Infiniti and Porsche are also planning to set up factories in India.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Top_Three_Brands.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Top_Three_Brands.png"
   alt="[TTM]Top_Three_Brands">
   <figcaption>Figure 6: The top three local brands in the Indian auto industry</figcaption>
 </figure>
@@ -171,11 +171,11 @@ The BSE SENSEX (also known as the S&P Bombay Stock Exchange Sensitive Index or s
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]BSE_SENSEX_1617.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_BSE_SENSEX_1617.png"
   alt="[TTM]BSE_SENSEX_1617">
   <figcaption>Figure 7: BSE SENSEX from December 2016 to December 2017</figcaption>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]BSE_SENSEX_1317.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_BSE_SENSEX_1317.png"
   alt="[TTM]BSE_SENSEX_1317">
   <figcaption>Figure 8: BSE SENSEX from December 2013 to December 2017</figcaption>
 </figure>
@@ -206,7 +206,7 @@ Since the 1960s, automobiles have been exported to some countries and regions su
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Market_Capitalization_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Market_Capitalization_0417.png"
   alt="[TTM]Market_Capitalization_0417">
   <figcaption>Figure 9: Market Capitalization of Tata Motors from September 2004 to August 2017</figcaption>
 </figure>
@@ -219,15 +219,15 @@ But it is worth noting that the biggest consumer of Tata's Jaguar Land Rover is 
 The value of the industry peer level is from the msn financial website.[^22] Tata Motors' net profit margin has been lower than its peers since 2015, and gross margins have continued to decline. It shows that the profitability of Tata Motors is not as good as before.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Net_Profit_Margin_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Net_Profit_Margin_0417.png"
   alt="[TTM]Net_Profit_Margin_0417">
   <figcaption>Figure 10: Net Profit Margin of Tata Motors from 2004 to 2017</figcaption>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Gross_Margin_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Gross_Margin_0417.png"
   alt="[TTM]Gross_Margin_0417">
   <figcaption>Figure 11: Gross Margin of Tata Motors from 2004 to 2017</figcaption>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]EPS_Adjusted_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_EPS_Adjusted_0417.png"
   alt="[TTM]EPS_Adjusted_0417">
   <figcaption>Figure 12: EPS Adjusted for Extraordinary Items from 2004 to 2017</figcaption>
 </figure>
@@ -236,7 +236,7 @@ The value of the industry peer level is from the msn financial website.[^22] Tat
 According to William J O'Neil's *How to Make Money in Stocks: A Winning System in Good Times Or Bad*, a good stock should have EPS growing significantly over the past five years compared to the previous year. A growth stock should have a compound annual EPS growth rate of 25% to 50%, or even more than 100%, over the past four to five years. But if EPS decelerates noticeably for two consecutive quarters, be careful.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Growth_EPS_Adjusted_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Growth_EPS_Adjusted_0417.png"
   alt="[TTM]Growth_EPS_Adjusted_0417">
   <figcaption>Figure 13: Growth of EPS Adjusted for Extraordinary Items from 2004 to 2017</figcaption>
 </figure>
@@ -244,7 +244,7 @@ According to William J O'Neil's *How to Make Money in Stocks: A Winning System i
 As can be seen from the above figure, TTM's performance in 2011 reached more than 73%, which is an extraordinary performance. However, since the sales of Nanu automobiles dropped significantly in 2012, it is obvious from the EPS growth rate that the company's decline can be seen. Especially with the negative growth from 2015 to 2017, investors need to be very cautious.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Net_Income_Groth_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Net_Income_Groth_0417.png"
   alt="[TTM]Net_Income_Groth_0417">
   <figcaption>Figure 14: Net Income Growth from 2004 to 2017</figcaption>
 </figure>
@@ -255,7 +255,7 @@ The net income growth rate is also unstable, indicating that Tata Motors is in a
 In Anthony Bolton's *Investing Against the Tide: Lessons From a Life Running Money*, Old-fashioned P/E ratios can predict surpluses for the current and the next two years. As can be seen from the chart below: Tata Motors' P/E increased from 2015 to 2017, but the decline in P/E in 2017 may indicate that future earnings may also decline.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]PE_Ratio_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_PE_Ratio_0417.png"
   alt="[TTM]PE_Ratio_0417">
   <figcaption>Figure 15: Price-Earnings Ratio from September 2004 to August 2017</figcaption>
 </figure>
@@ -263,7 +263,7 @@ In Anthony Bolton's *Investing Against the Tide: Lessons From a Life Running Mon
 However, the figure below shows that the price-to-book ratio in 2017 is higher than that in 2016, indicating that the stock price in 2017 is higher than that in 2016, and combined with the decline in the price-to-earnings ratio, it can be inferred that the company's current EPS has increased significantly.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]PB_Ratio_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_PB_Ratio_0417.png"
   alt="[TTM]PB_Ratio_0417">
   <figcaption>Figure 16: Price-to-Book Ratio from 2004 to 2017</figcaption>
 </figure>
@@ -271,7 +271,7 @@ However, the figure below shows that the price-to-book ratio in 2017 is higher t
 ## Financial Soundness
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Financial_Soundness.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Financial_Soundness.png"
   alt="[TTM]Financial_Soundness">
   <figcaption>Figure 17: Financial Soundness from 2007 to 2016</figcaption>
 </figure>
@@ -288,19 +288,19 @@ To sum up: Tata Motors is a high-reward, high-risk company with low creditor pro
 The value of the industry peer level is from the msn financial website.[^22] We can know from the following three rates of return that the financial situation of Tata Motors has changed a lot. As I expected, it fell very sharply in 2009, but then rebounded abruptly, but in recent years, the return rate has tended to be similar to the peers in industry. So it is confirmed once again: Tata Motors' Jaguar Land Rover dividend is about to pass, and if there is no new something, then the company's prospects are bleak.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Return_on_Assets_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Return_on_Assets_0417.png"
   alt="[TTM]Return_on_Assets_0417">
   <figcaption>Figure 18: Historical Return on Assets from 2004 to 2017</figcaption>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Return_Shareholders_Equity_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Return_Shareholders_Equity_0417.png"
   alt="[TTM]Return_Shareholders_Equity_0417">
   <figcaption>Figure 19: Historical Return on Shareholders' Equity from 2004 to 2017</figcaption>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Return_Investment_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Return_Investment_0417.png"
   alt="[TTM]Return_Investment_0417">
   <figcaption>Figure 20: Historical Return on Investment from 2004 to 2017</figcaption>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Inventory_Turnover_1417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Inventory_Turnover_1417.png"
   alt="[TTM]Inventory_Turnover_1417">
   <figcaption>Figure 21: Inventory Turnover from 2014 to 2017</figcaption>
 </figure>
@@ -310,7 +310,7 @@ It can be seen from the above figure that the inventory turnover rate of Tata Mo
 ## Dividend Policy
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Dividend_Payout_0417.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Dividend_Payout_0417.png"
   alt="[TTM]Dividend_Payout_0417">
   <figcaption>Figure 22: Dividend Payout from March 2004 to March 2017</figcaption>
 </figure>
@@ -321,7 +321,7 @@ The above chart shows that Tata Motors' dividend payout [^23] is very volatile, 
 ## Stock Price Chart
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Price_0418.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Price_0418.png"
   alt="[TTM]Price_0418">
   <figcaption>Figure 23: Stock Price from 27th September 2004 to 5th January 2018</figcaption>
 </figure>
@@ -329,7 +329,7 @@ The above chart shows that Tata Motors' dividend payout [^23] is very volatile, 
 Because Tata Motors has many ex-dividends and ex-rights, in order to apply the moving average, the stock price is restored as shown below.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Price_restored_0418.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Price_restored_0418.png"
   alt="[TTM]Price_restored_0418">
   <figcaption>Figure 24: Restored Stock Price from 27th September 2004 to 5th January 2018</figcaption>
 </figure>
@@ -340,7 +340,7 @@ Tuning short-term alternative moving average from 1 to 20 days, and long-term al
 Take a closer look from 2015 to 2017.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Price_restored_1518.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Price_restored_1518.png"
   alt="[TTM]Price_restored_1518">
   <figcaption>Figure 24: Restored Stock Price from 5th January 2015 to 5th January 2018</figcaption>
 </figure>
@@ -351,7 +351,7 @@ Bollinger Bands are an indicator that uses "price channels" to display various l
 We use Bollinger Bands with a 20-day simple moving average and a standard deviation of 2 as a reference.
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[TTM]Bollinger_Bands_1518.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/TTM_Bollinger_Bands_1518.png"
   alt="[TTM]Bollinger_Bands_1518">
   <figcaption>Figure 25: Bollinger Bands from 5th January 2015 to 5th January 2018</figcaption>
 </figure>

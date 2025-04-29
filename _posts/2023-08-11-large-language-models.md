@@ -5,16 +5,16 @@ author: Dingyi Lai
 
 Current Notes from *Generative AI with Large Language Models*: https://www.coursera.org/learn/generative-ai-with-llms
 
-![Generative_AI_notes_1](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/%5BLLM%5DGenerative_AI_notes_1.png)
+![Generative_AI_notes_1](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/LLM_Generative_AI_notes_1.png)
 
-![Generative_AI_notes_2](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/%5BLLM%5DGenerative_AI_notes_2.png)
+![Generative_AI_notes_2](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/LLM_Generative_AI_notes_2.png)
 
 Notes from *ChatGPT Prompt Engineering for Developers*: https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/
 
-![Prompt_Engineering_1](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/%5BLLM%5DPrompt_Engineering_1.png)
+![Prompt_Engineering_1](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/LLM_Prompt_Engineering_1.png)
 
 To build a chatbot application, you need to know more deeply about the roles:
-![Prompt_Engineering_2](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/%5BLLM%5DPrompt_Engineering_2.png)
+![Prompt_Engineering_2](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/LLM_Prompt_Engineering_2.png)
 
 An OrderBot as a fantastic example to automate the collection of user prompts and assistant responses in the case of taking orders at a pizza restaurant.
 

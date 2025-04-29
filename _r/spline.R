@@ -30,7 +30,7 @@ cat("Number of knots for cubic spline model with df=16:", length(knots3), "\n")
 
 # Plot the data and fitted curves
 # file.exists("_images")
-png("_images/[SR]spline_regression_R.png", width = 800, height = 600)
+png("_images/SR_spline_regression_R.png", width = 800, height = 600)
 plot(x, y, main = "Spline Regression with Different Numbers of Knots", 
      pch = 19, col = "grey", xlab = "x", ylab = "y")
 lines(x, predict(model1, newdata = data), col = "blue", lwd = 2)

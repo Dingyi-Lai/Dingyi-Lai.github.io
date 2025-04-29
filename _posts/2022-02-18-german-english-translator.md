@@ -16,7 +16,7 @@ Current machine translation systems apply a sequence-to-sequence neural network 
     - (blue) trained with a language modeling objective, conditioned on final encoder state
     - step by step and use previous predictions as input into next step
 
-![Seq2Seq](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[MT]Seq2seqPrediction.png)
+![Seq2Seq](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/MT_Seq2seqPrediction.png)
 
 While being trained, loss is computed for the task of next symbol prediction on the task language sentence. Since decoder RNN is conditioned on output of encoder RNN, the gradient is backpropagated and the entire network is learnt “end-to-end”.
 
@@ -28,20 +28,20 @@ Results with attention could be test in [this repo](https://github.com/Dingyi-La
 
 Some sample results are like the following.
 - with attention
-![WithAttention](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[MT]WithAttention.png)
+![WithAttention](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/MT_WithAttention.png)
 - without attention
-![WithoutAttention](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[MT]WithoutAttention.png)
+![WithoutAttention](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/MT_WithoutAttention.png)
 
 # Architecture Improvements
 ## Teacher Forcing Ratio
 Teacher forcing means that loss is computed at each time step for “gold” input. During training, teacher forcing can be randomly deactivated for a percentage of decoder steps in which predictions instead of gold input are used.
 
-![TeacherForcingRatio](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[MT]TeacherForcingRatio.png)
+![TeacherForcingRatio](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/MT_TeacherForcingRatio.png)
 
 ## Multi-layer RNNs
 In multi-layer RNNs, each layer is an independent RNN cell that takes as input the output of the previous layer. Normally, lower RNNs compute lower-level features and higher RNNs compute higher-level features
 
-![MultiLayersRNNs](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[MT]MultiLayersRNNs.png)
+![MultiLayersRNNs](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/MT_MultiLayersRNNs.png)
 
 In practice, high-performing RNNs for machine translation are usually multi-layer (but arenʼt as deep as convolutional or feed-forward networks). For instance, for Neural Machine Translation [Britz et al., 2017], 2 to 4 layers is the best for the encoder RNN, and 4 layers is the best for the decoder RNN. Obviously, it is often difficult to train deeper RNNs. Skip-connections or other tricks are required while doing so. While for transformer-based networks, they are usually deeper, like 12 or 24 layers, and they have a lot of skipping-like connections.
 
@@ -57,10 +57,10 @@ In exhaustive search decoding, all possible sequences are tried to be computed. 
 On each step of decoder, keep track of the $$k$$ most probable partial translations (which we call hypotheses), where $$k$$ is the beam size (in practice around 5 to 10). Although it's not guaranteed to find optimal solution, it's still much more efficient than exhaustive search.
 
 The beam search formula is as below:
-![BeamSearchFormula](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[MT]BeamSearchFormula.png)
+![BeamSearchFormula](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/MT_BeamSearchFormula.png)
 
 One of the decoding example would be:
-![BeamSearchDecodingExample](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[MT]BeamSearchDecodingExample.png)
+![BeamSearchDecodingExample](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/MT_BeamSearchDecodingExample.png)
 
 Different hypotheses may produce `<STOP>` tokens on different time steps. When a hypothesis produces `<END>`, that hypothesis is complete and placed aside. Other hypotheses via beam search are kept being explored.
 

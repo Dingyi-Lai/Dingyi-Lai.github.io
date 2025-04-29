@@ -16,7 +16,7 @@ Before building, I compared existing options:
 - **ChatGPT & Notion AI** are powerful but too general and prone to hallucinations in my narrow research context. 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[RHC]hallucination_chatGPT.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/RHC_hallucination_chatGPT.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 1: Hallucination in ChatGPT
@@ -71,7 +71,7 @@ By wrapping the Streamlit URL in a Notion embed block, I can:
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[RHC]hallucination_mychatbot.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/RHC_hallucination_mychatbot.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 2: De-hallucination in My Own Chatbot

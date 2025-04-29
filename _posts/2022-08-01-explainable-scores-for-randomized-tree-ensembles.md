@@ -21,7 +21,7 @@ However, this method does not provide feature-level attribution to a single pred
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SCT]Attribution_general.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SCT_Attribution_general.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 1: Local Explainable Score of a Prediction for Input Feature$$d$$
@@ -84,7 +84,7 @@ Our evaluation of SHAP and CFC methods was performed on a wide array of datasets
 ### Takeaways of Figure 3 in the Paper
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SCT]CFC_inconsistency.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SCT_CFC_inconsistency.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 2: Inconsistency of CFC values for one single tree
@@ -102,7 +102,7 @@ In contrast, Tree SHAP distributes credit more evenly among all features involve
 ### Takeaways of Figure 4 in the Paper
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SCT]CFC_consistency.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SCT_CFC_consistency.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 3: Consistency of CFC values for Randomized Tree Ensembles
@@ -114,7 +114,7 @@ In the ensemble setting, the discrepancies observed in Figure 3 between CFC and 
 ### Takeaways of Figure 7 in the Paper
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[SCT]correlation.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/SCT_correlation.png"
   alt="Conceptual table">
    <figcaption style="display:block; text-align:center;">
     Figure 4: Perfect Correlation of CFC values and SHAP values for Randomized Tree Ensembles

@@ -33,21 +33,21 @@ We aim to build a simplified quantitative model to detect anxiety in trading mar
 2. Descriptive statistics for the 20 stocks after filtering
     - Randomly select a day, such as 2007/12/31, extract the historical price data of all 20 stocks in the following 90 days and save it to Z.
     - date_breaks = "2 week"; x="Date"; y="Stock Price"; title="90-day chart of 50 constituents in Taiwan"
-    ![LinePlot](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[IP]90day_constituents_in_Taiwan.jpeg)
+    ![LinePlot](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/IP_90day_constituents_in_Taiwan.jpeg)
 3. To make time comparable, X is further normalized
 4. Descriptive Statistical Chart Normalized for 20 Stocks
     - Randomly select a day, such as 2007/12/31, extract the historical price data of all 20 stocks in the following 90 days and save it to Z.
     - date_breaks = "2 week"; x="Date"; y="Stock Price"; title="90-day chart of 50 constituents in Taiwan"
-    ![LinePlotNormalization](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[IP]90day_constituents_in_Taiwan_normalization.jpeg)
+    ![LinePlotNormalization](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/IP_90day_constituents_in_Taiwan_normalization.jpeg)
 5. Construct a matrix with time as rows and 20 stocks as columns, which is convenient for drawing the covariance map of these 20 stocks over a period of time
 6. Descriptive Statistics Plot of 20 Stock Covariance Matrix
     - The covariance matrix diagonal tells us that for normalized time series, their covariance is equal to 1
     - x="20 stocks"; y="20 stocks"; title="Covariance plot of 20 constituents after filtering"
-    ![CovariancePlot](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[IP]Covariance_plot_20_constituents_after_filtering.jpeg)
+    ![CovariancePlot](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/IP_Covariance_plot_20_constituents_after_filtering.jpeg)
 7. Descriptive Statistics Plots for Principal Component Analysis
     - The covariance matrix diagonal tells us that for normalized time series, their covariance is equal to 1
     - x="20 stocks"; y="20 stocks"; title="Covariance plot of 20 constituents after filtering"
-    ![PCAPlot](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[IP]PCA_plot_20_constituents_after_filtering.jpeg)
+    ![PCAPlot](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/IP_PCA_plot_20_constituents_after_filtering.jpeg)
     - It shows that at least 19 out of 20 eigenvalues are negative, which indicates that Taiwan's stock market had largely fallen over the past 90 days. It supports traders to possess short positions in these stocks. Remarkably, the first principal component does not represent "price momentum" per se, it represents a latent variable commonly found in stock dynamics instead, i.e. potential artefacts in trading. The image above also gives an additional piece of information. All eigenvalues in the first principal component are significantly suppressed, and the eigenvalues of the remaining four principal components appear rather random. By inspection, this feature persisted for many years in our sample data. Therefore, we can focus our observations on the first principal component.
 
 8. Grab the historical stock price of Taiwan Index 50 from yahoo server
@@ -59,17 +59,17 @@ For a time period $$[d_1 , d_2]$$, Select every the day after t day in this peri
     - Construct a function to grab the Taiwan 50 index for a period of time
     - Construct a 30-day moving average model of negative sentiment ratio
     - date_breaks = "6 month"; x="Date"; y="Index Price"; title="30-day MA of index price"
-![MAPlotIndexPrice](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[IP]30-day_MA_index_price.png)
+![MAPlotIndexPrice](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/IP_30-day_MA_index_price.png)
 3. Comparison of negative sentiment ratios of constituents in Taiwan Index 50
     - Construct a function that can compare multiple pictures in one interface
     - Compare the two pictures side by side. Time period: from 2007-12-31 to 2011-12-31
     - date_breaks = "6 month"; x="Date"; y="Negative Sentiment Ratio"; title="30-day MA of negative sentiment ratio"
-![MAPlotNSR](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[IP]30-day_MA_negative_sentiment_ratio.png)
+![MAPlotNSR](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/IP_30-day_MA_negative_sentiment_ratio.png)
 4. Build the core model, that is, when the proportion of negative numbers in the first principal component increases for 5 consecutive days, we confirm anxiety. Mark anxiety on the historical stock price chart of the Taiwan Index 50.
     - Construct a function that can compare multiple pictures in one interface
     - Compare the two pictures side by side. Time period: from 2007-12-31 to 2011-12-31
     - date_breaks = "6 month"; x="Date"; y="Anxiety Ratio"; title="30-day MA of anxiety"
-![6MonthsMAPlot](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[IP]30-day_MA_anxiety.png)
+![6MonthsMAPlot](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/IP_30-day_MA_anxiety.png)
     - Every time a stock has a big turning point, it is easy to generate the anxiety mentioned earlier. Because the definition of anxiety is based on previous studies. But with our model, we prefer to define this emotion as "dispute energy". We can observe such controversial energy when the momentum effect of a stock is interrupted.
 
 # Conclusion

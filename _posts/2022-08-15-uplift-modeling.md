@@ -7,13 +7,13 @@ author: Dingyi Lai
 
 Uplift models are popular methods to support marketing decision-making problems. With uplifts models, marketing analysts are able to estimate the causal effect of marketing treatment on consumer behavior. Consider the example of an e-mail campaign that aims to send digital discount codes to customers as an incentive for the customers to buy, and thus, to e.g. drive sales revenues. The causal effect of the price discount is the treatment effect. It quantifies the change in customer’s buying probability due to the marketing activity (i.e. the price discount). Estimating the causal effect of a marketing activity is crucial to for instance evaluate the true impact of a marketing campaign.
 
-![MindMap_uplift-modeling](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]MindMap.png)
+![MindMap_uplift-modeling](https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_MindMap.png)
 
 It is important to carefully decide which customers should receive treatments. As shown in the adapted **Figure 1** by Devriendt et al. (2018), customers can be assigned into four targeting groups based on whether a customer responds when treated or not treated: sure things, lost causes, persuadables, and do-not-disturbs. Uplift models should predict the persuadables. Based on data from which we can observe whether a customer was targeted and whether the customer responded, we want to get the information of those customers who responded because we targeted (i.e. treated) them with our marketing activity (Kane et al., 2014). As discussed by Lai (2006) and Kane et al. (2014), customers can be grouped further into four categories: Control responders, treatment nonresponders, control nonresponders and treatment responders. The latter two are labeled as positive lifts because they contain all persuadables (positive targets, i.e. customers who respond only if they are targeted), whereas the first two are considered as negative lifts. Thus, uplift models must identify those customers who have no initial intention to buy but can be influenced to buy because we target them, which essentially implies causality. With this we can avoid for example negative profit by targeting the wrong customers. Devriendt et al. (2018) give a comprehensive overview of the state-of-the-art in uplift modeling.
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Lift-Response-Matrix_devriendt.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_Lift-Response-Matrix_devriendt.png"
   alt="Conceptual table">
   <figcaption>Figure 1: Conceptual table. (Devriendt, Moldovan and Verbek, 2018)</figcaption>
 </figure>
@@ -103,7 +103,7 @@ We create a pie plot based on customer's decision to purchase, in order to see t
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Pie_Plot.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_Pie_Plot.png"
   alt="Pie Plot">
   <figcaption>Figure 2: Pie Plot</figcaption>
 </figure>
@@ -116,7 +116,7 @@ In the aim to see the distributions of all features, we create histograms.
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Histogram.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_Histogram.png"
   alt="Histogram">
   <figcaption>Figure 3: Histogram</figcaption>
 </figure>
@@ -135,7 +135,7 @@ The aim of making a heat map is to check the correlation among these variables.
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Heatmap.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_Heatmap.png"
   alt="Heatmap">
   <figcaption>Figure 4: Heatmap</figcaption>
 </figure>
@@ -160,7 +160,7 @@ Another metric to evaluate the performance of uplift models is **Area Under the 
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Qini_Curve.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_Qini_Curve.png"
   alt="Qini_Curve">
   <figcaption>Figure 5: Gain Chart for Uplift-Curve (Radcliffe, 2007)</figcaption>
 </figure>
@@ -196,7 +196,7 @@ The difference between S-learner and T-learner is that, in S-learner in which pa
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]S&T.jpeg"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_S&T.jpeg"
   alt="S&T">
   <figcaption>Figure 6: The Architectures of T- & S-learner (Kuenzel et al., 2019)</figcaption>
 </figure>
@@ -213,7 +213,7 @@ Neural networks model the relationships between inputs and outputs via different
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]CausalNet.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_CausalNet.png"
   alt="CausalNet">
   <figcaption>Figure 7: Prototype of Causal Net Algorithm (Farrell et al., 2018)</figcaption>
 </figure>
@@ -273,7 +273,7 @@ $$Q(t,x) = E[ Y | t, x ]$$
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]DragonNet-architecture_Shi-2019.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_DragonNet-architecture_Shi-2019.png"
   alt="DragonNet">
   <figcaption>Figure 8: Dragonnet architecture (Shi, Blei and Veitch, 2019a)</figcaption>
 </figure>
@@ -351,7 +351,7 @@ Louizos et al.(2017) propose a new model for estimating ITE, which is based on V
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]CEVAE-1.jpeg"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_CEVAE-1.jpeg"
   alt="CEVAE-1">
   <figcaption>Figure 9: Prototype from CEVAE (Louizos et al., 2017)</figcaption>
 </figure>
@@ -371,7 +371,7 @@ $$p(y|X; do(t = 1)) = \int_{Z} p(y|t = 1;Z)\; p(Z|X) dZ$$.
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]CEVAE-2.jpeg"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_CEVAE-2.jpeg"
   alt="CEVAE-2">
   <figcaption>Figure 10: Architecture of CEVAE (Louizos et al., 2017)</figcaption>
 </figure>
@@ -442,7 +442,7 @@ Tuning parameters in Causal Net is way more complicated, because there are sever
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Num_Neurons_2nd_Hidden.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_Num_Neurons_2nd_Hidden.png"
   alt="Num_Neurons_2nd_Hidden">
   <figcaption>Figure 12: ATE and AUUC via Different Numbers of Neurons in the Second Hidden Layer</figcaption>
 </figure>
@@ -453,7 +453,7 @@ Then we checked the sensitivity of dropout rate.
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]DropoutRate.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_DropoutRate.png"
   alt="DropoutRate">
   <figcaption>Figure 13: ATE and AUUC via Different Droupout Rates</figcaption>
 </figure>
@@ -464,7 +464,7 @@ Next we tried to delete one layer from that, keeping others the same. The result
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]Different_pools.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_Different_pools.png"
   alt="Different_pools">
   <figcaption>Figure 14: Comparison Bewteen Different Pools</figcaption>
 </figure>
@@ -473,7 +473,7 @@ Finally, we tune the one-layer architecture comprehensively empirically.
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]TuningAll.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_TuningAll.png"
   alt="TuningAll">
   <figcaption>Figure 15: Comprehensive Tuning for CausalNet</figcaption>
 </figure>
@@ -488,7 +488,7 @@ There are mainly three parameters that could be tuned: neurons per layer(npl), r
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]DragonnetTuningAll.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_DragonnetTuningAll.png"
   alt="DragonnetTuningAll">
   <figcaption>Figure 16: Comprehensive Tuning for Dragonnet</figcaption>
 </figure>
@@ -501,7 +501,7 @@ In this section, we plot the distribution of CATE as well as the Gain chart and 
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]CATE_Benchmark.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_CATE_Benchmark.png"
   alt="CATE_Benchmark">
   <figcaption>Figure 17: Distribution of CATE Predictions by Benchmark Models</figcaption>
 </figure>
@@ -510,7 +510,7 @@ The results of CATE distribution from Benchmark Models are reasonable. Because S
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]CATE_Others.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_CATE_Others.png"
   alt="CATE_Others">
   <figcaption>Figure 18: Distribution of CATE Predictions by Different Methods</figcaption>
 </figure>
@@ -525,7 +525,7 @@ In contrast, the results of the CEVAE indicates to rather not send e-mails to po
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]gain_all.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_gain_all.png"
   alt="gain_all">
   <figcaption>Figure 19: Gain for All</figcaption>
 </figure>
@@ -538,7 +538,7 @@ The following table consists of the metrics AUUC and Qini score for each method,
 
 <figure>
   <img
-  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/[UM]ComparisonAll.png"
+  src="https://raw.githubusercontent.com/Dingyi-Lai/Dingyi-Lai.github.io/main/_images/UM_ComparisonAll.png"
   alt="ComparisonAll">
   <figcaption>Figure 20: Comparison for All</figcaption>
 </figure>
